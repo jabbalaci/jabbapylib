@@ -11,10 +11,11 @@ import os
 COOKIE_DB = "{home}/.mozilla/firefox/cookies.sqlite".format(home=os.path.expanduser('~'))
 
 required_files = (
-    COOKIE_DB,
-    '/usr/bin/espeak',
-    '/usr/bin/mplayer',
-    '/usr/bin/wget',
+    COOKIE_DB,              # to get webpages that are protected with cookies
+    '/usr/bin/espeak',      # text to speech
+    '/usr/bin/mplayer',     # play audio/video
+    '/usr/bin/wget',        # get webpages
+    '/usr/bin/xsel'         # copy to clipboard
 )
 
 def check():
