@@ -17,15 +17,15 @@ Usage:
 ------
 
 Create a folder and put this project in that folder.
-In my case I put it in ~/python/lib. That is, I have this
+In my case I put it in ~/python/lib/jabbapylib. That is, I have this
 hierarchy:
-~/python/lib/README                 (this file)
-~/python/lib/jabbapylib/config.py
+~/python/lib/jabbapylib/README                 (this file)
+~/python/lib/jabbapylib/jabbapylib/config.py
 etc.
 
 Then add this folder to PYTHONPATH in your ~/.bashrc file:
 
-PYTHONPATH=$PYTHONPATH:$HOME/python/lib
+PYTHONPATH=$PYTHONPATH:$HOME/python/lib/jabbapylib
 export PYTHONPATH
 
 Source .bashrc (or open a new terminal), start the Python
