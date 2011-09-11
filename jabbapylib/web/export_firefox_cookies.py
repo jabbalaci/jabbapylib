@@ -14,13 +14,17 @@ except:
 import sqlite3 as db
 from jabbapylib import config
 
+import cookielib
+
 
 COOKIE_DB =  config.COOKIE_DB
 CONTENTS = "host, path, isSecure, expiry, name, value"
 
 
-def get_cookies(host):
-    """Export cookies. Return value: exported cookies as a string."""
+def get_cookies_in_text(host):
+    """Export cookies in plain-text (like cookies.txt) format. 
+    
+    Return value: exported cookies as a string."""
     conn = db.connect(COOKIE_DB)
     cursor = conn.cursor()
          
@@ -39,7 +43,41 @@ def get_cookies(host):
     
     return value
 
+
+def get_cookies_in_cookiejar(host):
+    """Export cookies and put them in a cookiejar.
+    
+    Return value: a cookiejar filled with cookies."""
+    # based on http://www.guyrutenberg.com/2010/11/27/building-cookiejar-out-of-firefoxs-cookies-sqlite/
+    cj = cookielib.LWPCookieJar()       # This is a subclass of FileCookieJar that has useful load and save methods
+    
+    conn = db.connect(COOKIE_DB)
+    cursor = conn.cursor()
+    sql = "SELECT {c} FROM moz_cookies WHERE host LIKE '%{h}%'".format(c=CONTENTS, h=host)
+    cursor.execute(sql)
+    
+    for item in cursor.fetchall():
+        c = cookielib.Cookie(0, item[4], item[5],
+            None, False,
+            item[0], item[0].startswith('.'), item[0].startswith('.'),
+            item[1], False,
+            item[2],
+            item[3], item[3]=="",
+            None, None, {})
+        #print c
+        cj.set_cookie(c)
+
+    return cj
+
     
 if __name__ == "__main__":
     host = 'projecteuler'
-    print get_cookies(host)
+    
+    # version 1
+    print get_cookies_in_text(host)
+
+    # version 2
+    cj = get_cookies_in_cookiejar(host)
+    for index, cookie in enumerate(cj):
+        print index, ':', cookie
+    #cj.save(COOKIEFILE)    # Save the cookies in a file. Format: LWP-Cookies-2.0.

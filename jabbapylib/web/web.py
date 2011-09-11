@@ -12,7 +12,7 @@ import urllib
 import urllib2
 import urlparse
 
-from export_firefox_cookies import get_cookies
+from export_firefox_cookies import get_cookies_in_text, get_cookies_in_cookiejar
 from jabbapylib.process import process
 
 
@@ -101,9 +101,11 @@ def store_content_in_file(content, file_name, overwrite=False):
 # store_content_in_file
 
 
-def get_page_with_cookies(url):
-    """Get the content of a cookies-protected page."""
-    cookies = get_cookies(get_host(url))
+def get_page_with_cookies_using_wget(url):
+    """Get the content of a cookies-protected page.
+    
+    The page is downloaded with wget. Cookies are passed to wget."""
+    cookies = get_cookies_in_text(get_host(url))
     store_content_in_file(cookies, COOKIES_TXT, overwrite=True)
     OPTIONS = "--cookies=on --load-cookies={0} --keep-session-cookies".format(COOKIES_TXT)
     cmd = "/usr/bin/wget {options} '{url}' -qO-".format(options=OPTIONS, url=url)
@@ -113,6 +115,28 @@ def get_page_with_cookies(url):
     return page
 
 
+def get_page_with_cookies_using_cookiejar(url):
+    """Get the content of a cookies-protected page.
+    
+    The page is downloaded with urllib2. The cookies are passed in a cookiejar."""
+    cj = get_cookies_in_cookiejar(get_host(url))
+    opener = urllib2.build_opener(urllib2.HTTPCookieProcessor(cj))      # cookies are added here
+    urllib2.install_opener(opener)
+
+    #txdata = None   # if we were making a POST type request, we could encode a dictionary of values here - using
+    #params = {}
+    #txdata = urllib.urlencode(params)
+    #txheaders =  {'User-agent' : 'Mozilla/4.0 (compatible; MSIE 5.5; Windows NT)'}          # fake a user agent, some websites (like google) don't like automated exploration
+    #txheaders = {}
+    #req = urllib2.Request(url, txdata, txheaders)            # create a request object
+
+    req = urllib2.Request(url)
+    handle = urllib2.urlopen(req)                               # and open it to return a handle on the url
+
+    return handle.read()
+
+
+
 #############################################################################
 
 if __name__ == "__main__":
@@ -120,4 +144,7 @@ if __name__ == "__main__":
     #text = get_page(url)
     #print store_content_in_file(text, '/tmp/index.html', overwrite=True)
     url = 'http://projecteuler.net/index.php?section=statistics'
-    print get_page_with_cookies(url)
+    #print get_page_with_cookies_using_wget(url)
+
+    # version 2
+    print get_page_with_cookies_using_cookiejar(url)
