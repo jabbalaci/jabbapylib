@@ -7,7 +7,6 @@ Working with webpages.
 """
 
 import os
-import os.path
 import sys
 import urllib
 import urllib2
