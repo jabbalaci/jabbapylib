@@ -11,19 +11,21 @@ text = "<table><td>foo"
 
 def demo1():
     doc = lx.to_doc(text)
-    print lx.prettify(doc)
+    print lx.prettify(doc, method=scraper.BEAUTIFULSOUP)
 
 def demo2():
     doc = lx.to_doc(text, parser=scraper.HTML5PARSER)
-    print lx.prettify(doc)
+    print lx.prettify(doc, method=scraper.BEAUTIFULSOUP)
 
 def demo3():
     doc = lx.to_doc(text, parser=scraper.SOUPPARSER)
-    print lx.prettify(doc)
+    print lx.prettify(doc, method=scraper.BEAUTIFULSOUP)
 
 #############################################################################
 
 if __name__ == "__main__":
     demo1()
-    #demo2()
+    print '-'*40
+    demo2()
+    print '-'*40
     demo3()

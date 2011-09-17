@@ -20,11 +20,12 @@ import scraper
 from lxml import html
 from lxml import cssselect
 from lxml import etree
-# html5parser is broken for me, bug report is here: https://bugs.launchpad.net/lxml/+bug/780642
-# I hope it'll be corrected soon.
-from lxml.html import html5parser
+#from lxml.html import html5parser
 from lxml.html import soupparser
 from lxml.html import clean
+
+import html5lib
+from html5lib import treebuilders
 
 
 def to_doc(text, parser=scraper.LXML_HTML, whole_doc=True):
@@ -40,10 +41,14 @@ def to_doc(text, parser=scraper.LXML_HTML, whole_doc=True):
         else:
             doc = html.fromstring(text)
     elif parser == scraper.HTML5PARSER:
-        if whole_doc:
-            doc = html5parser.document_fromstring(text)
-        else:
-            doc = html5parser.fromstring(text)
+        # html5parser was broken for me, bug report is here: https://bugs.launchpad.net/lxml/+bug/780642
+        #if whole_doc:
+        #    doc = html5parser.document_fromstring(text)
+        #else:
+        #    doc = html5parser.fromstring(text)
+        # Here is my workaround:
+        parser = html5lib.HTMLParser(tree=treebuilders.getTreeBuilder("lxml"), namespaceHTMLElements=False)
+        doc = parser.parse(text)
     elif parser == scraper.SOUPPARSER:
         # soupparser has no document_fromstring method
         doc = soupparser.fromstring(text)
