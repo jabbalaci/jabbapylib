@@ -9,7 +9,7 @@ some extra methods (see http://lxml.de/lxmlhtml.html, section HTML Element Metho
 Element: http://docs.python.org/library/xml.etree.elementtree.html#element-objects.
 """
 
-from jabbapylib.web.scraper import lx, scraper
+from jabbapylib.web.scraper import lx, scraper, bs
 from jabbapylib.web.web import get_page
 
 
@@ -107,6 +107,24 @@ def demo7():
         print tag.text
     print lx.css_to_xpath('div#content ul li')
     lx.open_in_browser(doc)
+    
+def demo8():  
+    url = 'http://python.org/'
+    text = get_page(url)
+    #doc = lx.to_doc(text, parser=scraper.HTML5PARSER)
+    #doc = lx.to_doc(text)
+    doc = lx.to_doc(text, parser=scraper.BEAUTIFULSOUP)
+    #print type(doc)
+    #print etree.tostring(doc)
+    title = doc.cssselect('html head title')[0]
+    print title.text
+    
+def demo9():
+    url = 'http://python.org/'
+    text = get_page(url)
+    soup = bs.to_soup(text)
+    title = soup.findCssSelect('html head title')[0]
+    print title.text
 
 #############################################################################
 
@@ -117,5 +135,7 @@ if __name__ == "__main__":
     #demo4()
     #demo5()
     #demo6()
-    demo7()
+    #demo7()
+    #demo8()
+    demo9()
     pass

@@ -32,7 +32,7 @@ from html5lib import treebuilders
 
 
 def to_doc(text, parser=scraper.LXML_HTML, whole_doc=True):
-    """Parse an HTML text.
+    """Parse an HTML text. Return value: lxml.html.HtmlElement document.
     
     parser: which parser to use. 
     whole_doc: parse to complete HTML document (with <html> around), or parse just a fragment of HTML."""
@@ -51,15 +51,16 @@ def to_doc(text, parser=scraper.LXML_HTML, whole_doc=True):
         #    doc = html5parser.fromstring(text)
         # Here is my workaround:
         parser = html5lib.HTMLParser(tree=treebuilders.getTreeBuilder("lxml"), namespaceHTMLElements=False)
-        doc = parser.parse(text)
-    elif parser == scraper.SOUPPARSER:
+        etree_doc = parser.parse(text)  # returns an ElementTree
+        doc = html.document_fromstring(elementtree_to_string(etree_doc))
+    elif parser == scraper.BEAUTIFULSOUP:
         # soupparser has no document_fromstring method
         doc = soupparser.fromstring(text)
     else:
         print >>sys.stderr, "Error: you want to use an unknown parser in lx.py."
         # doc is None
         
-    return doc
+    return doc  # lxml.html.HtmlElement
 
 
 def prettify(doc, method=scraper.LXML_HTML):
@@ -124,8 +125,15 @@ def show_paths(doc):
                 # don't print whitespaces
                 print "'{0}' => {1}".format(val, tree.getpath(e))
                 
+                
 def open_in_browser(doc):
     lxml.html.open_in_browser(doc)
+    
+    
+def elementtree_to_string(etree_doc):
+    """Convert an ElementTree object to string."""
+    return etree.tostring(etree_doc)
+
 
 #############################################################################
 

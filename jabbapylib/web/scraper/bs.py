@@ -11,6 +11,13 @@ from jabbapylib.web import web
 from BeautifulSoup import BeautifulSoup
 
 
+def css_patch():
+    """Add the function soup.findSelect (or soup.findCssSelect) to BeautifulSoup.
+    
+    From here: https://code.google.com/p/soupselect/."""
+    import soupselect
+    soupselect.monkeypatch()
+
 def to_soup(html_source):
     """Convert HTML source (text) to soup object."""
     return BeautifulSoup(html_source)
@@ -21,6 +28,9 @@ def prettify(soup):
 
 def doc_to_soup(doc):
     return to_soup(lx.tostring(doc))
+
+# The patch is applied automatically when this module is imported.
+css_patch()
 
 #############################################################################
 
