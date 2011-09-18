@@ -86,7 +86,27 @@ def demo6():
 <li>ghi</li>
 </ul>"""
     doc = lx.to_doc(text)
-    print lx.prettify(doc, method=scraper.TIDY)
+    for li in doc.cssselect('ul li'):
+        print li.text.strip()
+        
+def demo7():
+    text = """<html>
+ <body
+  <div></div>
+  <div id="content">
+   <ul>
+    <li>First item</li>
+    <li>Second item</li>
+   </ul>
+  </div>
+ </body>
+</html>"""
+    doc = lx.to_doc(text)
+    lx.show_paths(doc)
+    for tag in doc.cssselect('div#content ul li'):
+        print tag.text
+    print lx.css_to_xpath('div#content ul li')
+    lx.open_in_browser(doc)
 
 #############################################################################
 
@@ -96,5 +116,6 @@ if __name__ == "__main__":
     #demo3()
     #demo4()
     #demo5()
-    demo6()
+    #demo6()
+    demo7()
     pass

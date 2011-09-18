@@ -18,6 +18,8 @@ import bs
 import scraper
 import tidy
 
+import lxml.html
+
 from lxml import html
 from lxml import cssselect
 from lxml import etree
@@ -102,11 +104,14 @@ def autolink(doc):
     return doc
 
 
-def css_to_xpath(css):
+def css_to_xpath(css, simplify=True):
     """CSS to XPath.
     
     Example: css_to_xpath('div.pad a')."""
-    return cssselect.css_to_xpath(css)
+    xpath = cssselect.css_to_xpath(css)
+    if simplify:
+        xpath = xpath.replace('descendant-or-self::', '//').replace('descendant::', '')
+    return xpath
 
 
 def show_paths(doc):
@@ -114,7 +119,13 @@ def show_paths(doc):
     tree = etree.ElementTree(doc)
     for e in tree.iter():
         if e.text:
-            print "'{0}' => {1}".format(e.text, tree.getpath(e))
+            val = e.text.strip()
+            if val:
+                # don't print whitespaces
+                print "'{0}' => {1}".format(val, tree.getpath(e))
+                
+def open_in_browser(doc):
+    lxml.html.open_in_browser(doc)
 
 #############################################################################
 
