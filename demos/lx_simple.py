@@ -79,6 +79,14 @@ def demo5():
     doc = lx.to_doc(text)
     lx.show_paths(doc)
     
+def demo6():
+    text = """<ul>
+<li>abc</li>
+<li>def
+<li>ghi</li>
+</ul>"""
+    doc = lx.to_doc(text)
+    print lx.prettify(doc, method=scraper.TIDY)
 
 #############################################################################
 
@@ -88,4 +96,5 @@ if __name__ == "__main__":
     #demo3()
     #demo4()
     #demo5()
+    demo6()
     pass

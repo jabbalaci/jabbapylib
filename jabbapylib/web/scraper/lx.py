@@ -16,6 +16,7 @@ import sys
 
 import bs
 import scraper
+import tidy
 
 from lxml import html
 from lxml import cssselect
@@ -64,10 +65,12 @@ def prettify(doc, method=scraper.LXML_HTML):
     text = None
     
     if method == scraper.LXML_HTML:                     # not so pretty
-        text = html.tostring(doc, pretty_print=True)
+        text = html.tostring(doc, pretty_print2=True)
     elif method == scraper.BEAUTIFULSOUP:               # pretty
         soup = bs.doc_to_soup(doc)
         text = bs.prettify(soup)
+    elif method == scraper.TIDY:
+        text = tidy.pretty_print(tostring(doc))
     else:
         print >>sys.stderr, "Error: you want to use an unknown method in lx.py."
         # text is None
