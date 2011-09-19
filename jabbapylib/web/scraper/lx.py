@@ -53,6 +53,7 @@ def to_doc(text, parser=scraper.LXML_HTML, whole_doc=True):
         parser = html5lib.HTMLParser(tree=treebuilders.getTreeBuilder("lxml"), namespaceHTMLElements=False)
         etree_doc = parser.parse(text)  # returns an ElementTree
         doc = html.document_fromstring(elementtree_to_string(etree_doc))
+        # ^ this double conversion makes it slow ^
     elif parser == scraper.BEAUTIFULSOUP:
         # soupparser has no document_fromstring method
         doc = soupparser.fromstring(text)
@@ -115,16 +116,19 @@ def css_to_xpath(css, simplify=True):
     return xpath
 
 
-def show_paths(doc):
+def show_paths(doc, find=None):
     """Show paths of HTML texts."""
     tree = etree.ElementTree(doc)
     for e in tree.iter():
         if e.text:
             val = e.text.strip()
-            if val:
-                # don't print whitespaces
-                print "'{0}' => {1}".format(val, tree.getpath(e))
-                
+            if val:     # don't print whitespaces
+                if find is None:
+                    print "'{0}' => {1}".format(val, tree.getpath(e))
+                else:   # if find is not None
+                    if find in val:
+                        print "'{0}' => {1}".format(val, tree.getpath(e))
+                    
                 
 def open_in_browser(doc):
     lxml.html.open_in_browser(doc)

@@ -21,7 +21,7 @@ COOKIES_TXT = 'cookies.txt'
 
 class MyOpener(urllib.FancyURLopener):
     """Custom user-agent."""
-    version = 'Mozilla/5.0 (X11; Linux i686; rv:2.0.1) Gecko/20100101 Firefox/4.0.1'
+    version = 'Mozilla/5.0 (X11; Linux i686; rv:6.0.2) Gecko/20100101 Firefox/6.0.2'
 # MyOpener
 
 
