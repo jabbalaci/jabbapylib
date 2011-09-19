@@ -7,15 +7,17 @@ http://splinter.cobrateam.info
 """
 
 from time import sleep
+from splinter.browser import Browser
 
-#url = 'http://simile.mit.edu/crowbar/test.html'
+
+url = 'http://simile.mit.edu/crowbar/test.html'
 #url = 'http://dl.dropbox.com/u/144888/hello_js.html'
-url = 'http://www.ncbi.nlm.nih.gov/nuccore/CP002059.1'
+#url = 'http://www.ncbi.nlm.nih.gov/nuccore/CP002059.1'
 #url = 'http://translate.google.com/#en|fr|game'
 
 def main():
-    from splinter.browser import Browser
-
+    #browser = Browser('zope.testbrowser')
+    #browser = Browser('webdriver.chrome')
     browser = Browser()
     browser.visit(url)
     
