@@ -11,11 +11,10 @@ import sys
 from PyQt4 import QtGui, QtCore, QtWebKit
 
 #url = 'http://simile.mit.edu/crowbar/test.html'
-url = 'http://dl.dropbox.com/u/144888/hello_js.html'
-#url = 'http://www.ncbi.nlm.nih.gov/nuccore/CP002059.1'
+#url = 'http://dl.dropbox.com/u/144888/hello_js.html'
+url = 'http://www.ncbi.nlm.nih.gov/nuccore/CP002059.1'
 #url = 'https://dl.dropbox.com/u/144888/email_js.html'
 
-output = 'w2.html'
 
 class SimpleWebkit():
     def __init__(self, url, output):
@@ -24,12 +23,7 @@ class SimpleWebkit():
         self.webView = QtWebKit.QWebView()
         
     def save(self):
-        print "# call"
-        html = self.webView.page().mainFrame().toHtml()
-        f = open(self.output, 'w')
-        f.write(html)
-        f.close()
-        print '# finished'
+        print self.webView.page().mainFrame().toHtml()
         sys.exit(0)
         
     def process(self):
@@ -40,12 +34,11 @@ class SimpleWebkit():
 def main():
     app = QtGui.QApplication(sys.argv)
     
-    s = SimpleWebkit(url, output)
+    s = SimpleWebkit(url)
     s.process()
     
-    #sys.exit(app.exec_())
-    app.exec_()
-
+    sys.exit(app.exec_())
+    
 
 #############################################################################
 

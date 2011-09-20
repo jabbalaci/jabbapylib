@@ -7,7 +7,6 @@ This tip is from here:
 http://stackoverflow.com/questions/1685221/accurately-measure-time-python-function-takes
 """
 
-from __future__ import with_statement
 import time
 
 class Timer(object):

@@ -136,6 +136,11 @@ def get_page_with_cookies_using_cookiejar(url):
     return handle.read()
 
 
+def get_js_page(url):
+    """Get a page with Webkit, i.e. evaluate embedded Javascripts."""
+    cmd = "python scraper/simple_webkit.py '{url}'".format(url=url)
+    html = process.get_simple_cmd_output(cmd)
+    return html
 
 #############################################################################
 
@@ -147,4 +152,8 @@ if __name__ == "__main__":
     #print get_page_with_cookies_using_wget(url)
 
     # version 2
-    print get_page_with_cookies_using_cookiejar(url)
+    #print get_page_with_cookies_using_cookiejar(url)
+    
+    # get JS page
+    url = 'http://simile.mit.edu/crowbar/test.html'
+    print get_js_page(url)
