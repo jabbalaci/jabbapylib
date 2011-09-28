@@ -50,7 +50,7 @@ def get_hyphen(doc):
 def get_mp3(doc):
     """Extract the first mp3 file and return its URL.
     
-    Return None is nothing is found."""
+    Return None if nothing is found."""
     mp3 = None
     for script in doc.cssselect('script[type="text/javascript"]'):
         if script.text is not None and 'soundUrl' in script.text:
