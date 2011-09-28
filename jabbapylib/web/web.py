@@ -14,6 +14,7 @@ import urlparse
 
 from export_firefox_cookies import get_cookies_in_text, get_cookies_in_cookiejar
 from jabbapylib.process import process
+from jabbapylib.web.scraper import simple_webkit
 
 
 COOKIES_TXT = 'cookies.txt'
@@ -138,9 +139,7 @@ def get_page_with_cookies_using_cookiejar(url):
 
 def get_js_page(url):
     """Get a page with Webkit, i.e. evaluate embedded Javascripts."""
-    cmd = "python scraper/simple_webkit.py '{url}'".format(url=url)
-    html = process.get_simple_cmd_output(cmd)
-    return html
+    return simple_webkit.get_html(url)
 
 #############################################################################
 
