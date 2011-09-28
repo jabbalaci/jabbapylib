@@ -4,6 +4,8 @@
 Hyphenate words.
 Plus: pronounce them too.
 
+Webpage: https://ubuntuincident.wordpress.com/2011/09/28/a-little-help-for-hyphenating-words-in-latex/
+
 Tested with Linux only.
 
 Usage:
