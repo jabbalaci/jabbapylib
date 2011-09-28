@@ -41,7 +41,7 @@ class SimpleWebkit(QWebPage):
 
 def get_html(url):   
     s = SimpleWebkit(url)
-    return s.html
+    return str(s.html)      # QString to string !
 
 #############################################################################
 
