@@ -23,6 +23,8 @@ Hyphenation:   py-thon
 Pronunciation: http://sp.dictionary.com/dictstatic/dictionary/audio/luna/P09/P0975800.mp3
 
 If you have mplayer installed, the mp3 is played.
+
+Idea: add support for the site http://www.thefreedictionary.com too.
 """
 
 import re
