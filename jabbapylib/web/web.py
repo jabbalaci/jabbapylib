@@ -11,6 +11,8 @@ import sys
 import urllib
 import urllib2
 import urlparse
+import tempfile
+import webbrowser
 
 from export_firefox_cookies import get_cookies_in_text, get_cookies_in_cookiejar
 from jabbapylib.process import process
@@ -18,6 +20,8 @@ from jabbapylib.web.scraper import simple_webkit
 
 
 COOKIES_TXT = 'cookies.txt'
+LYNX = '/usr/bin/lynx'
+HTML2TEXT = os.path.join(os.path.split(os.path.abspath( __file__ ))[0], 'html2text.py') 
 
 
 class MyOpener(urllib.FancyURLopener):
@@ -141,7 +145,35 @@ def get_js_page(url):
     """Get a page with Webkit, i.e. evaluate embedded Javascripts."""
     return simple_webkit.get_html(url)
 
+
+def open_in_browser(html):
+    """Save an HTML source to a temp. file and open it in the browser.
+    
+    Return value: name of the temp. file."""
+    temp = tempfile.NamedTemporaryFile(prefix='tmp', suffix='.html', dir='/tmp', delete=False)
+    store_content_in_file(html, temp.name, overwrite=True)
+    webbrowser.open_new_tab(temp.name)
+    return temp.name
+
+
+def html_to_text(html, method=LYNX):
+    temp = tempfile.NamedTemporaryFile(prefix='tmp', suffix='.html', dir='/tmp', delete=False)
+    store_content_in_file(html, temp.name, overwrite=True)
+    if method == LYNX:
+        cmd = "{lynx} {html} -dump".format(lynx=LYNX, html=temp.name)
+    elif method == HTML2TEXT:
+        cmd = "{html2text} {html}".format(html2text=HTML2TEXT, html=temp.name)
+    else:
+        print >>sys.stderr, "Warning! Unknown method is used in web.html_to_text."
+        return None
+    
+    text = process.get_simple_cmd_output(cmd)
+    os.unlink(temp.name)
+    return text
+    
+
 #############################################################################
+
 
 if __name__ == "__main__":
     #url = 'http://index.hu'
