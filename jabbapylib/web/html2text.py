@@ -28,10 +28,10 @@ except ImportError: #Python3
     import urllib.parse as urlparse
     import html.parser as HTMLParser
 try: #Python3
-    import urllib.request as urllib
+    import urllib.request as urllib #@UnusedImport @UnresolvedImport
 except:
-    import urllib
-import optparse, re, sys, codecs, types
+    import urllib #@Reimport
+import optparse, re, sys, codecs, types #@UnusedImport
 
 try: from textwrap import wrap
 except: pass

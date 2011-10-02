@@ -20,6 +20,7 @@ from jabbapylib.web.scraper import simple_webkit
 
 
 COOKIES_TXT = 'cookies.txt'
+
 LYNX = '/usr/bin/lynx'
 HTML2TEXT = os.path.join(os.path.split(os.path.abspath( __file__ ))[0], 'html2text.py') 
 
@@ -157,6 +158,10 @@ def open_in_browser(html):
 
 
 def html_to_text(html, method=LYNX):
+    """Convert an HTML source to text format. Two methods are available:
+    (1) with lynx, (2) with html2text.py.
+    
+    The return value is a string.""" 
     temp = tempfile.NamedTemporaryFile(prefix='tmp', suffix='.html', dir='/tmp', delete=False)
     store_content_in_file(html, temp.name, overwrite=True)
     if method == LYNX:
