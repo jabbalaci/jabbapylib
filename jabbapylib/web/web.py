@@ -100,9 +100,14 @@ def store_content_in_file(content, file_name, overwrite=False):
         print >>sys.stderr, "# warning: {0} exists.".format(file_name)
         return False
     # else
-    f = open(file_name, 'w')
-    f.write(content)
-    f.close()
+    try:
+        f = open(file_name, 'w')
+        f.write(content)
+        f.close()
+    except TypeError:
+        print >>sys.stderr, "# warning: couldn't store {0}.".format(file_name)
+        return False
+    #
     return True
 # store_content_in_file
 

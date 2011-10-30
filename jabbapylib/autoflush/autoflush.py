@@ -7,12 +7,16 @@ Switch autoflush on.
 import sys
 import os
 
+autoflush_on = False
 
 def unbuffered():
     """Switch autoflush on."""
+    global autoflush_on
     # reopen stdout file descriptor with write mode
     # and 0 as the buffer size (unbuffered)
-    sys.stdout = os.fdopen(sys.stdout.fileno(), 'w', 0)
+    if not autoflush_on:
+        sys.stdout = os.fdopen(sys.stdout.fileno(), 'w', 0)
+        autoflush_on = True
     
 #############################################################################
     
