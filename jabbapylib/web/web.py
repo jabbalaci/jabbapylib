@@ -189,12 +189,12 @@ if __name__ == "__main__":
     #url = 'http://index.hu'
     #text = get_page(url)
     #print store_content_in_file(text, '/tmp/index.html', overwrite=True)
-    url = 'http://projecteuler.net/index.php?section=statistics'
-    #print get_page_with_cookies_using_wget(url)
+    url = 'http://projecteuler.net/progress'
+    print get_page_with_cookies_using_wget(url)
 
     # version 2
-    #print get_page_with_cookies_using_cookiejar(url)
+#    print get_page_with_cookies_using_cookiejar(url)
     
     # get JS page
-    url = 'http://simile.mit.edu/crowbar/test.html'
-    print get_js_page(url)
+#    url = 'http://simile.mit.edu/crowbar/test.html'
+#    print get_js_page(url)
