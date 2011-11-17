@@ -22,14 +22,14 @@ def get_simple_cmd_output(cmd, stderr=STDOUT):
     return Popen(args, stdout=PIPE, stderr=stderr).communicate()[0]
 
 
-def get_cmd_output_input_from_stdin(cmd, input): #@ReservedAssignment
+def get_cmd_output_input_from_stdin(cmd, input_file): #@ReservedAssignment
     """Execute an external command and get its output. The command
-    receives its input from the stdin through a pipe.
+    receives its input_file from the stdin through a pipe.
     
     Example: 'echo test | grep es'."""
     args = shlex.split(cmd)
     p = Popen(args, stdout=PIPE, stdin=PIPE)    # | grep es
-    p.stdin.write(input)                        # echo test |
+    p.stdin.write(input_file)                        # echo test |
     return p.communicate()[0]
 
 

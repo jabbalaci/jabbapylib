@@ -7,6 +7,7 @@
 from termcolor import colored
 
 def color(text, color, attrs=[]):
+    """Produce a colored text for the terminal."""
     return colored(text, color, attrs=attrs)
 
 ##############################################################################

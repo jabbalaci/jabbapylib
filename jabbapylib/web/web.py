@@ -4,6 +4,9 @@
 Working with webpages.
 * download a page
 * store a page (or image, etc.) in the file system
+
+# import jabbapylib.web.web as web
+# from jabbapylib.web.web import get_page
 """
 
 import os
@@ -190,7 +193,7 @@ if __name__ == "__main__":
     #text = get_page(url)
     #print store_content_in_file(text, '/tmp/index.html', overwrite=True)
     url = 'http://projecteuler.net/progress'
-    print get_page_with_cookies_using_wget(url)
+    #print get_page_with_cookies_using_wget(url)
 
     # version 2
 #    print get_page_with_cookies_using_cookiejar(url)
@@ -198,3 +201,8 @@ if __name__ == "__main__":
     # get JS page
 #    url = 'http://simile.mit.edu/crowbar/test.html'
 #    print get_js_page(url)
+
+    print get_host(url)
+    print urlparse.urlparse(url)
+    url = '/media/truecrypt1/secret/tumblr/test_blog.txt'
+    print urlparse.urlparse(url)

@@ -10,6 +10,7 @@ http://stackoverflow.com/questions/1685221/accurately-measure-time-python-functi
 import time
 
 class Timer(object):
+    
     def __enter__(self):
         self.__start = time.time()
 

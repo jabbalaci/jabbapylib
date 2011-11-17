@@ -2,6 +2,8 @@
 
 """
 Switch autoflush on.
+
+# from jabbapylib.autoflush.autoflush import unbuffered
 """
 
 import sys

@@ -8,6 +8,9 @@ https://pythonadventures.wordpress.com/2011/09/02/linux-python-text-to-speech/
 import os
 
 def say(text):
+    """Say a given text.
+    
+    It calls espeak."""
     cmd = '/usr/bin/espeak "{0}" 2>/dev/null'.format(text)
     os.system(cmd)
 

@@ -20,8 +20,6 @@ def unicode_to_ascii(text):
 def remove_non_ascii(text): 
     return ''.join(c for c in text if ord(c) < 128)
 
-
-
 #############################################################################
     
 if __name__ == "__main__":
