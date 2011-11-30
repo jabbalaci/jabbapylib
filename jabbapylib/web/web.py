@@ -65,7 +65,7 @@ def get_url_open(url, user_agent=False, referer=False):
         req.add_header('Referer', get_referer(url))
     try:
         return urllib2.urlopen(req)
-    except urllib2.HTTPError:
+    except:
         return None
 # get_url_open
 
@@ -80,6 +80,18 @@ def get_url_info(url, user_agent=False, referer=False):
     # else
     return None
 # get_url_info
+
+
+def get_redirected_url(url):
+    """Get the redirected URL.
+    
+    In case of problem, return None."""
+    try:
+        page = urllib.urlopen(url)
+        return page.geturl()
+    except:
+        return None
+# get_redirected_url
 
 
 def get_page(url, user_agent=False, referer=False):

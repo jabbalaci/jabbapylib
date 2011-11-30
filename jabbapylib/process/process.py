@@ -5,9 +5,12 @@ Interacting with processes.
 * launch a new process
 * launch a new process and get its output
 * launch a new process in the background
+
+# from jabbapylib.process import process
 """
 
 import shlex
+import psutil
 
 from subprocess import call, Popen, PIPE, STDOUT
 
@@ -42,6 +45,19 @@ def get_return_code_of_simple_cmd(cmd, stderr=STDOUT):
 def execute_cmd_in_background(cmd):
     """Execute a (shell) command in the background."""
     call("{0} &".format(cmd), shell=True)
+    
+    
+def get_process_list():
+    """Get the list of running processes.
+    
+    Example:
+        PROCNAME = "python.exe"
+    
+        for proc in psutil.process_iter():
+            if proc.name == PROCNAME:
+                proc.kill()
+    """
+    return psutil.process_iter()
     
 #############################################################################
     
