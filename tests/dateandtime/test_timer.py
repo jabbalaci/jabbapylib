@@ -5,9 +5,8 @@ class TestTimer:
     
     def test_timer(self):
         timer = Timer()
-        print '# testing timer, takes 1 sec.'
         with timer:
             # Whatever you want to measure goes here
-            time.sleep(1)
+            time.sleep(0.1)
         
-        assert 1.0 < timer.elapsed_time() < 1.1
+        assert 0.1 < timer.elapsed_time() < 0.2

@@ -7,14 +7,18 @@ Work with unicode texts.
 
 import unicodedata
 
+#def unicode_to_ascii(text):
+#    try:
+#        text = unicodedata.normalize('NFKD', text).encode('ascii', 'ignore')
+#    except TypeError:
+#        pass
+#    
+#    return text
 
-def unicode_to_ascii(text):
-    try:
-        text = unicodedata.normalize('NFKD', text).encode('ascii', 'ignore')
-    except TypeError:
-        pass
-    
-    return text
+def remove_accents(input_str):
+    # http://stackoverflow.com/questions/517923
+    nkfd_form = unicodedata.normalize('NFKD', unicode(input_str, 'utf8'))
+    return u"".join([c for c in nkfd_form if not unicodedata.combining(c)])
 
 
 def remove_non_ascii(text): 
@@ -23,5 +27,6 @@ def remove_non_ascii(text):
 #############################################################################
     
 if __name__ == "__main__":
-    text = "Kellemes Ünnepeket!"
-    print unicode_to_ascii(text)
+    text = "László"
+    print remove_accents(text)
+    print remove_non_ascii(text)
