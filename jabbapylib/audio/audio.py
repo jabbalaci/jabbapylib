@@ -5,10 +5,11 @@ Playing audio files.
 """
 
 import os
+import jabbapylib.config as cfg
 
 def play(audio_file, background=False):
     """Play an audio file with mplayer."""
-    cmd = '/usr/bin/mplayer {audio} 1>/dev/null 2>&1'.format(audio=audio_file)
+    cmd = '{mplayer} {audio} 1>/dev/null 2>&1'.format(mplayer=cfg.MPLAYER, audio=audio_file)
     if background:
         cmd += ' &'
     os.system(cmd)
@@ -16,5 +17,5 @@ def play(audio_file, background=False):
 #############################################################################
     
 if __name__ == "__main__":
-    audio = '/home/jabba/dwhelper/Santigold_-_Unstoppable.mp3'
+    audio = '/home/jabba/dwhelper/test.mp3'
     play(audio, background=True)

@@ -42,3 +42,4 @@ if __name__ == "__main__":
     #
     path = 'http://google.com'
     print is_local_path(path)
+    print get_timestamped_filename()

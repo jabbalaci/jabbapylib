@@ -6,12 +6,13 @@ https://pythonadventures.wordpress.com/2011/09/02/linux-python-text-to-speech/
 """
 
 import os
+import jabbapylib.config as cfg
 
 def say(text):
     """Say a given text.
     
     It calls espeak."""
-    cmd = '/usr/bin/espeak "{0}" 2>/dev/null'.format(text)
+    cmd = '{espeak} "{text}" 2>/dev/null'.format(espeak=cfg.ESPEAK, text=text)
     os.system(cmd)
 
 #############################################################################

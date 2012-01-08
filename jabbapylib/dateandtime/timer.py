@@ -5,6 +5,8 @@ Measure execution time.
 
 This tip is from here: 
 http://stackoverflow.com/questions/1685221/accurately-measure-time-python-function-takes
+
+# from jabbapylib.dateandtime import Timer
 """
 
 import time
@@ -28,6 +30,6 @@ if __name__ == "__main__":
     timer = Timer()
     with timer:
         # Whatever you want to measure goes here
-        time.sleep(2)
+        time.sleep(1)
     
     print timer.elapsed_time()
