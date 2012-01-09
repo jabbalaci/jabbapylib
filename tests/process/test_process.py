@@ -41,6 +41,7 @@ def test_get_process_list():
     for p in process.get_process_list():
         if p.pid == pid:
             found = True
+            break
             
     assert found
     os.kill(pid, signal.SIGTERM)

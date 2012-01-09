@@ -17,5 +17,5 @@ def play(audio_file, background=False):
 #############################################################################
     
 if __name__ == "__main__":
-    audio = '/home/jabba/dwhelper/test.mp3'
+    audio = cfg.ASSETS_DIR + '/audio.mp3'
     play(audio, background=True)

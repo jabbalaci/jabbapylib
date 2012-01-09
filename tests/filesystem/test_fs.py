@@ -1,21 +1,9 @@
-import os
 import re
 from jabbapylib.filesystem import fs
+import jabbapylib.config as cfg
 
-FILE = '/tmp/jabbapylib.tmp'
+FILE = cfg.TEST_ASSETS_DIR + '/text.txt'
 
-
-def setup_module(module):
-    f = open(FILE, 'w')
-    print >>f, 'first line'
-    print >>f, 'second line'
-    f.close()
-    
-    
-def teardown_module(module):
-    os.unlink(FILE)
-    
-##########
     
 class TestFileSystem:
     

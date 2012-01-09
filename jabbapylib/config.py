@@ -23,3 +23,9 @@ required_files = (
     XSEL,           # copy to clipboard
     TIDY,           # tidy up HTML source
 )
+
+TEST_ASSETS_DIR = os.path.dirname(__file__) + '/../tests/_assets'
+TEST_TMP_DIR = os.path.dirname(__file__) + '/../tests/_tmp'
+
+if __name__ == "__main__":
+    print TEST_ASSETS_DIR

@@ -9,6 +9,7 @@ Working with video files.
 import re
 import os
 from jabbapylib.process import process
+import jabbapylib.config as cfg
 
 MPLAYER_SCREENSHOT_FILE = '00000001.jpg'
 
@@ -53,7 +54,7 @@ def make_screenshot(video_file, sec, outdir='/tmp', rm=True):
     the time in seconds when to take the screenshot,
     and the output directory. If rm is True, a previous
     screenshot file is removed first.
-    By default, the screenshot is named 00000001.png.
+    By default, the screenshot is named 00000001.jpg.
     """
     # by default, mplayer saves here the screenshot: 
     full_path = os.path.join(outdir, MPLAYER_SCREENSHOT_FILE)
@@ -71,9 +72,9 @@ def make_screenshot(video_file, sec, outdir='/tmp', rm=True):
 #############################################################################
 
 if __name__ == "__main__":
-    video = '/home/jabba/dwhelper/the_grid.flv'
+    video = cfg.ASSETS_DIR + '/video.avi'
     print get_video_info(video)
-    print make_screenshot(video, 20)
+    print make_screenshot(video, 4)
     print get_video_length(video)
     print get_video_summary(video)
     
