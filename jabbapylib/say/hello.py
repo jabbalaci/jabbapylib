@@ -5,9 +5,7 @@ For test purposes.
 """
 
 def hi():
-    msg = "jabbapylib works :)"
-    print msg
-    return msg
+    print "jabbapylib works :)"
 
 #############################################################################
     

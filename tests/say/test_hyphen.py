@@ -1,5 +1,6 @@
 from jabbapylib.say import hyphen
 
+
 def test_hyphen():
     word = 'python'
     res = hyphen.process(word)

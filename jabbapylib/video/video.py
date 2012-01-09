@@ -10,9 +10,9 @@ import re
 import os
 from jabbapylib.process import process
 
-MPLAYER_SCREENSHOT_PNG = '00000001.png'
+MPLAYER_SCREENSHOT_FILE = '00000001.jpg'
 
-screenshot = "/usr/bin/mplayer '{0}' -ss '{1}' -noautosub -frames 1 -ao null -vo png:outdir='{2}'"
+screenshot = "/usr/bin/mplayer '{0}' -ss '{1}' -noautosub -frames 1 -ao null -vo jpeg:outdir='{2}'"
 video_info = "/usr/bin/mplayer '{0}' -ao null -vo null -frames 1 -identify"
 
 
@@ -56,11 +56,12 @@ def make_screenshot(video_file, sec, outdir='/tmp', rm=True):
     By default, the screenshot is named 00000001.png.
     """
     # by default, mplayer saves here the screenshot: 
-    full_path = os.path.join(outdir, MPLAYER_SCREENSHOT_PNG)
+    full_path = os.path.join(outdir, MPLAYER_SCREENSHOT_FILE)
     if rm and os.path.exists(full_path):
         os.remove(full_path)
     
     cmd = screenshot.format(video_file, sec, outdir)
+    #print cmd
     if process.get_return_code_of_simple_cmd(cmd) == 0:
         if os.path.exists(full_path):
             return full_path
@@ -70,6 +71,9 @@ def make_screenshot(video_file, sec, outdir='/tmp', rm=True):
 #############################################################################
 
 if __name__ == "__main__":
-    video = '/home/jabba/dwhelper/kicsi-vagyok.flv'
-    result = make_screenshot(video, 20)
-    print result
+    video = '/home/jabba/dwhelper/the_grid.flv'
+    print get_video_info(video)
+    print make_screenshot(video, 20)
+    print get_video_length(video)
+    print get_video_summary(video)
+    

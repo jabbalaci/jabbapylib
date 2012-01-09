@@ -43,8 +43,14 @@ def get_return_code_of_simple_cmd(cmd, stderr=STDOUT):
 
 
 def execute_cmd_in_background(cmd):
-    """Execute a (shell) command in the background."""
-    call("{0} &".format(cmd), shell=True)
+    """Execute a (shell) command in the background.
+    
+    Returns the process' pid."""
+    #call("{0} &".format(cmd), shell=True)
+    #http://stackoverflow.com/questions/1605520
+    args = shlex.split(cmd)
+    p = Popen(args)
+    return p.pid
     
     
 def get_process_list():
@@ -62,6 +68,12 @@ def get_process_list():
 #############################################################################
     
 if __name__ == "__main__":
-    #cmd = "/usr/bin/eog"
-    #execute_cmd_in_background(cmd)
+    print get_simple_cmd_output("echo -n Ubuntu")
     print get_cmd_output_input_from_stdin("grep es", "test")
+    print get_return_code_of_simple_cmd("date")
+    cmd = "/usr/bin/eog"
+    print 'pid:', execute_cmd_in_background(cmd)
+#    li = get_process_list()
+#    for p in li:
+#        print p.pid
+    print '__END__'

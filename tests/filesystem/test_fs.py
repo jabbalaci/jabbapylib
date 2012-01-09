@@ -4,11 +4,13 @@ from jabbapylib.filesystem import fs
 
 FILE = '/tmp/jabbapylib.tmp'
 
+
 def setup_module(module):
     f = open(FILE, 'w')
     print >>f, 'first line'
     print >>f, 'second line'
     f.close()
+    
     
 def teardown_module(module):
     os.unlink(FILE)
