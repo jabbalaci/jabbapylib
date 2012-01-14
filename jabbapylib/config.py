@@ -2,6 +2,8 @@
 
 """
 Configuration part.
+
+# import jabbapylib.config as cfg
 """
 
 import os
@@ -13,7 +15,8 @@ ESPEAK = '/usr/bin/espeak'
 MPLAYER = '/usr/bin/mplayer'
 WGET = '/usr/bin/wget'
 XSEL = '/usr/bin/xsel'
-TIDY = '/usr/bin/tidy'    
+TIDY = '/usr/bin/tidy'
+LYNX = '/usr/bin/lynx'
 
 required_files = (
     COOKIE_DB,      # to get webpages that are protected with cookies
@@ -22,6 +25,7 @@ required_files = (
     WGET,           # get webpages
     XSEL,           # copy to clipboard
     TIDY,           # tidy up HTML source
+    LYNX,           # for converting HTML to text
 )
 
 TEST_ASSETS_DIR = os.path.dirname(__file__) + '/../tests/_assets'

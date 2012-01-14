@@ -21,7 +21,9 @@ def test_get_video_summary():
 
     
 def test_make_screenshot():
-    assert video.make_screenshot(FILE, 4, outdir=cfg.TEST_TMP_DIR)
+    res = video.make_screenshot(FILE, 4, outdir=cfg.TEST_TMP_DIR)
+    ss_file = cfg.TEST_TMP_DIR + '/' + video.MPLAYER_SCREENSHOT_FILE
+    assert res and os.path.exists(ss_file)
     # clean up
     for f in glob.glob(cfg.TEST_TMP_DIR + '/*.jpg'):
         os.unlink(f)

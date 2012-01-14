@@ -1,7 +1,9 @@
 #!/usr/bin/env python
 
 """
-Playing audio files.
+Playing audio (and video too) files.
+
+# from jabbapylib.audio import audio
 """
 
 import os
@@ -17,5 +19,5 @@ def play(audio_file, background=False):
 #############################################################################
     
 if __name__ == "__main__":
-    audio = cfg.ASSETS_DIR + '/audio.mp3'
+    audio = cfg.TEST_ASSETS_DIR + '/audio.mp3'
     play(audio, background=True)

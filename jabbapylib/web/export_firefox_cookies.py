@@ -6,11 +6,7 @@ that are specific to a given host. The exported cookies are saved
 in the file cookies.txt.
 """
 
-try:
-    from cStringIO import StringIO
-except:
-    from StringIO import StringIO
- 
+from cStringIO import StringIO 
 import sqlite3 as db
 from jabbapylib import config
 
@@ -69,12 +65,15 @@ def get_cookies_in_cookiejar(host):
 
     return cj
 
+#############################################################################
     
 if __name__ == "__main__":
-    host = 'projecteuler'
+    host = 'google'
     
     # version 1
     print get_cookies_in_text(host)
+    
+    print '#' * 78 + '\n'
 
     # version 2
     cj = get_cookies_in_cookiejar(host)

@@ -72,7 +72,7 @@ def make_screenshot(video_file, sec, outdir='/tmp', rm=True):
 #############################################################################
 
 if __name__ == "__main__":
-    video = cfg.ASSETS_DIR + '/video.avi'
+    video = cfg.TEST_ASSETS_DIR + '/video.avi'
     print get_video_info(video)
     print make_screenshot(video, 4)
     print get_video_length(video)

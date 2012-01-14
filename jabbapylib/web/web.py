@@ -5,7 +5,7 @@ Working with webpages.
 * download a page
 * store a page (or image, etc.) in the file system
 
-# import jabbapylib.web.web as web
+# from jabbapylib.web import web
 # from jabbapylib.web.web import get_page
 """
 
@@ -20,17 +20,14 @@ import webbrowser
 from export_firefox_cookies import get_cookies_in_text, get_cookies_in_cookiejar
 from jabbapylib.process import process
 from jabbapylib.web.scraper import simple_webkit
-
+import jabbapylib.config as cfg
 
 COOKIES_TXT = 'cookies.txt'
-
-LYNX = '/usr/bin/lynx'
-HTML2TEXT = os.path.join(os.path.split(os.path.abspath( __file__ ))[0], 'html2text.py') 
-
+HTML2TEXT = os.path.dirname(__file__) + '/html2text.py'
 
 class MyOpener(urllib.FancyURLopener):
     """Custom user-agent."""
-    version = 'Mozilla/5.0 (X11; Linux i686; rv:6.0.2) Gecko/20100101 Firefox/6.0.2'
+    version = 'Mozilla/5.0 (Ubuntu; X11; Linux x86_64; rv:9.0.1) Gecko/20100101 Firefox/9.0.1'
 # MyOpener
 
 
@@ -177,15 +174,15 @@ def open_in_browser(html):
     return temp.name
 
 
-def html_to_text(html, method=LYNX):
+def html_to_text(html, method=cfg.LYNX):
     """Convert an HTML source to text format. Two methods are available:
     (1) with lynx, (2) with html2text.py.
     
     The return value is a string.""" 
     temp = tempfile.NamedTemporaryFile(prefix='tmp', suffix='.html', dir='/tmp', delete=False)
     store_content_in_file(html, temp.name, overwrite=True)
-    if method == LYNX:
-        cmd = "{lynx} {html} -dump".format(lynx=LYNX, html=temp.name)
+    if method == cfg.LYNX:
+        cmd = "{lynx} {html} -dump".format(lynx=cfg.LYNX, html=temp.name)
     elif method == HTML2TEXT:
         cmd = "{html2text} {html}".format(html2text=HTML2TEXT, html=temp.name)
     else:
