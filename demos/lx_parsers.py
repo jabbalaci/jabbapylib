@@ -18,7 +18,7 @@ def demo2():
     print lx.prettify(doc, method=scraper.BEAUTIFULSOUP)
 
 def demo3():
-    doc = lx.to_doc(text, parser=scraper.SOUPPARSER)
+    doc = lx.to_doc(text, parser=scraper.BEAUTIFULSOUP)
     print lx.prettify(doc, method=scraper.BEAUTIFULSOUP)
 
 #############################################################################

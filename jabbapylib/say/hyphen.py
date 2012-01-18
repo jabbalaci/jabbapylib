@@ -55,17 +55,23 @@ def get_mp3(doc):
     """Extract the first mp3 file and return its URL.
     
     Return None if nothing is found."""
-    mp3 = None
-    for script in doc.cssselect('script[type="text/javascript"]'):
-        if script.text is not None and 'soundUrl' in script.text:
-            result = re.search('soundUrl=(http.*?mp3)', script.text)
-            if result:
-                mp3 = result.group(1)
-                break
-    
-    return unquote(mp3) if mp3 else None
-
-
+#    mp3 = None
+#    for script in doc.cssselect('script[type="text/javascript"]'):
+#        if script.text is not None and 'soundUrl' in script.text:
+#            result = re.search('soundUrl=(http.*?mp3)', script.text)
+#            if result:
+#                mp3 = result.group(1)
+#                break
+#    
+#    return unquote(mp3) if mp3 else None
+    try:
+        mp3 = doc.xpath('//span[@id="aud"]/span/@audio')[0]
+    except:
+        mp3 = None
+        
+    return mp3
+        
+        
 def process(word):
     """Process the given word.
     
