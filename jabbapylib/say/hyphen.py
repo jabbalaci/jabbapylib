@@ -33,7 +33,7 @@ from urllib import unquote
 
 from jabbapylib.web import web
 from jabbapylib.web.scraper import lx
-from jabbapylib.audio import audio
+from jabbapylib.multimedia.play import play
 
 _template = 'http://dictionary.reference.com/browse/{word}' 
 
@@ -91,7 +91,7 @@ def print_result(word, hyphen, mp3):
     if mp3:
         print "Pronunciation: {mp3}".format(mp3=mp3)
         #audio.play(mp3, background=True)
-        audio.play(mp3)
+        play(mp3)
         
 
 #############################################################################
