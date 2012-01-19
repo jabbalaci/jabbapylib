@@ -1,3 +1,4 @@
+import os
 import re
 from jabbapylib.filesystem import fs
 import jabbapylib.config as cfg
@@ -18,3 +19,41 @@ class TestFileSystem:
     def test_get_timestamped_filename(self):
         res = fs.get_timestamped_filename()
         assert re.search('^\d{8}_\d{6}\.txt$', res)
+        
+    def test_remove_file_silently(self):
+        fname = '/stupid_directory_name/doesnt_exist.txt'
+        assert fs.remove_file_silently(fname)
+        assert fs.touch(cfg.TMP_FILE)
+        assert os.path.exists(cfg.TMP_FILE)
+        assert fs.remove_file_silently(cfg.TMP_FILE)
+        
+    def test_touch(self):
+        assert fs.remove_file_silently(cfg.TMP_FILE)
+        #
+        assert fs.touch(cfg.TMP_FILE)
+        assert os.path.exists(cfg.TMP_FILE)
+        #
+        assert fs.remove_file_silently(cfg.TMP_FILE)
+        assert fs.touch(cfg.TMP_FILE, mode=0644)
+        assert fs.get_oct_mode(cfg.TMP_FILE) == '0644'
+        #
+        assert fs.remove_file_silently(cfg.TMP_FILE)
+        
+    def test_get_oct_mode(self):
+        assert fs.remove_file_silently(cfg.TMP_FILE)
+        #
+        assert fs.touch(cfg.TMP_FILE, mode=0755)
+        assert fs.get_oct_mode(cfg.TMP_FILE) == '0755'
+        #
+        assert fs.remove_file_silently(cfg.TMP_FILE)
+        
+    def test_set_mode_to(self):
+        assert fs.remove_file_silently(cfg.TMP_FILE)
+        #
+        assert fs.touch(cfg.TMP_FILE, mode=0600)
+        assert fs.get_oct_mode(cfg.TMP_FILE) == '0600'
+        assert fs.set_mode_to(cfg.TMP_FILE, 0755)
+        assert fs.set_mode_to(cfg.TMP_FILE, 0700)
+        #
+        assert fs.remove_file_silently(cfg.TMP_FILE)
+        

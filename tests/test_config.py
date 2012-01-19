@@ -10,3 +10,10 @@ def test_check():
     won't work."""
     for f in cfg.required_files:
         assert os.path.isfile(f)
+        
+        
+def test_tmp_dir():
+    """There must be a HOME/tmp dir. Temporary cookies file is saved here."""
+    d = "{home}/tmp".format(home=os.path.expanduser('~'))
+    assert os.path.isdir(d)
+    assert os.access(d, os.W_OK) # W_OK is for writing, R_OK for reading, etc.

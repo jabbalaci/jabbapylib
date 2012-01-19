@@ -6,6 +6,8 @@ Image is a class to hold information about an image we want to download.
 
 If you place a file or folder called "skip" in the target directory, the file
 won't be downloaded.
+
+# from jabbapylib.web.download import image
 """
 
 SKIP = 'skip'
@@ -48,7 +50,7 @@ class Image:
     def make_dirs(self):
         """Make all the directories for the file.""" 
         d = self.get_local_dir()
-        if not os.path.exists (d):
+        if not os.path.exists(d):
             try:
                 os.makedirs(d)
             except:

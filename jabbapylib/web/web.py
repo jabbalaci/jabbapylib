@@ -22,12 +22,11 @@ from jabbapylib.process import process
 from jabbapylib.web.scraper import simple_webkit
 import jabbapylib.config as cfg
 
-COOKIES_TXT = 'cookies.txt'
 HTML2TEXT = os.path.dirname(__file__) + '/html2text.py'
 
 class MyOpener(urllib.FancyURLopener):
     """Custom user-agent."""
-    version = 'Mozilla/5.0 (Ubuntu; X11; Linux x86_64; rv:9.0.1) Gecko/20100101 Firefox/9.0.1'
+    version = cfg.USER_AGENT
 # MyOpener
 
 
@@ -129,11 +128,11 @@ def get_page_with_cookies_using_wget(url):
     
     The page is downloaded with wget. Cookies are passed to wget."""
     cookies = get_cookies_in_text(get_host(url))
-    store_content_in_file(cookies, COOKIES_TXT, overwrite=True)
-    OPTIONS = "--cookies=on --load-cookies={0} --keep-session-cookies".format(COOKIES_TXT)
-    cmd = "/usr/bin/wget {options} '{url}' -qO-".format(options=OPTIONS, url=url)
+    store_content_in_file(cookies, cfg.COOKIES_TXT, overwrite=True)
+    OPTIONS = "--cookies=on --load-cookies={0} --keep-session-cookies".format(cfg.COOKIES_TXT)
+    cmd = "{wget} {options} '{url}' -qO-".format(wget=cfg.WGET, options=OPTIONS, url=url)
     page = process.get_simple_cmd_output(cmd)
-    os.unlink(COOKIES_TXT)
+    os.unlink(cfg.COOKIES_TXT)
     
     return page
 
@@ -164,13 +163,14 @@ def get_js_page(url):
     return simple_webkit.get_html(url)
 
 
-def open_in_browser(html):
+def open_in_browser(html, test=False):
     """Save an HTML source to a temp. file and open it in the browser.
     
     Return value: name of the temp. file."""
     temp = tempfile.NamedTemporaryFile(prefix='tmp', suffix='.html', dir='/tmp', delete=False)
     store_content_in_file(html, temp.name, overwrite=True)
-    webbrowser.open_new_tab(temp.name)
+    if not test:
+        webbrowser.open_new_tab(temp.name)
     return temp.name
 
 
@@ -187,6 +187,7 @@ def html_to_text(html, method=cfg.LYNX):
         cmd = "{html2text} {html}".format(html2text=HTML2TEXT, html=temp.name)
     else:
         print >>sys.stderr, "Warning! Unknown method is used in web.html_to_text."
+        os.unlink(temp.name)
         return None
     
     text = process.get_simple_cmd_output(cmd)
