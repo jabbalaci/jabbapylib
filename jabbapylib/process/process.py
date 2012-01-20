@@ -42,6 +42,12 @@ def get_return_code_of_simple_cmd(cmd, stderr=STDOUT):
     return call(args, stdout=PIPE, stderr=stderr)
 
 
+def execute_cmd(cmd):
+    """Execute a simple external command."""
+    args = shlex.split(cmd)
+    call(args)
+
+
 def execute_cmd_in_background(cmd):
     """Execute a (shell) command in the background.
     
