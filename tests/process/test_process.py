@@ -2,6 +2,7 @@ import os
 import signal
 from time import sleep
 from jabbapylib.process import process
+from jabbapylib.clipboard import clipboard as cb
 
 
 def test_get_simple_cmd_output():
@@ -19,6 +20,18 @@ def test_get_cmd_output_input_from_stdin():
 def test_get_return_code_of_simple_cmd():
     assert process.get_return_code_of_simple_cmd("date") == 0
     assert process.get_return_code_of_simple_cmd("date -wrong-option") == 1
+    
+    
+def test_execute_cmd():
+    bak_primary = cb.read_primary()
+    #
+    text = 'arbitrary text'
+    cb.to_primary(text)
+    assert cb.read_primary() == text
+    process.execute_cmd('xsel -pc')    # clear primary
+    assert cb.read_primary() == ''
+    #
+    cb.to_primary(bak_primary)
 
     
 def test_execute_cmd_in_background():
