@@ -4,21 +4,25 @@
 
 import os
 import cookielib
+from jabbapylib import config as cfg
 from jabbapylib.web import export_firefox_cookies as efc
 
 HOST = ''    # any host
 
 
 def test_cookie_db():
-    assert os.path.exists(efc.COOKIE_DB)
-    
+    assert os.path.exists(cfg.COOKIE_DB)
     
 def test_get_cookies_in_text():
+    test_cookie_db()
+    #
     res = efc.get_cookies_in_text(HOST)
     assert res
     
     
 def test_get_cookies_in_cookiejar():
+    test_cookie_db()
+    #
     res = efc.get_cookies_in_cookiejar(HOST)
     assert isinstance(res, cookielib.LWPCookieJar)
     #assert res.__class__.__name__ == 'LWPCookieJar'
