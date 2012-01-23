@@ -2,7 +2,9 @@ import os
 import re
 from jabbapylib.filesystem import fs
 import jabbapylib.config as cfg
+from jabbapylib.web import web
 
+GOOGLE = 'http://google.com'
 FILE = cfg.TEST_ASSETS_DIR + '/text.txt'
 
     
@@ -56,4 +58,11 @@ class TestFileSystem:
         assert fs.set_mode_to(cfg.TMP_FILE, 0700)
         #
         assert fs.remove_file_silently(cfg.TMP_FILE)
+        
+    def test_store_content_in_file(self):
+        content = web.get_page(GOOGLE)
+        assert not os.path.exists(cfg.TEST_TMP_FILE)
+        fs.store_content_in_file(content, cfg.TEST_TMP_FILE)
+        assert os.path.getsize(cfg.TEST_TMP_FILE) > 0
+        os.unlink(cfg.TEST_TMP_FILE)
         

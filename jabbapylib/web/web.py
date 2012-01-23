@@ -21,6 +21,7 @@ from export_firefox_cookies import get_cookies_in_text, get_cookies_in_cookiejar
 from jabbapylib.process import process
 from jabbapylib.web.scraper import simple_webkit
 import jabbapylib.config as cfg
+from jabbapylib.filesystem import fs
 
 
 class MyOpener(urllib.FancyURLopener):
@@ -104,30 +105,12 @@ def get_page(url, user_agent=False, referer=False):
 # get_page
 
 
-def store_content_in_file(content, file_name, overwrite=False):
-    """Store the content in a file."""
-    if os.path.exists(file_name) and not overwrite:
-        print >>sys.stderr, "# warning: {0} exists.".format(file_name)
-        return False
-    # else
-    try:
-        f = open(file_name, 'w')
-        f.write(content)
-        f.close()
-    except TypeError:
-        print >>sys.stderr, "# warning: couldn't store {0}.".format(file_name)
-        return False
-    #
-    return True
-# store_content_in_file
-
-
 def get_page_with_cookies_using_wget(url):
     """Get the content of a cookies-protected page.
     
     The page is downloaded with wget. Cookies are passed to wget."""
     cookies = get_cookies_in_text(get_host(url))
-    store_content_in_file(cookies, cfg.COOKIES_TXT, overwrite=True)
+    fs.store_content_in_file(cookies, cfg.COOKIES_TXT, overwrite=True)
     OPTIONS = "--cookies=on --load-cookies={0} --keep-session-cookies".format(cfg.COOKIES_TXT)
     cmd = "{wget} {options} '{url}' -qO-".format(wget=cfg.WGET, options=OPTIONS, url=url)
     page = process.get_simple_cmd_output(cmd)
@@ -167,7 +150,7 @@ def open_in_browser(html, test=False):
     
     Return value: name of the temp. file."""
     temp = tempfile.NamedTemporaryFile(prefix='tmp', suffix='.html', dir='/tmp', delete=False)
-    store_content_in_file(html, temp.name, overwrite=True)
+    fs.store_content_in_file(html, temp.name, overwrite=True)
     if not test:
         webbrowser.open_new_tab(temp.name)
     return temp.name
@@ -179,7 +162,7 @@ def html_to_text(html, method=cfg.LYNX):
     
     The return value is a string.""" 
     temp = tempfile.NamedTemporaryFile(prefix='tmp', suffix='.html', dir='/tmp', delete=False)
-    store_content_in_file(html, temp.name, overwrite=True)
+    fs.store_content_in_file(html, temp.name, overwrite=True)
     if method == cfg.LYNX:
         cmd = "{lynx} {html} -dump".format(lynx=cfg.LYNX, html=temp.name)
     elif method == cfg.HTML2TEXT:

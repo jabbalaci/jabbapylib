@@ -39,14 +39,7 @@ def test_get_redirected_url():
     
 def test_get_page():
     assert '<title>Google</title>' in GOOGLE_HTML
-    
-def test_store_content_in_file():
-    content = GOOGLE_HTML
-    assert not os.path.exists(cfg.TEST_TMP_FILE)
-    web.store_content_in_file(content, cfg.TEST_TMP_FILE)
-    assert os.path.getsize(cfg.TEST_TMP_FILE) > 0
-    os.unlink(cfg.TEST_TMP_FILE)
-    
+       
 def test_get_page_with_cookies_using_wget():
     assert web.get_page_with_cookies_using_wget(GOOGLE)
 
@@ -54,11 +47,6 @@ def test_get_page_with_cookies_using_cookiejar():
     assert web.get_page_with_cookies_using_cookiejar(GOOGLE)
     
 def test_get_js_page():
-    # if you get this error message:
-    # Gtk-WARNING **: Unable to locate theme engine in module_path: "pixmap",
-    # then:
-    # sudo apt-get install gtk2-engines-pixbuf
-    # tip from here: http://yoodey.com/solving-gtk-warning-unable-locate-theme-engine-modulepath-pixmap
     res = web.get_js_page(CROWBAR)
     assert '<h1 id="message">Hi Crowbar!</h1>' in res
     

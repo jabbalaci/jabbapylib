@@ -17,6 +17,7 @@ import sys
 from urlparse import urlparse
 
 from jabbapylib.web import web
+from jabbapylib.filesystem import fs
 
 class Image:
     def __init__(self, base_dir, sub_dir, file_url):
@@ -81,7 +82,7 @@ class Image:
         if not self.exists():
             if self.make_dirs():
                 obj = web.get_page(self.file_url, user_agent=True, referer=True)
-                web.store_content_in_file(obj, self.get_local_path())
+                fs.store_content_in_file(obj, self.get_local_path())
         
         ok = self.exists()
         if not ok and warning:

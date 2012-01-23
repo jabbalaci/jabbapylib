@@ -93,6 +93,23 @@ def set_mode_to(fname, permissions):
             
     return get_oct_mode(fname) == oct(permissions)
 
+
+def store_content_in_file(content, file_name, overwrite=False):
+    """Store the content in a file."""
+    if os.path.exists(file_name) and not overwrite:
+        print >>sys.stderr, "# warning: {0} exists.".format(file_name)
+        return False
+    # else
+    try:
+        f = open(file_name, 'w')
+        f.write(content)
+        f.close()
+    except TypeError:
+        print >>sys.stderr, "# warning: couldn't store {0}.".format(file_name)
+        return False
+    #
+    return True
+
 ############################################################################# 
  
 if __name__ == "__main__":
