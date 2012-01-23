@@ -4,7 +4,7 @@
 # https://ubuntuincident.wordpress.com/2011/03/26/recording-soundcard-output/
 # Laszlo Szathmary, 2011 (jabba.laci@gmail.com)
 
-from termcolor import colored
+from jabbapylib.lib.termcolor import colored
 
 def color(text, color, attrs=[]):
     """Produce a colored text for the terminal."""

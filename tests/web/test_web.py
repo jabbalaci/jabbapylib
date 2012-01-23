@@ -71,7 +71,7 @@ def test_html_to_text():
     res = web.html_to_text(GOOGLE_HTML, method=cfg.LYNX)
     assert 'Google' in res and 'References' in res
     #
-    res = web.html_to_text(GOOGLE_HTML, method=web.HTML2TEXT)
+    res = web.html_to_text(GOOGLE_HTML, method=cfg.HTML2TEXT)
     assert 'Google' in res
     #
     res = web.html_to_text(GOOGLE_HTML, method='unknown method')

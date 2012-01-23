@@ -10,14 +10,14 @@ import lx
 
 from jabbapylib.web import web
 
-from BeautifulSoup import BeautifulSoup
+from jabbapylib.lib.BeautifulSoup import BeautifulSoup
 
 
 def css_patch():
     """Add the function soup.findSelect (or soup.findCssSelect) to BeautifulSoup.
     
     From here: https://code.google.com/p/soupselect/."""
-    import soupselect
+    from jabbapylib.lib import soupselect
     soupselect.monkeypatch()
 
 def to_soup(html_source):

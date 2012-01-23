@@ -10,5 +10,6 @@ sudo apt-get install \
     python2.7-dev \
     python-xlib \
     sqlite3 \
+    tesseract-ocr \
     tidy \
     xsel

@@ -22,7 +22,6 @@ from jabbapylib.process import process
 from jabbapylib.web.scraper import simple_webkit
 import jabbapylib.config as cfg
 
-HTML2TEXT = os.path.dirname(__file__) + '/html2text.py'
 
 class MyOpener(urllib.FancyURLopener):
     """Custom user-agent."""
@@ -183,8 +182,8 @@ def html_to_text(html, method=cfg.LYNX):
     store_content_in_file(html, temp.name, overwrite=True)
     if method == cfg.LYNX:
         cmd = "{lynx} {html} -dump".format(lynx=cfg.LYNX, html=temp.name)
-    elif method == HTML2TEXT:
-        cmd = "{html2text} {html}".format(html2text=HTML2TEXT, html=temp.name)
+    elif method == cfg.HTML2TEXT:
+        cmd = "{html2text} {html}".format(html2text=cfg.HTML2TEXT, html=temp.name)
     else:
         print >>sys.stderr, "Warning! Unknown method is used in web.html_to_text."
         os.unlink(temp.name)

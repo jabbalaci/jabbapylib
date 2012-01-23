@@ -1,0 +1,11 @@
+Third-party libraries.
+
+* BeautifulSoup
+  version 3.2.0
+* html2text
+  Convert HTML to ascii text.
+* soupselect
+  Monkeypatch for BeautifulSoup to provide CSS selection. 
+* termcolor
+  Print colored text in Linux terminals.
+ 

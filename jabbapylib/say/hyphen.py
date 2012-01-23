@@ -27,9 +27,9 @@ If you have mplayer installed, the mp3 is played.
 Idea: add support for the site http://www.thefreedictionary.com too.
 """
 
-import re
+import re #@UnusedImport
 import sys
-from urllib import unquote
+from urllib import unquote #@UnusedImport
 
 from jabbapylib.web import web
 from jabbapylib.web.scraper import lx
