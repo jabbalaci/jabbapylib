@@ -16,6 +16,7 @@ import urllib2
 import urlparse
 import tempfile
 import webbrowser
+import httplib    # status codes here: http://docs.python.org/library/httplib.html
 
 from export_firefox_cookies import get_cookies_in_text, get_cookies_in_cookiejar
 from jabbapylib.process import process
@@ -88,6 +89,33 @@ def get_redirected_url(url):
     except:
         return None
 # get_redirected_url
+
+
+def get_server_status_code(url):
+    """
+    Download just the header of a URL and
+    return the server's status code.
+    """
+    # http://stackoverflow.com/questions/1140661/python-get-http-response-code-from-a-url
+    # in CLI: curl -I <url>
+    host, path = urlparse.urlparse(url)[1:3]    # elems [1] and [2]
+    try:
+        conn = httplib.HTTPConnection(host)
+        conn.request('HEAD', path)
+        return conn.getresponse().status
+    except StandardError:
+        return None
+
+
+def check_url(url):
+    """
+    Check if a URL exists without downloading the whole file.
+    We only check the URL header.
+    """
+    # see also http://stackoverflow.com/questions/2924422 for further good codes
+    # TODO: maybe the list of good codes should be extended
+    good_codes = [httplib.OK, httplib.FOUND, httplib.MOVED_PERMANENTLY]
+    return get_server_status_code(url) in good_codes
 
 
 def get_page(url, user_agent=False, referer=False):
@@ -198,3 +226,6 @@ if __name__ == "__main__":
     print urlparse.urlparse(url)
     url = '/media/truecrypt1/secret/tumblr/test_blog.txt'
     print urlparse.urlparse(url)
+    #
+    print '====='
+    print get_server_status_code('http://simile.mit.edu/crowbar/test.html')

@@ -17,6 +17,8 @@ for X seconds, but I couldn't figure out how to do that. It's something with
 QTimer. TODO: add this feature.
 
 Another TODO: set a user-agent.
+
+# from jabbapylib.web.scraper import simple_webkit
 """
 
 import sys
@@ -46,11 +48,13 @@ def get_html(url):
 #############################################################################
 
 if __name__ == "__main__":
-    #url = 'http://simile.mit.edu/crowbar/test.html'
-    #print get_html(url)
+    url = 'http://simile.mit.edu/crowbar/test.html'
+    print get_html(url)     # OK
+    print '=========='
+    print get_html(url)     # never called :(
     
-    if len(sys.argv) > 1:
-        get_html(sys.argv[1])
-    else:
-        print >>sys.stderr, "{0}: error: specify a URL.".format(sys.argv[0])
-        sys.exit(1)
+#    if len(sys.argv) > 1:
+#        get_html(sys.argv[1])
+#    else:
+#        print >>sys.stderr, "{0}: error: specify a URL.".format(sys.argv[0])
+#        sys.exit(1)

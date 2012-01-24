@@ -10,6 +10,8 @@ Element: http://docs.python.org/library/xml.etree.elementtree.html#element-objec
 
 html.tostring: not pretty
 etree.tostring: pretty
+
+# from jabbapylib.web.scraper import lx
 """
 
 import sys
@@ -58,7 +60,7 @@ def to_doc(text, parser=scraper.LXML_HTML, whole_doc=True):
         # soupparser has no document_fromstring method
         doc = soupparser.fromstring(text)
     else:
-        print >>sys.stderr, "Error: you want to use an unknown parser in lx.py."
+        print >>sys.stderr, "Warning: you want to use an unknown parser in lx.py."
         # doc is None
         
     return doc  # lxml.html.HtmlElement
@@ -69,26 +71,30 @@ def prettify(doc, method=scraper.LXML_HTML):
     text = None
     
     if method == scraper.LXML_HTML:                     # not so pretty
-        text = html.tostring(doc, pretty_print2=True)
+        text = html.tostring(doc, pretty_print=True)
     elif method == scraper.BEAUTIFULSOUP:               # pretty
         soup = bs.doc_to_soup(doc)
         text = bs.prettify(soup)
-    elif method == scraper.TIDY:
+    elif method == scraper.TIDY:                        # even prettier
         text = tidy.pretty_print(tostring(doc))
     else:
-        print >>sys.stderr, "Error: you want to use an unknown method in lx.py."
+        print >>sys.stderr, "Warning: you want to use an unknown method in lx.py."
         # text is None
         
     return text
 
 
 def flatten(doc):
-    """Serialise to plain text without markup."""
+    """Serialise to plain text without markup.
+    
+    Return value: string."""
     return html.tostring(doc, method='text')
 
 
 def tostring(doc):
-    """Convert an element to html."""
+    """Convert an element (doc object) to html string.
+    
+    Return value: string."""
     return html.tostring(doc)
 
 

@@ -1,12 +1,15 @@
 import os
 import re
+import httplib
 
 import jabbapylib.config as cfg
 from jabbapylib.web import web
 
+BITLY_URL = 'http://bit.ly/A6B9lT'
 GOOGLE = 'http://google.com'
 GOOGLE_HTML = ''
 CROWBAR = 'http://simile.mit.edu/crowbar/test.html'
+
 
 def setup_module(module):
     """runs just once per module"""
@@ -35,7 +38,15 @@ def test_get_url_info():
     assert 'text/html' in res['Content-Type']
     
 def test_get_redirected_url():
-    assert web.get_redirected_url('http://bit.ly/A6B9lT') == 'https://github.com/jabbalaci'
+    assert web.get_redirected_url(BITLY_URL) == 'https://github.com/jabbalaci'
+    
+def test_get_server_status_code():
+    assert web.get_server_status_code(BITLY_URL) == httplib.MOVED_PERMANENTLY    # 301
+    print web.get_server_status_code(CROWBAR) == httplib.OK    # 200
+    
+def test_check_url():
+    assert web.check_url('http://www.google.com')    # exists
+    assert not web.check_url('http://simile.mit.edu/crowbar/nothing_here.html')    # doesn't exist
     
 def test_get_page():
     assert '<title>Google</title>' in GOOGLE_HTML

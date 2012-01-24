@@ -2,6 +2,8 @@
 
 """
 Some constants.
+
+# from jabbapylib.web.scraper import scraper
 """
 
 import time
@@ -14,17 +16,20 @@ BEAUTIFULSOUP = 'lxml.html.soupparser or BeautifulSoup'
 TIDY = 'tidy'
 
 
-def sleep(fix=5, plus=5):
+def sleep(fix=5, plus=5, test=False):
     """Sleep for some randomized time.
     
     Time will be a real value between fix and fix+plus."""
     sec = fix + r.uniform(0, plus)
     #print sec
-    time.sleep(sec)
+    if not test:
+        time.sleep(sec)
+        
+    return sec
 
 
 #############################################################################
 
 if __name__ == "__main__":
     for i in range(5):
-        sleep()
+        print sleep()
