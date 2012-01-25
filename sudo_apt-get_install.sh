@@ -6,6 +6,8 @@ sudo apt-get install \
     libxslt-dev \
     lynx \
     mplayer2 \
+    python-imaging \
+    python-lxml \
     python-qt4 \
     python2.7-dev \
     python-xlib \

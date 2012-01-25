@@ -3,3 +3,6 @@
 .idea
 *.log
 __pycache__
+dist/
+MANIFEST
+jabbapylib.egg-info

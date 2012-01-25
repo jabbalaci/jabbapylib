@@ -6,6 +6,12 @@ Configuration part.
 # import jabbapylib.config as cfg
 """
 
+__author__ = "Laszlo Szathmary (jabba.laci@gmail.com)"
+__version__ = "0.1.0"
+__date__ = "20120124"
+__copyright__ = "Copyright (c) 2011-2012 Laszlo Szathmary"
+__license__ = "GPL"
+
 import os
 
 # portability tip: in ~/.mozilla/firefox put a symbolic link on 
