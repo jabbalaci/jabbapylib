@@ -4,6 +4,7 @@
 Working with numbers.
 
 # from jabbapylib.number.number import number_to_pretty_string
+# from jabbapylib.number.number import sizeof_fmt
 """
 
 def number_to_pretty_string(n):
@@ -17,8 +18,22 @@ def number_to_pretty_string(n):
         l += c
     return "".join(l[::-1])
 
+def sizeof_fmt(num):
+    """
+    Human-readable file size.
+    http://stackoverflow.com/questions/1094841
+    """
+    for x in ['bytes','KB','MB','GB']:
+        if num < 1024.0:
+            return "%3.1f %s" % (num, x)
+        num /= 1024.0
+    return "%3.1f %s" % (num, 'TB')
+
 #############################################################################
     
 if __name__ == "__main__":
     number = 6874
-    print number_to_pretty_string(number)   # '6,874' 
+    print number_to_pretty_string(number)   # '6,874'
+    
+    length = 1322688512
+    print sizeof_fmt(length)
