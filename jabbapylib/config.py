@@ -40,7 +40,7 @@ required_files = (
     MY_TESSERACT,   # OCR
 )
 
-USER_AGENT = 'Mozilla/5.0 (Ubuntu; X11; Linux x86_64; rv:9.0.1) Gecko/20100101 Firefox/9.0.1'
+USER_AGENT = 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:10.0.1) Gecko/20100101 Firefox/10.0.1'
 COOKIES_TXT = '{home}/tmp/cookies_jabbapylib_tmp.txt'.format(home=os.path.expanduser('~'))
 
 TEST_ASSETS_DIR = os.path.dirname(__file__) + '/../tests/_assets'

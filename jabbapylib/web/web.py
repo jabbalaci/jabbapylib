@@ -194,7 +194,7 @@ def html_to_text(html, method=cfg.LYNX):
     if method == cfg.LYNX:
         cmd = "{lynx} {html} -dump".format(lynx=cfg.LYNX, html=temp.name)
     elif method == cfg.HTML2TEXT:
-        cmd = "{html2text} {html}".format(html2text=cfg.HTML2TEXT, html=temp.name)
+        cmd = "python {html2text} {html}".format(html2text=cfg.HTML2TEXT, html=temp.name)
     else:
         print >>sys.stderr, "Warning! Unknown method is used in web.html_to_text."
         os.unlink(temp.name)

@@ -7,6 +7,7 @@ in the file cookies.txt.
 """
 
 import os
+import sys
 from cStringIO import StringIO 
 import sqlite3 as db
 from jabbapylib import config as cfg
@@ -29,9 +30,13 @@ def get_cookies_in_text(host):
      
     out = StringIO()
     for row in cursor.fetchall():
-        s = "{0}\tTRUE\t{1}\t{2}\t{3}\t{4}\t{5}".format(row[0], row[1],
-                 str(bool(row[2])).upper(), row[3], str(row[4]), str(row[5]))
-        print >>out, s
+        try:
+            s = "{0}\tTRUE\t{1}\t{2}\t{3}\t{4}\t{5}".format(row[0], row[1],
+                     str(bool(row[2])).upper(), row[3], str(row[4]), str(row[5]))
+            print >>out, s
+        except UnicodeEncodeError:
+            print >>sys.stderr, "Warning: UnicodeEncodeError:"
+            print >>sys.stderr, row
          
     value = out.getvalue() 
     out.close()
