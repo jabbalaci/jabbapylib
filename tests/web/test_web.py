@@ -60,6 +60,9 @@ def test_get_page_with_cookies_using_cookiejar():
 def test_get_js_page():
     res = web.get_js_page(CROWBAR)
     assert '<h1 id="message">Hi Crowbar!</h1>' in res
+    # can be called again:
+    res = web.get_js_page(CROWBAR)
+    assert '<h1 id="message">Hi Crowbar!</h1>' in res
     
 def test_open_in_browser():
     tmp_file = web.open_in_browser(GOOGLE_HTML, test=True)

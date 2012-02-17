@@ -7,8 +7,8 @@ Configuration part.
 """
 
 __author__ = "Laszlo Szathmary (jabba.laci@gmail.com)"
-__version__ = "0.1.0"
-__date__ = "20120124"
+__version__ = "0.1.1"
+__date__ = "20120217"
 __copyright__ = "Copyright (c) 2011-2012 Laszlo Szathmary"
 __license__ = "GPL"
 
@@ -51,6 +51,7 @@ TMP_DIR = '/tmp/jabbapylib_20120119_tmp'
 TMP_FILE = '/tmp/jabbapylib_20120119_tmp.txt'
 
 HTML2TEXT = os.path.dirname(__file__) + '/lib/html2text.py'
+SIMPLE_WEBKIT = os.path.dirname(__file__) + '/web/scraper/simple_webkit.py'
 
 #############################################################################
 

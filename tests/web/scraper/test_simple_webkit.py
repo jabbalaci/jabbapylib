@@ -1,7 +1,14 @@
-from jabbapylib.web.scraper import simple_webkit
+import jabbapylib.config as cfg
+from jabbapylib.process import process
+
+URL = 'http://simile.mit.edu/crowbar/test.html'
+
 
 def test_simple_webkit():
-#    url = 'http://simile.mit.edu/crowbar/test.html'
-#    print simple_webkit.get_html(url)
-    pass    # TODO, correct simple_webkit, it has a bug
+    cmd = "python {webkit} '{url}'".format(webkit=cfg.SIMPLE_WEBKIT, url=URL)
     
+    text = process.get_simple_cmd_output(cmd)
+    assert '<h1 id="message">Hi Crowbar!</h1>' in text
+    # call it again:
+    text = process.get_simple_cmd_output(cmd)
+    assert '<h1 id="message">Hi Crowbar!</h1>' in text

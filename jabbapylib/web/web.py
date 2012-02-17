@@ -20,7 +20,6 @@ import httplib    # status codes here: http://docs.python.org/library/httplib.ht
 
 from export_firefox_cookies import get_cookies_in_text, get_cookies_in_cookiejar
 from jabbapylib.process import process
-from jabbapylib.web.scraper import simple_webkit
 import jabbapylib.config as cfg
 from jabbapylib.filesystem import fs
 
@@ -170,7 +169,9 @@ def get_page_with_cookies_using_cookiejar(url):
 
 def get_js_page(url):
     """Get a page with Webkit, i.e. evaluate embedded Javascripts."""
-    return simple_webkit.get_html(url)
+    cmd = "python {webkit} '{url}'".format(webkit=cfg.SIMPLE_WEBKIT, url=url)
+    text = process.get_simple_cmd_output(cmd)
+    return text
 
 
 def open_in_browser(html, test=False):
@@ -229,3 +230,7 @@ if __name__ == "__main__":
     #
     print '====='
     print get_server_status_code('http://simile.mit.edu/crowbar/test.html')
+    
+    print get_js_page('http://simile.mit.edu/crowbar/test.html')
+    print '====='
+    print get_js_page('http://simile.mit.edu/crowbar/test.html')
