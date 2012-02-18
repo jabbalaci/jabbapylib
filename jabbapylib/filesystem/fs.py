@@ -110,11 +110,33 @@ def store_content_in_file(content, file_name, overwrite=False):
     #
     return True
 
+
+def which(program):
+    """
+    Equivalent of the which command in Python.
+    
+    source: http://stackoverflow.com/questions/377017/test-if-executable-exists-in-python
+    """
+    def is_exe(fpath):
+        return os.path.exists(fpath) and os.access(fpath, os.X_OK)
+
+    fpath = os.path.split(program)[0]
+    if fpath:
+        if is_exe(program):
+            return program
+    else:
+        for path in os.environ["PATH"].split(os.pathsep):
+            exe_file = os.path.join(path, program)
+            if is_exe(exe_file):
+                return exe_file
+
+    return None
+
 ############################################################################# 
  
 if __name__ == "__main__":
-    input_file = '/home/jabba/secret/project_euler/username.txt'
-    print read_first_line(input_file)
+    #input_file = '/home/jabba/secret/project_euler/username.txt'
+    #print read_first_line(input_file)
     #
     path = 'http://google.com'
     print is_local_path(path)
@@ -125,4 +147,4 @@ if __name__ == "__main__":
     print 'tmp:', get_oct_mode(TMP)
 #    set_mode_to(TMP, 0755)
 #    print 'tmp:', get_oct_mode(TMP)
-    
+    print which('bash')

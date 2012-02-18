@@ -11,7 +11,6 @@ import urlparse
 
 from jabbapylib.web import web
 from jabbapylib.lib.BeautifulSoup import BeautifulSoup
-from lxml.html.builder import LI
 
 
 def css_patch():

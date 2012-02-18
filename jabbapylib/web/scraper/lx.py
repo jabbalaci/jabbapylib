@@ -148,4 +148,4 @@ def elementtree_to_string(etree_doc):
 #############################################################################
 
 if __name__ == "__main__":
-    pass
+    print css_to_xpath('a[href]')

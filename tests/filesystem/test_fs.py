@@ -1,5 +1,6 @@
 import os
 import re
+import sys
 from jabbapylib.filesystem import fs
 import jabbapylib.config as cfg
 from jabbapylib.web import web
@@ -66,3 +67,9 @@ class TestFileSystem:
         assert os.path.getsize(cfg.TEST_TMP_FILE) > 0
         os.unlink(cfg.TEST_TMP_FILE)
         
+    def test_which(self):
+        if sys.platform.startswith('linux'):
+            cmd = 'bash'
+            assert '/bin/bash' in fs.which(cmd)     # can be /usr/bin/bash too
+        else:
+            print "# test_which is passed on this platform (TODO)"
