@@ -1,8 +1,12 @@
-include ISSUES LICENSE README.md run_tests.sh
+include ISSUES LICENSE README.md run_tests.sh sudo_*.sh
+
 recursive-include demos *
 recursive-exclude demos *.pyc
 recursive-exclude demos *.log
 recursive-exclude demos .gitignore
+
 recursive-include tests *
 recursive-exclude tests *.pyc
 recursive-exclude tests .gitignore
+
+recursive-include logo *
