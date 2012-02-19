@@ -1,3 +1,5 @@
+![jabbapylib logo](https://github.com/jabbalaci/jabbapylib/raw/master/logo/logo.png "logo")
+
 jabbapylib
 ==========
 A lightweight, general-purpose Python library.
