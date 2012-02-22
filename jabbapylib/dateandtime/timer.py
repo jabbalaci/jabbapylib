@@ -6,7 +6,7 @@ Measure execution time.
 This tip is from here: 
 http://stackoverflow.com/questions/1685221/accurately-measure-time-python-function-takes
 
-# from jabbapylib.dateandtime import Timer
+# from jabbapylib.dateandtime.timer import Timer
 """
 
 import time
