@@ -6,6 +6,7 @@ A simple scraper for http://sloganmaker.com/sloganmaker.php .
 # from jabbapylib.apps.slogan import slogan
 """
 
+import sys
 import urllib
 import string
 from jabbapylib.web.scraper import bs
@@ -31,5 +32,9 @@ def get_slogan(word, times=1):
 #############################################################################
 
 if __name__ == "__main__":
-    for s in get_slogan('Python', times=3):
+    if len(sys.argv) == 1:
+        print >>sys.stderr, 'Error: specify a keyword.'
+        sys.exit(1)
+    # else
+    for s in get_slogan(sys.argv[1], times=5):
         print s
