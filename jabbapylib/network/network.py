@@ -20,7 +20,7 @@ def is_internet_on(method=1):
         # At my current place we have a wifi that redirects to a login page,
         # so we always have a connection. That's why I check the content of
         # the fetched webpage.
-        text = web.get_page(URL)
+        text = web.get_page(URL, timeout=3)
         if text:
             if '<title>Google</title>' in text:
                 return True

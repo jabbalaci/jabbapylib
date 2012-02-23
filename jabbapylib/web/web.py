@@ -49,7 +49,7 @@ def get_host(url):
     return p.netloc
 
 
-def get_url_open(url, user_agent=False, referer=False):
+def get_url_open(url, user_agent=False, referer=False, timeout=None):
     """Open a URL.
     
     This is a helper function for others who want to read the URL.
@@ -60,7 +60,7 @@ def get_url_open(url, user_agent=False, referer=False):
     if referer:
         req.add_header('Referer', get_referer(url))
     try:
-        return urllib2.urlopen(req)
+        return urllib2.urlopen(req, timeout=timeout) if timeout else urllib2.urlopen(req)
     except:
         return None
 # get_url_open
@@ -117,12 +117,12 @@ def check_url(url):
     return get_server_status_code(url) in good_codes
 
 
-def get_page(url, user_agent=False, referer=False):
+def get_page(url, user_agent=False, referer=False, timeout=None):
     """Get the content of a page (HTML, image, etc.).
     
     Return value: string (can be binary too).
     """
-    d = get_url_open(url, user_agent, referer)
+    d = get_url_open(url, user_agent, referer, timeout)
     if d:
         result = d.read()
         d.close()
