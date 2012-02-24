@@ -1,7 +1,7 @@
 import time
 from jabbapylib.dateandtime.timer import Timer
 
-class TestTimer:
+class TestTimer(object):
     
     def test_timer(self):
         timer = Timer()

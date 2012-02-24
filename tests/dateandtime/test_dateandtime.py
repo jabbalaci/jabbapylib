@@ -2,7 +2,7 @@ import re
 from datetime import datetime 
 from jabbapylib.dateandtime import dateandtime as dat
 
-class TestDateAndTime:
+class TestDateAndTime(object):
     
     def setup_method(self, method):
         self.ts = 1111111111

@@ -8,7 +8,8 @@ Limitation: XML attributes cause error.
 
 from xml.parsers.expat import ParserCreate
 
-class Xml2Json:
+class Xml2Json(object):
+    
     LIST_TAGS = ['COMMANDS']
     
     def __init__(self, data = None):
@@ -66,7 +67,6 @@ class Xml2Json:
 
     def data(self, data):
         self._data = data
-
 
 #############################################################################
     

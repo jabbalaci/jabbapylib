@@ -10,8 +10,6 @@ won't be downloaded.
 # from jabbapylib.web.download import image
 """
 
-SKIP = 'skip'
-
 import os
 import sys
 from urlparse import urlparse
@@ -19,7 +17,11 @@ from urlparse import urlparse
 from jabbapylib.web import web
 from jabbapylib.filesystem import fs
 
-class Image:
+SKIP = 'skip'
+
+
+class Image(object):
+    
     def __init__(self, base_dir, sub_dir, file_url):
         self.base_dir = base_dir
         self.sub_dir = sub_dir
@@ -92,8 +94,7 @@ class Image:
             self.save_readme()
             
         return ok
-        
-    
+
 #############################################################################
     
 if __name__ == "__main__":

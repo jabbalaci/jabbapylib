@@ -14,7 +14,7 @@ from jabbapylib.number.number import sizeof_fmt
 pp = pprint.PrettyPrinter(indent=4)
 
 
-class BDecoder:
+class BDecoder(object):
     
     def __init__(self, fname):
         self.fname = fname

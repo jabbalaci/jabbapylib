@@ -9,7 +9,7 @@ GOOGLE = 'http://google.com'
 FILE = cfg.TEST_ASSETS_DIR + '/text.txt'
 
     
-class TestFileSystem:
+class TestFileSystem(object):
     
     def test_read_first_line(self):
         res = fs.read_first_line(FILE)
