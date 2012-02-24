@@ -5,6 +5,22 @@ Working with numbers.
 
 # from jabbapylib.number.number import number_to_pretty_string
 # from jabbapylib.number.number import sizeof_fmt
+
+Update (20120224):
+==================
+
+There is a better way for printing numbers in a pretty way:
+
+    import locale
+     
+    # Setting the locale to US English
+    locale.setlocale(locale.LC_ALL, 'en_US.UTF-8')
+     
+    print "Number without formatting applied: {0}".format(65739838)
+    print "Number with formatting applied: {0:n}".format(65739838)
+
+Notice the :n in the 2nd case, which makes it use the current 
+locale setting to insert the appropriate number separator characters.
 """
 
 def number_to_pretty_string(n):
