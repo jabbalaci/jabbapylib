@@ -3,6 +3,7 @@
 """
 Play a sound when the Internet connection is back.
 """
+
 import socket
 from time import sleep
 from jabbapylib.network import network
