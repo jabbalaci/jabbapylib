@@ -9,7 +9,7 @@ Working with video files.
 import re
 import os
 from jabbapylib.process import process
-import jabbapylib.config as cfg
+from jabbapylib import config as cfg
 
 MPLAYER_SCREENSHOT_FILE = '00000001.jpg'
 

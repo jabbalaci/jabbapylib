@@ -20,7 +20,7 @@ import httplib    # status codes here: http://docs.python.org/library/httplib.ht
 
 from export_firefox_cookies import get_cookies_in_text, get_cookies_in_cookiejar
 from jabbapylib.process import process
-import jabbapylib.config as cfg
+from jabbapylib import config as cfg
 from jabbapylib.filesystem import fs
 
 

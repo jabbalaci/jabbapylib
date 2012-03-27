@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 import os
-import jabbapylib.config as cfg
+from jabbapylib import config as cfg
 
 
 def test_check():

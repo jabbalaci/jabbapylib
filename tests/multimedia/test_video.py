@@ -1,7 +1,7 @@
 import os
 import glob
 from jabbapylib.multimedia import video
-import jabbapylib.config as cfg
+from jabbapylib import config as cfg
 
 FILE = cfg.TEST_ASSETS_DIR + '/video.avi'
 

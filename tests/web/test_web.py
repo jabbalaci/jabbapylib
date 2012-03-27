@@ -2,7 +2,7 @@ import os
 import re
 import httplib
 
-import jabbapylib.config as cfg
+from jabbapylib import config as cfg
 from jabbapylib.web import web
 
 BITLY_URL = 'http://bit.ly/A6B9lT'

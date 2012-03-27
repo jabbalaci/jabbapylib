@@ -2,7 +2,7 @@ import os
 import re
 import sys
 from jabbapylib.filesystem import fs
-import jabbapylib.config as cfg
+from jabbapylib import config as cfg
 from jabbapylib.web import web
 
 GOOGLE = 'http://google.com'

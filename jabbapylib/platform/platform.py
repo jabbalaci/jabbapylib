@@ -9,6 +9,7 @@ import sys
 import getpass
 import socket
 from jabbapylib.process import process
+from jabbapylib import config as cfg
 
 
 def get_hostname():
@@ -39,7 +40,7 @@ def get_screen_resolution():
     """
     Screen resolution (as a tuple).
     """
-    result = [x for x in process.get_simple_cmd_output('xrandr').split('\n') if '*' in x][0]
+    result = [x for x in process.get_simple_cmd_output(cfg.XRANDR).split('\n') if '*' in x][0]
     result = tuple([int(x) for x in result.split()[0].split('x')])
     return result
 

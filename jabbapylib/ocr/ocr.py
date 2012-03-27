@@ -7,7 +7,7 @@ this is a wrapper around pytesser (http://code.google.com/p/pytesser/)
 # from jabbapylib.ocr import ocr
 """
 
-import jabbapylib.config as cfg
+from jabbapylib import config as cfg
 from jabbapylib.lib.pytesser import pytesser
 
 TEST_DIR = cfg.TEST_ASSETS_DIR + '/pytesser'

@@ -1,5 +1,5 @@
 from jabbapylib.ocr import ocr
-import jabbapylib.config as cfg
+from jabbapylib import config as cfg
 import ocr_examples as ex
 
 TEST_DIR = cfg.TEST_ASSETS_DIR + '/pytesser'

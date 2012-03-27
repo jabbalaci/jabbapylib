@@ -1,5 +1,5 @@
 from jabbapylib.hash import hash
-import jabbapylib.config as cfg
+from jabbapylib import config as cfg
 
 FILE = cfg.TEST_ASSETS_DIR + '/text.txt'
 

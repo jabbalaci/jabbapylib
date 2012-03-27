@@ -1,6 +1,6 @@
 import os
 import shutil
-import jabbapylib.config as cfg
+from jabbapylib import config as cfg
 from jabbapylib.web.download import image
 from jabbapylib.filesystem import fs
 

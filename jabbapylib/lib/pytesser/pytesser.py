@@ -16,7 +16,7 @@ import util
 import errors
 
 from subprocess import Popen, STDOUT
-import jabbapylib.config as cfg
+from jabbapylib import config as cfg
 
 DEBUG = False
 

@@ -14,7 +14,7 @@ Links
 
 from setuptools import setup, find_packages #@UnresolvedImport
 
-import jabbapylib.config as cfg
+from jabbapylib import config as cfg
 
 
 setup(

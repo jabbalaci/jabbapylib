@@ -1,5 +1,5 @@
 from jabbapylib.torrent import bdecode
-import jabbapylib.config as cfg
+from jabbapylib import config as cfg
 
 FILE = cfg.TEST_ASSETS_DIR + '/ubuntu.torrent'
 

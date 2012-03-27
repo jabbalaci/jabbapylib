@@ -1,4 +1,4 @@
-import jabbapylib.config as cfg
+from jabbapylib import config as cfg
 from jabbapylib.process import process
 
 URL = 'http://simile.mit.edu/crowbar/test.html'

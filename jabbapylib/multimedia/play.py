@@ -7,7 +7,7 @@ Playing audio (and video too) files.
 """
 
 import os
-import jabbapylib.config as cfg
+from jabbapylib import config as cfg
 
 def play(audio_file, background=False, debug=False):
     """Play an audio file with mplayer."""
