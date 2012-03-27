@@ -8,6 +8,7 @@ import os
 import sys
 import getpass
 import socket
+from jabbapylib.process import process
 
 
 def get_hostname():
@@ -34,6 +35,14 @@ def is_linux():
     """
     return sys.platform.startswith('linux')
 
+def get_screen_resolution():
+    """
+    Screen resolution (as a tuple).
+    """
+    result = [x for x in process.get_simple_cmd_output('xrandr').split('\n') if '*' in x][0]
+    result = tuple([int(x) for x in result.split()[0].split('x')])
+    return result
+
 #############################################################################
 
 if __name__ == "__main__":
@@ -41,3 +50,4 @@ if __name__ == "__main__":
     print get_home_dir()
     print get_username()
     print is_linux()
+    print get_screen_resolution()

@@ -14,3 +14,8 @@ def test_get_username():
 def test_is_linux():
     if fs.which('bash') == '/bin/bash':
         assert platform.is_linux()
+        
+def test_get_screen_resolution():
+    result = platform.get_screen_resolution()
+    assert len(result) == 2
+    assert result[0] > 0 and result[1] > 0
