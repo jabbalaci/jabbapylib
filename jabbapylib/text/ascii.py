@@ -3,6 +3,8 @@
 
 """
 Work with unicode texts.
+
+# from jabbapylib.text.ascii import encode
 """
 
 import unicodedata

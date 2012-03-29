@@ -113,7 +113,7 @@ def print_definition(word):
     if d:
         print """===Definition===
 ({pos})
-{text}""".format(pos=d['partOfSpeech'], text=d['text'])
+{text}""".format(pos=encode(d['partOfSpeech']), text=encode(d['text']))
 
 #############################################################################
 
