@@ -28,7 +28,7 @@ def say(text):
     os.system(cmd)
     
 
-def say_with_google(word, autoremove=True, debug=False):
+def say_with_google(word, autoremove=True, background=False, debug=False):
     """
     Say a word with Google.
     
@@ -50,7 +50,7 @@ def say_with_google(word, autoremove=True, debug=False):
         fs.store_content_in_file(content, fname, overwrite=True)
         mp3_file = fname
         if not debug:
-            play(fname)
+            play(fname, background=background)
         if autoremove:
             os.unlink(fname)
             mp3_file = None

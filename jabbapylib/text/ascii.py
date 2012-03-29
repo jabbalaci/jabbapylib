@@ -24,9 +24,16 @@ def remove_accents(input_str):
 def remove_non_ascii(text): 
     return ''.join(c for c in text if ord(c) < 128)
 
+def encode(s):
+    """
+    Useful for printing unicode strings to the console.
+    """
+    return s.encode('utf-8')
+
 #############################################################################
     
 if __name__ == "__main__":
     text = "László"
     print remove_accents(text)
     print remove_non_ascii(text)
+    print encode(text)
