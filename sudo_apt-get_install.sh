@@ -3,6 +3,7 @@
 # these are required for jabbapylib
 
 sudo apt-get install \
+    curl \
     gtk2-engines-pixbuf \
     libxml2-dev \
     libxslt-dev \

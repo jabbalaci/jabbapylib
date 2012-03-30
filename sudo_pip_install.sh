@@ -7,5 +7,8 @@ sudo pip install \
     lxml \
     pil \
     psutil \
+    pycurl \
     pytest \
-    virtualenv
+    untangle \
+    virtualenv \
+    reddit

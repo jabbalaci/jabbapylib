@@ -7,8 +7,8 @@ Configuration part.
 """
 
 __author__ = "Laszlo Szathmary (jabba.laci@gmail.com)"
-__version__ = "0.1.7"
-__date__ = "20120329"
+__version__ = "0.1.8"
+__date__ = "20120330"
 __copyright__ = "Copyright (c) 2011-2012 Laszlo Szathmary"
 __license__ = "GPL"
 
@@ -54,6 +54,9 @@ TMP_FILE = '/tmp/jabbapylib_20120119_tmp.txt'
 
 HTML2TEXT = os.path.dirname(__file__) + '/lib/html2text.py'
 SIMPLE_WEBKIT = os.path.dirname(__file__) + '/web/scraper/simple_webkit.py'
+
+# an anonymous API key (find more at http://imgur.com/apps)
+IMGUR_KEY = '014fd9069edf931bf1148b80da1cd09e'
 
 #############################################################################
 

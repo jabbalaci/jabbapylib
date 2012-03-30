@@ -32,7 +32,10 @@ setup(
     install_requires=[
         'html5lib',
         'psutil',
+        'pycurl',
         'pytest',
+        'reddit',
+        'untangle',
     ],
     classifiers=[
         'Development Status :: 4 - Beta',
