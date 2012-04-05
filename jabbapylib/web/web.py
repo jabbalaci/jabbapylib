@@ -205,9 +205,7 @@ def html_to_text(html, method=cfg.LYNX):
     os.unlink(temp.name)
     return text
     
-
 #############################################################################
-
 
 if __name__ == "__main__":
     #url = 'http://index.hu'
