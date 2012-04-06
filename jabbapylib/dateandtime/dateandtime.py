@@ -1,8 +1,14 @@
 #!/usr/bin/env python
 
+"""
+Stuff related to date and time.
+
 # from jabbapylib.dateandtime import dateandtime
 # from jabbapylib.dateandtime.dateandtime import get_timestamp_from_year_to_second
+# from jabbapylib.dateandtime.dateandtime import get_unix_date
+"""
 
+from time import strftime
 from datetime import datetime
 import time
 
@@ -48,6 +54,12 @@ def unix_timestamp_to_datetime(timestamp):
     The return value is a datetime object."""
     # http://stackoverflow.com/questions/3682748/converting-unix-timestamp-string-to-readable-date-in-python
     return datetime.fromtimestamp(timestamp)
+
+def get_unix_date():
+    """Same output as Unix's date command.
+    
+    Example: Fri Apr  6 14:23:27 CEST 2012"""
+    return strftime("%a %b %e %H:%M:%S %Z %Y")
     
 #############################################################################
     
@@ -60,3 +72,4 @@ if __name__ == "__main__":
     dt = unix_timestamp_to_datetime(ts)
     print dt
     print get_timestamp_from_year_to_second(date=dt)
+    print get_unix_date()

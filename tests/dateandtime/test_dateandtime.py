@@ -1,5 +1,6 @@
 import re
-from datetime import datetime 
+from datetime import datetime
+from jabbapylib.process import process 
 from jabbapylib.dateandtime import dateandtime as dat
 
 class TestDateAndTime(object):
@@ -43,3 +44,12 @@ class TestDateAndTime(object):
     def test_unix_timestamp_to_datetime(self):
         res = dat.unix_timestamp_to_datetime(self.ts)
         assert res.__str__() == '2005-03-18 02:58:31'
+        
+    ##########
+    
+    def test_get_unix_date(self):
+        # Unix command 'date'
+        date = process.get_simple_cmd_output('date').replace('\n', '')
+        # pure Python 'date'
+        python = dat.get_unix_date()
+        assert date == python
