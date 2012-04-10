@@ -24,6 +24,7 @@ from urlparse import urljoin
 from jabbapylib.dateandtime.dateandtime import get_date_from_year_to_day
 from jabbapylib.platform.gnome import gnome
 from jabbapylib.dateandtime.dateandtime import get_unix_date
+from urllib import unquote
 
 URL = 'http://www.bing.com'
 SAVE_DIR = '/trash/bing'
@@ -35,8 +36,9 @@ def extract():
     text = text.split(',')[0].replace("'", "")
     img_url = urljoin(URL, text)
     fname = img_url.split('/')[-1]
-    img_ext = os.path.splitext(fname)[1]
-    save_name = get_date_from_year_to_day() + img_ext
+    fname = unquote(fname).split('/')[-1]
+    print '# fname:', fname
+    save_name = '{date}-{fname}'.format(date=get_date_from_year_to_day(), fname=fname) 
     return (img_url, save_name)
 
 def download(url, fname):
@@ -49,10 +51,12 @@ def download(url, fname):
     return dest
 
 def main():
+    print '# --------------------'
     img_url, save_name = extract()
     print '#', get_unix_date()
     print '#', img_url
     saved = download(img_url, save_name)
+    print '# saved to', saved
     gnome.set_wallpaper(saved)
 
 #############################################################################
