@@ -53,3 +53,10 @@ class TestDateAndTime(object):
         # pure Python 'date'
         python = dat.get_unix_date()
         assert date == python
+        
+    ##########
+
+    def test_is_leap_year(self):
+        assert dat.is_leap_year(1900) is False
+        for year in (2000, 2004, 2012):
+            assert dat.is_leap_year(year)

@@ -8,6 +8,7 @@ Stuff related to date and time.
 # from jabbapylib.dateandtime.dateandtime import get_unix_date
 """
 
+import calendar
 from time import strftime
 from datetime import datetime
 import time
@@ -60,6 +61,10 @@ def get_unix_date():
     
     Example: Fri Apr  6 14:23:27 CEST 2012"""
     return strftime("%a %b %e %H:%M:%S %Z %Y")
+
+def is_leap_year(year):
+    """Returns True if year is a leap year, otherwise False."""
+    return calendar.isleap(year)
     
 #############################################################################
     
@@ -73,3 +78,4 @@ if __name__ == "__main__":
     print dt
     print get_timestamp_from_year_to_second(date=dt)
     print get_unix_date()
+    print is_leap_year(2012)
