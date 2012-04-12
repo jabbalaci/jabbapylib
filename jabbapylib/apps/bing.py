@@ -30,14 +30,15 @@ URL = 'http://www.bing.com'
 SAVE_DIR = '/trash/bing'
 
 
-def extract():
+def extract(test=False):
     text = web.get_page(URL)
     text = text.split('g_img={url:')[1]
     text = text.split(',')[0].replace("'", "")
     img_url = urljoin(URL, text)
     fname = img_url.split('/')[-1]
     fname = unquote(fname).split('/')[-1]
-    print '# fname:', fname
+    if not test:
+        print '# fname:', fname
     save_name = '{date}-{fname}'.format(date=get_date_from_year_to_day(), fname=fname) 
     return (img_url, save_name)
 

@@ -7,6 +7,7 @@ from jabbapylib.web import web
 
 GOOGLE = 'http://google.com'
 FILE = cfg.TEST_ASSETS_DIR + '/text.txt'
+JSON = cfg.TEST_ASSETS_DIR + '/json.json'
 
     
 class TestFileSystem(object):
@@ -73,3 +74,7 @@ class TestFileSystem(object):
             assert '/bin/bash' in fs.which(cmd)     # can be /usr/bin/bash too
         else:
             print "# test_which is passed on this platform (TODO)"
+            
+    def test_read_json(self):
+        d = fs.read_json(JSON)
+        assert d['name'] == 'Jabba Laci'

@@ -7,8 +7,8 @@ Configuration part.
 """
 
 __author__ = "Laszlo Szathmary (jabba.laci@gmail.com)"
-__version__ = "0.2.1"
-__date__ = "20120410"
+__version__ = "0.2.2"
+__date__ = "20120412"
 __copyright__ = "Copyright (c) 2011-2012 Laszlo Szathmary"
 __license__ = "GPL"
 
@@ -45,6 +45,7 @@ required_files = (
 USER_AGENT = 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:10.0.1) Gecko/20100101 Firefox/10.0.1'
 COOKIES_TXT = '{home}/tmp/cookies_jabbapylib_tmp.txt'.format(home=os.path.expanduser('~'))
 
+ROOT_DIR = os.path.dirname(__file__)
 TEST_ASSETS_DIR = os.path.dirname(__file__) + '/../tests/_assets'
 TEST_TMP_DIR = os.path.dirname(__file__) + '/../tests/_tmp'
 TEST_TMP_FILE = os.path.dirname(__file__) + '/../tests/_tmp/test.tmp'

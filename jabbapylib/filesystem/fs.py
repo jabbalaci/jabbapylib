@@ -9,6 +9,7 @@ file system operations
 import os
 import sys
 import stat
+import json
 import urlparse
 from jabbapylib.dateandtime.dateandtime import get_timestamp_from_year_to_second
 
@@ -131,6 +132,14 @@ def which(program):
                 return exe_file
 
     return None
+
+
+def read_json(fname):
+    """Read an entire json file.
+    
+    Return value: the encoded Python object (list, dictionary, etc.)."""
+    with open(fname, 'r') as f:
+        return json.load(f)
 
 ############################################################################# 
  

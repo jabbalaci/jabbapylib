@@ -1,0 +1,44 @@
+{
+   "metadata":
+   {
+      "description": "hacker titles for business cards",
+      "url": "http://beza1e1.tuxen.de/articles/titles.html",
+      "reddit_url": "http://www.reddit.com/r/programming/comments/s47bt/cool_hacker_titles_for_your_business_card/"
+   },
+   "for_business_cards":
+   [
+        "abstractionist",
+        "algorithmist",
+        "concurrencician",
+        "continuationeer",
+        "encryptioneer",
+        "infinite looper",
+        "languagician",
+        "multicore general",
+        "object orienter",
+        "optimizationeer",
+        "parallelista",
+        "pointer arithmetician",
+        "polygoneer",
+        "problemist",
+        "Python scriptician",
+        "pythonista",
+        "recursionist",
+        "regular expressionist",
+        "software artificer",
+        "thread commander"
+   ],
+   "not_really_for_business_cards":
+   [
+        "connection dropper",
+        "design pattern matchician",
+        "exceptioneer",
+        "flux compensatorian",
+        "lazy evaluationist",
+        "merge sorter",
+        "pointer dereferencista",
+        "template instantiator",
+        "token carrier",
+        "y combinatorian"
+   ]
+}
