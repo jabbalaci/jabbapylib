@@ -132,6 +132,13 @@ def get_page(url, user_agent=False, referer=False, timeout=None):
 # get_page
 
 
+def download_to(url, local_file, user_agent=False, referer=False, timeout=None, overwrite=False):
+    """Fetch the content of a URL and store it in a local file."""
+    content = get_page(url, user_agent=user_agent, referer=referer, timeout=timeout)
+    fs.store_content_in_file(content, local_file, overwrite=overwrite)
+# download_to
+
+
 def get_page_with_cookies_using_wget(url):
     """Get the content of a cookies-protected page.
     

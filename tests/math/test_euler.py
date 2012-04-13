@@ -21,3 +21,7 @@ def test_prime_generator():
     assert euler.prime_generator(100) == [2, 3, 5, 7, 11, 13, 17, 19, 23, \
            29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97]
     assert len(euler.prime_generator(100000)) == 9592
+    
+def test_is_palindrome():
+    assert not euler.is_palindrome('jabba')
+    assert euler.is_palindrome('radar')

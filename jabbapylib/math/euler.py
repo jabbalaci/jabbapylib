@@ -4,6 +4,8 @@
 algorithms that are useful for Project Euler (http://projecteuler.net)
 
 # from jabbapylib.math import euler
+# from jabbapylib.math.euler import is_palindrome
+# from jabbapylib.math.euler import is_prime
 """
 
 def is_prime(n):
@@ -83,3 +85,16 @@ def prime_generator(maxi):
             primes.append(pos)
 
     return primes
+
+
+def is_palindrome(s):
+    """Decide if a string is a palindrome or not.
+    
+    Palindrome: you get the same string reading backwards."""
+    return s == s[::-1]
+
+############################################################################# 
+ 
+if __name__ == "__main__":
+    print is_palindrome('jabba')
+    print is_palindrome('radar')
