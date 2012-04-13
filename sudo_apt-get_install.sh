@@ -12,6 +12,7 @@ sudo apt-get install \
     python-imaging \
     python-lxml \
     python-qt4 \
+    python-sympy \
     python2.7-dev \
     python-xlib \
     sqlite3 \
