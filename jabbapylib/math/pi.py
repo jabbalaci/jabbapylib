@@ -1,22 +1,9 @@
 #!/usr/bin/env python
 
 """
-Get the first X digits of PI. Instead of calculating them,
-I simply dowmload the result :)
-
-TODO: figure out how to do it in a more elegant way.
-
-Number of digits can be:
-* 1000 decimal places (pi3)
-* 10000 decimal places (pi4)
-* 100000 decimal places (pi5)
-* 1000000 decimal places (pi6)
-
-Data are downloaded from http://newton.ex.ac.uk/research/qsystems/collabs/pi/ .
+Get the first X digits of PI (after the dot).
 
 I will only store the digits after the dot, i.e. "3." is dropped.
-
-The specified file is downloaded to /tmp for caching purposes.
 
 # from jabbapylib.math import pi
 """
@@ -27,6 +14,24 @@ import sys
 from cStringIO import StringIO
 from jabbapylib.hash.hash import file_to_md5
 from jabbapylib.web import web
+
+
+"""
+first part
+==========
+
+Instead of calculating the digits, I simply download the result :)
+
+Number of digits can be:
+* 1000 decimal places (pi3)
+* 10000 decimal places (pi4)
+* 100000 decimal places (pi5)
+* 1000000 decimal places (pi6)
+
+Data are downloaded from http://newton.ex.ac.uk/research/qsystems/collabs/pi/ .
+
+The specified file is downloaded to /tmp for caching purposes.
+"""
 
 URL = 'http://newton.ex.ac.uk/research/qsystems/collabs/pi'
 PI3 = 'pi3.txt'
@@ -84,5 +89,93 @@ def main(data):
 
 #############################################################################
 
+"""
+second part
+===========
+
+This part is based on http://mail.python.org/pipermail/edu-sig/2006-July/006810.html .
+
+Quote:
+
+    Here's a generator I coded up based on a paper by Gibbons:
+       http://web.comlab.ox.ac.uk/oucl/work/jeremy.gibbons/publications/spigot.pdf
+    
+    It's simple to code, but I think you have to read the paper to figure out what 
+    it's doing. (I just translated some code, so I really can't tell you :-) In 
+    the paper, this was done in a lazy functional language. I was mostly 
+    interested to see how it would translate to a Python generator.
+    
+    # pi.py -- imlementation of Gibbons' spigot algorithm for pi
+    # John Zelle 4-5-06
+    
+    Here it is in action:
+    
+    >>> import pi
+    >>> digits = pi.pidigits()
+    >>> for i in range(30): print digits.next(),
+    ...
+    3 1 4 1 5 9 2 6 5 3 5 8 9 7 9 3 2 3 8 4 6 2 6 4 3 3 8 3 2 7
+    >>>     
+    
+    Since this uses long ints, it slows down considerably after a few thousand 
+    digits. You might want to use psyco when generating really "deep" digits.
+    
+    --John
+"""
+
+def pi_digits():
+    """generator for digits of pi"""
+    q,r,t,k,n,l = 1,0,1,1,3,3
+    while True:
+        if 4*q+r-t < n*t:
+            yield n
+            q,r,t,k,n,l = (10*q,10*(r-n*t),t,k,(10*(3*q+r))/t-10*n,l)
+        else:
+            q,r,t,k,n,l = (q*k,(2*q+r)*l,t*l,k+1,(q*(7*k+2)+r*l)/(t*l),l+2)
+            
+def get_digits(size):
+    buf = StringIO()
+    digits = pi_digits()
+    digits.next()    # skip "3", start from the first digit after the dot
+
+    for _ in xrange(size):
+        buf.write((str(digits.next())))
+        
+    return buf.getvalue()
+
+#############################################################################
+
+"""
+third part
+==========
+
+Quote from E. Woiski:
+
+    Easy. Use mpmath (alone or under sympy):
+    
+    >>> from sympy.mpmath import mp
+    >>> mp.dps = 200000
+    >>> +mp.pi
+    
+    ... and there you are: 200000 digits of pi :)
+    
+Requires you to install python-sympy (via apt-get).
+"""
+
+def get_pi(size):
+    """size is the number of digits after the dot"""
+    from sympy.mpmath import mp
+    mp.dps = size + 1
+    return str(mp.pi)[2:]   # cut "3." off
+
+#############################################################################
+
 if __name__ == "__main__":
-    main(PI3)
+# first version
+#    main(PI3)   # PI3 means: till 10^3 = 1000. Max: PI6.
+    
+# second version
+#    print get_digits(1000)
+
+# third version
+    print get_pi(10000)
