@@ -50,6 +50,12 @@ def test_check_url():
     
 def test_get_page():
     assert '<title>Google</title>' in GOOGLE_HTML
+    
+def test_download_to():
+    assert not os.path.exists(cfg.TEST_TMP_FILE)
+    web.download_to(GOOGLE, cfg.TEST_TMP_FILE)
+    assert os.path.getsize(cfg.TEST_TMP_FILE) > 0
+    os.unlink(cfg.TEST_TMP_FILE)
        
 def test_get_page_with_cookies_using_wget():
     assert web.get_page_with_cookies_using_wget(GOOGLE)

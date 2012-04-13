@@ -37,6 +37,7 @@ PI5 = 'pi5.txt'
 PI5_MD5HASH = '07638c90a57e93693d38d938a0dd9293'
 PI6 = 'pi6.txt'
 PI6_MD5HASH = '0e2c68f96dab3293917ec0eb6165898d'
+TMP_DIR = '/tmp'
 
 def validate(fname):
     try:
@@ -68,7 +69,7 @@ def read_digits(fname):
     return buf.getvalue()
 
 def get_digits_of(data):
-    fname = '/tmp/{data}'.format(data=data)
+    fname = '{tmp}/{data}'.format(tmp=TMP_DIR, data=data)
     if os.path.isfile(fname):
         check(fname)
     else:
