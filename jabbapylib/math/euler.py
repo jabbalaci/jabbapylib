@@ -87,6 +87,48 @@ def prime_generator(maxi):
     return primes
 
 
+def gen_primes():
+    """It's a generator, so use it like any other.
+    
+    primes = gen_primes()
+    for p in primes:
+        print p
+    
+    Found at http://stackoverflow.com/questions/2211990 .
+    """
+    D = {}
+    q = 2  # first integer to test for primality.
+    
+    while True:
+        if q not in D:
+            # not marked composite, must be prime  
+            yield q 
+            
+            #first multiple of q not already marked
+            D[q * q] = [q] 
+        else:
+            for p in D[q]:
+                D.setdefault(p + q, []).append(p)
+            # no longer need D[q], free memory
+            del D[q]
+        
+        q += 1
+
+
+def prime_divisors(n):
+    """Prime divisors."""
+    li = []
+
+    np = gen_primes()
+    while n != 1:
+        prime = np.next()
+        while n % prime == 0:
+            n /= prime
+            li.append(prime)
+
+    return li
+
+
 def is_palindrome(s):
     """Decide if a string is a palindrome or not.
     
@@ -98,3 +140,12 @@ def is_palindrome(s):
 if __name__ == "__main__":
     print is_palindrome('jabba')
     print is_palindrome('radar')
+    
+    # primes below 1 million
+#    primes = gen_primes()
+#    for p in primes:
+#        if p > 1000000:
+#            break
+#        print p
+        
+    print prime_divisors(504)
