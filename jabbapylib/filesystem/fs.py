@@ -13,6 +13,7 @@ import json
 import urlparse
 from jabbapylib.dateandtime.dateandtime import get_timestamp_from_year_to_second
 
+IMAGE_EXTENSIONS = ['jpg', 'jpeg', 'png', 'gif']    # can be extended
 
 def read_first_line(input_file):
     """Read the first line of a file.
@@ -32,6 +33,13 @@ def is_local_path(path):
     a non-existing file too."""
     p = urlparse.urlparse(path)
     return (not p.scheme and not p.netloc)
+
+
+def is_image_file(path):
+    """Path can be a URL or local file. Decide
+    if it's an image file or not."""
+    path = path.lower()
+    return any([path.endswith(x) for x in IMAGE_EXTENSIONS])
 
 
 def get_timestamped_filename():
@@ -157,3 +165,4 @@ if __name__ == "__main__":
 #    set_mode_to(TMP, 0755)
 #    print 'tmp:', get_oct_mode(TMP)
     print which('bash')
+    print is_image_file('/trash/hey.PNG')

@@ -7,8 +7,8 @@ Configuration part.
 """
 
 __author__ = "Laszlo Szathmary (jabba.laci@gmail.com)"
-__version__ = "0.2.4"
-__date__ = "20120414"
+__version__ = "0.2.5"
+__date__ = "20120422"
 __copyright__ = "Copyright (c) 2011-2012 Laszlo Szathmary"
 __license__ = "GPL"
 

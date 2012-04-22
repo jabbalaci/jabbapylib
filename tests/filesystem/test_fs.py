@@ -20,6 +20,18 @@ class TestFileSystem(object):
         assert fs.is_local_path(FILE)
         assert not fs.is_local_path('http://google.com')
         
+    def test_is_image_file(self):
+        assert fs.is_image_file('/trash/well.jpg')
+        assert fs.is_image_file('/trash/well.jpeg')
+        assert fs.is_image_file('/trash/well.png')
+        assert fs.is_image_file('/trash/well.gif')
+        assert fs.is_image_file('/trash/well.JPG')
+        assert fs.is_image_file('/trash/well.PNG')
+        #
+        assert not fs.is_image_file('/trash/well.txt')
+        assert not fs.is_image_file('/trash/well.py')
+        assert not fs.is_image_file('/trash/well.java')
+        
     def test_get_timestamped_filename(self):
         res = fs.get_timestamped_filename()
         assert re.search('^\d{8}_\d{6}\.txt$', res)
