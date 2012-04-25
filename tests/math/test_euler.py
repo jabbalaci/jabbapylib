@@ -43,3 +43,14 @@ def test_prime_divisors():
 def test_is_palindrome():
     assert not euler.is_palindrome('jabba')
     assert euler.is_palindrome('radar')
+
+def test_inc_avg():
+    li = [2,6,4,7,3]
+    avg1 = sum(li) / float(len(li))
+    assert avg1 == euler.inc_avg(li)
+    #
+    li = [10,8,2,4,15,12,21,7]
+    li = li[2:-2]   # take a slice of the list
+    avg1 = sum(li) / float(len(li))
+    assert avg1 == euler.inc_avg(li)
+    

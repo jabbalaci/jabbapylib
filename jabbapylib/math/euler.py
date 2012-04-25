@@ -135,6 +135,25 @@ def is_palindrome(s):
     Palindrome: you get the same string reading backwards."""
     return s == s[::-1]
 
+
+def inc_avg(li):
+    """Calculate the average incrementally.
+    Input: a list.
+    Output: average of the list.
+    See http://ubuntuincident.wordpress.com/2012/04/25/calculating-the-average-incrementally/ ."""
+    left = 0
+    right = len(li)-1
+
+    avg = li[left]
+    left += 1
+
+    while left <= right:
+        curr = left + 1
+        avg += (li[left] - avg) / float(curr)
+        left += 1
+
+    return avg
+
 ############################################################################# 
  
 if __name__ == "__main__":
