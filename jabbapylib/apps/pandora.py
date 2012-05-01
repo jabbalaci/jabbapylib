@@ -39,16 +39,16 @@ def get_best_us_proxy_from_web():
     working.sort(key=operator.attrgetter("avg_time"), reverse=False)
     return working[0].ip
 
-def get_us_proxy_from_file():
-    print '# reading from file'
-    with open('proxylist.txt') as f:
-        for line in f:
-            line = line.rstrip('\n')
-            ip, port = line.split(':')
-            if ping(ip) and geoinfo.Host(ip).get_country_code() == 'US':
-                return ip+':'+port
-    # else
-    return None
+#def get_us_proxy_from_file():
+#    print '# reading from file'
+#    with open('proxylist.txt') as f:
+#        for line in f:
+#            line = line.rstrip('\n')
+#            ip, port = line.split(':')
+#            if ping(ip) and geoinfo.Host(ip).get_country_code() == 'US':
+#                return ip+':'+port
+#    # else
+#    return None
 
 def foxyproxy(ip, port):
     folder = platform.get_firefox_profile_folder()
@@ -72,7 +72,8 @@ def foxyproxy(ip, port):
         print '# please restart Firefox'
 
 def main():
-    proxy = get_us_proxy_from_file()
+#    proxy = get_us_proxy_from_file()
+    proxy = None
     if not proxy:
         try:
             proxy = get_best_us_proxy_from_web()
