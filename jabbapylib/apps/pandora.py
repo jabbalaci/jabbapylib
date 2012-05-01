@@ -18,6 +18,8 @@ Go to pandora.com and enjoy the music :)
 """
 
 import os
+import sys
+from jabbapylib.autoflush.autoflush import unbuffered
 from jabbapylib.platform import platform
 from lxml import etree
 
@@ -56,7 +58,12 @@ def foxyproxy(ip, port):
         print '# please restart Firefox'
 
 def main():
-    proxy = get_best_proxy().ip
+    try:
+        proxy = get_best_proxy().ip
+    except IndexError:
+        print >>sys.stderr, 'Warning: no working proxy found.'
+        sys.exit(1)
+    # else
 #    proxy = '97.65.200.194:8080'    # for testing only
     print '#', proxy
     ip = proxy
@@ -69,4 +76,5 @@ def main():
 #############################################################################
 
 if __name__ == "__main__":
+    unbuffered()
     main()
