@@ -4,7 +4,7 @@
 A very simple wrapper for the Linux command "ping".
 Currently, it determines the average response time of a host.
 
-# from jabbapylib.network import ping
+# from jabbapylib.network.ping import ping
 """
 
 import re
