@@ -99,11 +99,12 @@ if __name__ == "__main__":
 #    xml = upload_from_computer(img)
 #    process(xml)
     #
-#    url = 'http://...'
+#    url = '...'
 #    xml = upload_from_web(url)
+#    print xml
 #    process(xml)
     #
 #    print upload_local_img('/tmp/test.jpg')
     #
-#    print upload_web_img('http://...')
+#    print upload_web_img(url)
     pass

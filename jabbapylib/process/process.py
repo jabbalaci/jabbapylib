@@ -25,6 +25,14 @@ def get_simple_cmd_output(cmd, stderr=STDOUT):
     return Popen(args, stdout=PIPE, stderr=stderr).communicate()[0]
 
 
+def get_complex_cmd_output(cmd, stderr=STDOUT):
+    """
+    Execute a piped command and get the lines of the output in a list.
+    """
+    proc =  Popen(cmd, shell=True, stdout=PIPE, stderr=stderr)
+    return proc.stdout.readlines()
+
+
 def get_cmd_output_input_from_stdin(cmd, input_file): #@ReservedAssignment
     """Execute an external command and get its output. The command
     receives its input_file from the stdin through a pipe.
@@ -82,4 +90,5 @@ if __name__ == "__main__":
 #    li = get_process_list()
 #    for p in li:
 #        print p.pid
+    print get_complex_cmd_output("cat /etc/passwd | head -1")
     print '__END__'

@@ -8,6 +8,11 @@ from jabbapylib.clipboard import clipboard as cb
 def test_get_simple_cmd_output():
     res = process.get_simple_cmd_output("echo -n Ubuntu")
     assert res == 'Ubuntu'
+    
+    
+def test_get_complex_cmd_output():
+    res = process.get_complex_cmd_output("cat /etc/passwd | head -1")
+    assert len(res) == 1
 
     
 def test_get_cmd_output_input_from_stdin():
