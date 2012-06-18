@@ -22,6 +22,7 @@ class Movie(object):
         self.keyword = keyword
         self.url = BASE + urllib.urlencode({'t' : keyword})
         self.d = self.get_info()
+        #print(self)
         
     def get_info(self):
         text = get_page(self.url)
@@ -40,7 +41,7 @@ class Movie(object):
 
 def get_rating(title):
     m = Movie(title)
-    return float(m['Rating'])
+    return float(m['imdbRating'])
 
 #############################################################################
 
@@ -48,4 +49,4 @@ if __name__ == "__main__":
     m = Movie('star wars episode 4')
     print 'Title: {title}'.format(title=m['Title'])
     print 'Year: {year}'.format(year=m['Year'])
-    print 'Rating: {rating}'.format(rating=m['Rating']) 
+    print 'Rating: {rating}'.format(rating=m['imdbRating']) 
