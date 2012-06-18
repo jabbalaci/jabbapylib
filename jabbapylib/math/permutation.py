@@ -38,10 +38,20 @@ def lexicographically_next_permutation(a):
     a[i+1:] = reversed(a[i+1:])    # reverse elements from position i+1 till the end of the sequence
     return True
 
+
+def get_some(n):
+    li = ['c', 'a', 'b', 'e', 'd']
+    print li    # process
+    print
+    while lexicographically_next_permutation(li) and n:
+        print li    # process
+        n -= 1
+
 #############################################################################
 
 if __name__ == "__main__":
-    li = ['a', 'b', 'c']
-    print li    # process
-    while lexicographically_next_permutation(li):
-        print li    # process
+#    li = ['a', 'b', 'c']
+#    print li    # process
+#    while lexicographically_next_permutation(li):
+#        print li    # process
+    get_some(3)
