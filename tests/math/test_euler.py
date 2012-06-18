@@ -55,3 +55,6 @@ def test_inc_avg():
     avg1 = sum(li) / float(len(li))
     assert avg1 == euler.inc_avg(li)
     
+def test_eulers_totient_phi():
+    assert int(euler.eulers_totient_phi(36)) == 12
+    assert int(euler.eulers_totient_phi(12)) == 4

@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+# -*- coding: utf-8 -*-
 
 """
 algorithms that are useful for Project Euler (http://projecteuler.net)
@@ -156,6 +157,28 @@ def inc_avg(li):
 
     return avg
 
+
+def eulers_totient_phi(num):
+    """
+    Euler's totient (a.k.a. phi) function, φ(n).
+    
+    Count the number of positive integers less than or equal 
+    to "n" that are relatively prime (coprimes) to "n".
+    
+    Coprimes: if the only positive integer that evenly divides 
+              two numbers is 1. This is the same thing as their 
+              greatest common divisor is 1.
+    
+    https://secure.wikimedia.org/wikipedia/en/wiki/Totient_function
+    """
+    dpd = set(prime_divisors(num))    # distinct_prime_divisors
+
+    phi = num
+    for p in dpd:
+        phi *= (1 - (1.0 / float(p)))
+        
+    return phi
+
 ############################################################################# 
  
 if __name__ == "__main__":
@@ -170,3 +193,6 @@ if __name__ == "__main__":
 #        print p
         
     print prime_divisors(504)
+    print prime_divisors(36)
+    print eulers_totient_phi(36)
+    print eulers_totient_phi(12)
