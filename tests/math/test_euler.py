@@ -9,6 +9,11 @@ def test_is_prime():
     for np in [4,6,8,9,10,12,14,15,16,18,20,21,22]:
         assert not euler.is_prime(np)
         
+def test_is_prime_mr():
+    a_under_1000 = [i for i in range(2, 1000) if euler.is_prime(i)]
+    b_under_1000 = [i for i in range(2, 1000) if euler.is_prime_mr(i)]
+    assert a_under_1000 == b_under_1000
+        
 def test_divisors():
     assert euler.divisors(15) == [1, 3, 5, 15]
     assert euler.divisors(21) == [1, 3, 7, 21]
