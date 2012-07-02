@@ -18,4 +18,5 @@ sudo apt-get install \
     sqlite3 \
     tesseract-ocr \
     tidy \
-    xsel
+    xsel \
+    bsdgames

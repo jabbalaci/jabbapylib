@@ -7,8 +7,8 @@ Configuration part.
 """
 
 __author__ = "Laszlo Szathmary (jabba.laci@gmail.com)"
-__version__ = "0.2.8"
-__date__ = "20120618"
+__version__ = "0.2.9"
+__date__ = "20120702"
 __copyright__ = "Copyright (c) 2011-2012 Laszlo Szathmary"
 __license__ = "GPL"
 
@@ -29,6 +29,7 @@ TESSERACT3 = '/usr/local/bin/tesseract'    # tesseract 3, install notes:
 # (2) http://ubuntuforums.org/showthread.php?t=1647350
 MY_TESSERACT = TESSERACT3    # use this version
 XRANDR = '/usr/bin/xrandr'
+PRIMES = '/usr/games/primes' # sudo apt-get install bsdgames
 
 required_files = (
     COOKIE_DB,      # to get webpages that are protected with cookies
@@ -40,6 +41,7 @@ required_files = (
     LYNX,           # for converting HTML to text
     MY_TESSERACT,   # OCR
     XRANDR,         # screen resolution
+    PRIMES,         # for generating prime numbers in an interval
 )
 
 USER_AGENT = 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:10.0.1) Gecko/20100101 Firefox/10.0.1'

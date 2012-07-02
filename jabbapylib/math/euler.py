@@ -7,7 +7,12 @@ algorithms that are useful for Project Euler (http://projecteuler.net)
 # from jabbapylib.math import euler
 # from jabbapylib.math.euler import is_palindrome
 # from jabbapylib.math.euler import is_prime
+# from jabbapylib.math.euler import get_primes_between
 """
+
+from jabbapylib import config as cfg
+from subprocess import Popen, PIPE
+
 
 def is_prime(n):
     """
@@ -88,6 +93,24 @@ def prime_generator(maxi):
             primes.append(pos)
 
     return primes
+
+
+def get_primes_between(start, stop):
+    """
+    Wrapper for the Unix command primes (can be found
+    in the package bsdgames).
+    Usage: primes start stop (where stop is not included)
+    """
+    li = []
+    proc = Popen([cfg.PRIMES, str(start), str(stop)],stdout=PIPE)
+    while True:
+        line = proc.stdout.readline()
+        if line:
+            li.append(int(line))
+        else:
+            break
+    #
+    return li
 
 
 def gen_primes():
@@ -196,3 +219,5 @@ if __name__ == "__main__":
     print prime_divisors(36)
     print eulers_totient_phi(36)
     print eulers_totient_phi(12)
+    #
+    print get_primes_between(1,23)

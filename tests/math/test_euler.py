@@ -25,6 +25,10 @@ def test_prime_generator():
            29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97]
     assert len(euler.prime_generator(100000)) == 9592
     
+def test_get_primes_between():
+    li = [2, 3, 5, 7, 11, 13, 17, 19]
+    assert euler.get_primes_between(1, 23) == li
+    
 def test_gen_primes():
     """See if it generates correctly the primes below 1000."""
     etalon = fs.read_json(cfg.TEST_ASSETS_DIR + '/primes_below_1000.json')
