@@ -158,6 +158,8 @@ def get_primes_between(start, stop):
     with the Miller-Rabin test (is_prime_mr()). Slower but more
     reliable than this one for very large numbers.
     """
+    assert start >= 0 and stop <= 4294967295
+    #
     li = []
     proc = Popen([cfg.PRIMES, str(start), str(stop)],stdout=PIPE)
     while True:
@@ -171,7 +173,8 @@ def get_primes_between(start, stop):
 
 
 def gen_primes():
-    """It's a generator, so use it like any other.
+    """
+    It's a generator, so use it like any other.
     
     primes = gen_primes()
     for p in primes:
@@ -199,7 +202,9 @@ def gen_primes():
 
 
 def prime_divisors(n):
-    """Prime divisors."""
+    """
+    Prime divisors.
+    """
     li = []
 
     np = gen_primes()
@@ -213,17 +218,21 @@ def prime_divisors(n):
 
 
 def is_palindrome(s):
-    """Decide if a string is a palindrome or not.
+    """
+    Decide if a string is a palindrome or not.
     
-    Palindrome: you get the same string reading backwards."""
+    Palindrome: you get the same string reading backwards.
+    """
     return s == s[::-1]
 
 
 def inc_avg(li):
-    """Calculate the average incrementally.
+    """
+    Calculate the average incrementally.
     Input: a list.
     Output: average of the list.
-    See http://ubuntuincident.wordpress.com/2012/04/25/calculating-the-average-incrementally/ ."""
+    See http://ubuntuincident.wordpress.com/2012/04/25/calculating-the-average-incrementally/ .
+    """
     left = 0
     right = len(li)-1
 

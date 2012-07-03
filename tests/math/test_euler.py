@@ -1,3 +1,4 @@
+import pytest
 from jabbapylib import config as cfg
 from jabbapylib.filesystem import fs
 from jabbapylib.math import euler
@@ -33,6 +34,12 @@ def test_prime_generator():
 def test_get_primes_between():
     li = [2, 3, 5, 7, 11, 13, 17, 19]
     assert euler.get_primes_between(1, 23) == li
+    #
+    with pytest.raises(AssertionError):
+        euler.get_primes_between(-1, 23)
+    #
+    with pytest.raises(AssertionError):
+        euler.get_primes_between(4294967290, 4294967296)
     
 def test_gen_primes():
     """See if it generates correctly the primes below 1000."""
