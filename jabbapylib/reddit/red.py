@@ -22,6 +22,7 @@ Now you are ready to flood reddit :)
 # from jabbapylib.reddit import red
 """
 
+import sys
 import reddit
 from jabbapylib.filesystem import fs
 from jabbapylib.platform import platform
