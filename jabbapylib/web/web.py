@@ -117,7 +117,7 @@ def check_url(url):
     return get_server_status_code(url) in good_codes
 
 
-def get_page(url, user_agent=False, referer=False, timeout=None):
+def get_page(url, user_agent=True, referer=False, timeout=None):
     """Get the content of a page (HTML, image, etc.).
     
     Return value: string (can be binary too).
