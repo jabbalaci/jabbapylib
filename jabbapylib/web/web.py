@@ -153,7 +153,7 @@ def get_page_with_cookies_using_wget(url):
     return page
 
 
-def get_page_with_cookies_using_cookiejar(url):
+def get_page_with_cookies_using_cookiejar(url, timeout=None):
     """Get the content of a cookies-protected page.
     
     The page is downloaded with urllib2. The cookies are passed in a cookiejar."""
@@ -169,7 +169,8 @@ def get_page_with_cookies_using_cookiejar(url):
     #req = urllib2.Request(url, txdata, txheaders)            # create a request object
 
     req = urllib2.Request(url)
-    handle = urllib2.urlopen(req)                               # and open it to return a handle on the url
+    # and open it to return a handle on the url
+    handle = urllib2.urlopen(req, timeout=timeout) if timeout else urllib2.urlopen(req)
 
     return handle.read()
 
