@@ -4,6 +4,7 @@
 """
 Work with unicode texts.
 
+# from jabbapylib.text.ascii import remove_accents
 # from jabbapylib.text.ascii import encode
 """
 
