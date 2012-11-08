@@ -15,4 +15,5 @@ clear
 #py.test -vs tests/dateandtime
 #py.test -vs tests/filesystem
 #py.test -vs tests/reddit
-py.test -vs tests/web
+#py.test -vs tests/web
+py.test -vs tests/number
