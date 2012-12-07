@@ -3,7 +3,7 @@
 """
 Switch autoflush on.
 
-# from jabbapylib.autoflush.autoflush import unbuffered
+# from jabbapylib.console.autoflush import unbuffered
 """
 
 import sys
