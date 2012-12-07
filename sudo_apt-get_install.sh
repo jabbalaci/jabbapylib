@@ -16,7 +16,10 @@ sudo apt-get install \
     python2.7-dev \
     python-xlib \
     sqlite3 \
-    tesseract-ocr \
     tidy \
     xsel \
     bsdgames
+
+# tesseract-ocr was removed
+# you'd better install it from source
+# the one in the Ubuntu repo. is very old
