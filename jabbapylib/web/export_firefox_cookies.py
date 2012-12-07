@@ -4,6 +4,8 @@
 This script extracts cookies from Firefox's cookies.sqlite file
 that are specific to a given host. The exported cookies are saved
 in the file cookies.txt.
+
+# from jabbapylib.web.export_firefox_cookies import get_cookies_in_cookiejar
 """
 
 import os
@@ -74,7 +76,7 @@ def get_cookies_in_cookiejar(host):
 #############################################################################
     
 if __name__ == "__main__":
-    host = 'google'
+    host = raw_input('Host: ')
     
     # version 1
     print get_cookies_in_text(host)
