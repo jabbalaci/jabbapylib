@@ -7,7 +7,7 @@ clear
 #py.test -vs tests/network
 #py.test -vs tests/apps
 #py.test -vs tests/network
-#py.test -vs tests/process
+py.test -vs tests/process
 #py.test -vs tests/platform
 #py.test -vs tests/say
 #py.test -vs tests/dictionary
@@ -16,4 +16,4 @@ clear
 #py.test -vs tests/filesystem
 #py.test -vs tests/reddit
 #py.test -vs tests/web
-py.test -vs tests/number
+#py.test -vs tests/number
