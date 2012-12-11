@@ -168,6 +168,13 @@ def get_pi(size):
     mp.dps = size + 1
     return str(mp.pi)[2:]   # cut "3." off
 
+
+def get_pi_with_bigfloat(precision_in_bits):
+    """precision is given in bits"""
+    from bigfloat import precision
+    import bigfloat
+    return str(bigfloat.atan2(+0.0,-0.0,precision(precision_in_bits)))
+
 #############################################################################
 
 if __name__ == "__main__":
@@ -178,4 +185,7 @@ if __name__ == "__main__":
 #    print get_digits(1000)
 
 # third version
-    print get_pi(10000)
+#    print get_pi(10000)
+
+# fourth version
+    print get_pi_with_bigfloat(300)
