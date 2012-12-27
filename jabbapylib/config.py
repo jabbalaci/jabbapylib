@@ -7,8 +7,8 @@ Configuration part.
 """
 
 __author__ = "Laszlo Szathmary (jabba.laci@gmail.com)"
-__version__ = "0.3.3"
-__date__ = "20121108"
+__version__ = "0.3.4"
+__date__ = "20121227"
 __copyright__ = "Copyright (c) 2011-2012 Laszlo Szathmary"
 __license__ = "GPL"
 
@@ -30,6 +30,7 @@ TESSERACT3 = '/usr/local/bin/tesseract'    # tesseract 3, install notes:
 MY_TESSERACT = TESSERACT3    # use this version
 XRANDR = '/usr/bin/xrandr'
 PRIMES = '/usr/games/primes' # sudo apt-get install bsdgames
+FPING = '/usr/bin/fping'
 
 required_files = (
     COOKIE_DB,      # to get webpages that are protected with cookies
@@ -42,9 +43,10 @@ required_files = (
     MY_TESSERACT,   # OCR
     XRANDR,         # screen resolution
     PRIMES,         # for generating prime numbers in an interval
+    FPING,          # pings hosts, produces readable output
 )
 
-USER_AGENT = 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:16.0) Gecko/20100101 Firefox/16.0'
+USER_AGENT = 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:17.0) Gecko/20100101 Firefox/17.0'
 COOKIES_TXT = '{home}/tmp/cookies_jabbapylib_tmp.txt'.format(home=os.path.expanduser('~'))
 
 ROOT_DIR = os.path.dirname(__file__)

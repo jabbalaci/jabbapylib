@@ -18,7 +18,8 @@ sudo apt-get install \
     sqlite3 \
     tidy \
     xsel \
-    bsdgames
+    bsdgames \
+    fping
 
 # tesseract-ocr was removed
 # you'd better install it from source
