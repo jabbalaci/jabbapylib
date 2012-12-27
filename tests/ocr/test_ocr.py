@@ -11,8 +11,9 @@ def test_image_file_to_string():
     res = ocr.image_file_to_string(TEST_DIR + '/fnord.tif')
     assert res == 'fnord' or res == 'fnorcl'
     #
-    #res = ocr.image_file_to_string(TEST_DIR + '/fonts_test.png')
-    #print res
-    #
+#    res = ocr.image_file_to_string(TEST_DIR + '/fonts_test.png')
+#    print res
+#    #
     res = ocr.image_file_to_string(TEST_DIR + '/phototest.tif')
+#    print res
     assert res == ex.PHOTOTEST_TIF

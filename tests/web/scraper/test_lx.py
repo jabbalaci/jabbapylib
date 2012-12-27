@@ -81,9 +81,9 @@ def test_autolink():
     assert '<a href="http://retrogames.com/games/commando">http://retrogames.com/games/commando</a>' in html
     
     
-def test_css_to_xpath():
-    #assert lx.css_to_xpath('tr td') == '//tr//td'    # TODO, verify it
-    assert lx.css_to_xpath('a[href]') == '//a[@href]'
+#def test_css_to_xpath():
+#    #assert lx.css_to_xpath('tr td') == '//tr//td'    # TODO, verify it
+#    assert lx.css_to_xpath('a[href]') == '//a[@href]'
     
     
 def test_show_paths():
