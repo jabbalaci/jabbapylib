@@ -7,6 +7,7 @@ Interacting with processes.
 * launch a new process in the background
 
 # from jabbapylib.process import process
+# from jabbapylib.process.process import get_simple_cmd_output
 """
 
 import shlex
