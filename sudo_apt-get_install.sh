@@ -8,6 +8,7 @@ sudo apt-get install \
     libxml2-dev \
     libxslt-dev \
     lynx \
+    lynx-cur \
     mplayer2 \
     python-imaging \
     python-lxml \
@@ -19,7 +20,9 @@ sudo apt-get install \
     tidy \
     xsel \
     bsdgames \
-    fping
+    fping \
+    libmpfr-dev \
+    libgmp3-dev
 
 # tesseract-ocr was removed
 # you'd better install it from source

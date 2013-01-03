@@ -2,7 +2,7 @@
 
 # these are required for jabbapylib
 
-sudo pip install \
+sudo pip install -U \
     html5lib \
     lxml \
     pil \
@@ -11,4 +11,7 @@ sudo pip install \
     pytest \
     untangle \
     virtualenv \
-    reddit
+    reddit \
+    praw \
+    bigfloat \
+    cssselect

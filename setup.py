@@ -19,7 +19,7 @@ from jabbapylib import config as cfg
 
 setup(
     name='jabbapylib',
-    packages = find_packages(exclude=['demos', 'dist', 'tests']),
+    packages = find_packages(exclude=['demos', 'dist', 'tests', 'logo', 'old']),
     version=cfg.__version__,
     description='A lightweight, general-purpose Python library',
     long_description=__doc__,
@@ -34,7 +34,7 @@ setup(
         'psutil',
         'pycurl',
         'pytest',
-        'reddit',
+        'praw',
         'untangle',
     ],
     classifiers=[

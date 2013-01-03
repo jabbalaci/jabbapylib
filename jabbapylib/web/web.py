@@ -23,6 +23,7 @@ from export_firefox_cookies import get_cookies_in_text, get_cookies_in_cookiejar
 from jabbapylib.process import process
 from jabbapylib import config as cfg
 from jabbapylib.filesystem import fs
+from jabbapylib.web.scraper import jabba_webkit as jw
 
 
 class MyOpener(urllib.FancyURLopener):
@@ -177,11 +178,8 @@ def get_page_with_cookies_using_cookiejar(url, timeout=None):
 
 
 def get_js_page(url):
-    """Get a page with Webkit, i.e. evaluate embedded Javascripts."""
-    cmd = "python {webkit} '{url}'".format(webkit=cfg.SIMPLE_WEBKIT, url=url)
-    text = process.get_simple_cmd_output(cmd)
-    return text
-
+    """Get a page with Webkit, i.e. evaluate embedded JavaScripts."""
+    return jw.get_page(url)
 
 def open_in_browser(html, test=False):
     """Save an HTML source to a temp. file and open it in the browser.

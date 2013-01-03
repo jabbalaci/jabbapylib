@@ -17,8 +17,8 @@ from jabbapylib.web import web
 
 
 """
-first part
-==========
+1st part
+========
 
 Instead of calculating the digits, I simply download the result :)
 
@@ -90,8 +90,8 @@ def main(data):
 #############################################################################
 
 """
-second part
-===========
+2nd part
+========
 
 This part is based on http://mail.python.org/pipermail/edu-sig/2006-July/006810.html .
 
@@ -146,8 +146,8 @@ def get_digits(size):
 #############################################################################
 
 """
-third part
-==========
+3rd part
+========
 
 Quote from E. Woiski:
 
@@ -169,23 +169,33 @@ def get_pi(size):
     return str(mp.pi)[2:]   # cut "3." off
 
 
+"""
+4th part
+========
+
+sudo apt-get install libmpfr-dev
+sudo apt-get install libgmp3-dev
+sudo pip install bigfloat
+"""
+
 def get_pi_with_bigfloat(precision_in_bits):
     """precision is given in bits"""
     from bigfloat import precision
     import bigfloat
-    return str(bigfloat.atan2(+0.0,-0.0,precision(precision_in_bits)))
+    # cut "3." off
+    return str(bigfloat.atan2(+0.0,-0.0,precision(precision_in_bits)))[2:]
 
 #############################################################################
 
 if __name__ == "__main__":
 # first version
-#    main(PI3)   # PI3 means: till 10^3 = 1000. Max: PI6.
+    print get_digits_of(PI3)[:200]   # PI3 means: till 10^3 = 1000. Max: PI6.
     
 # second version
-#    print get_digits(1000)
+    print get_digits(200)
 
 # third version
-#    print get_pi(10000)
+#    print get_pi(200)
 
 # fourth version
-    print get_pi_with_bigfloat(300)
+#    print get_pi_with_bigfloat(600)
