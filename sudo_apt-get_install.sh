@@ -22,7 +22,8 @@ sudo apt-get install \
     bsdgames \
     fping \
     libmpfr-dev \
-    libgmp3-dev
+    libgmp3-dev \
+    xdotool
 
 # tesseract-ocr was removed
 # you'd better install it from source

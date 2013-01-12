@@ -10,10 +10,12 @@ Interacting with processes.
 # from jabbapylib.process.process import get_simple_cmd_output
 """
 
+import os
 import shlex
 import psutil
 
 from subprocess import call, Popen, PIPE, STDOUT
+from time import sleep
 
 
 def get_simple_cmd_output(cmd, stderr=STDOUT):
@@ -79,6 +81,23 @@ def get_process_list():
                 proc.kill()
     """
     return psutil.process_iter()
+
+
+def keep_alive(cmd):
+    """
+    Keep a process alive.
+
+    If the process terminates, it will restart it.
+    The terminated processes become zombies. They
+    die when their parent terminates.
+    """
+    while True:
+        pid = execute_cmd_in_background(cmd)
+        p = psutil.Process(pid)
+        while p.is_running() and str(p.status) != 'zombie':
+#            print p
+#            sleep(5)
+            os.system('sleep 5')
     
 #############################################################################
     
@@ -93,3 +112,4 @@ if __name__ == "__main__":
 #        print p.pid
     print get_complex_cmd_output("cat /etc/passwd | head -1")
     print '__END__'
+#    keep_alive('/usr/bin/xclock')

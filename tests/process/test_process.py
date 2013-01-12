@@ -63,3 +63,8 @@ def test_get_process_list():
             
     assert found
     os.kill(pid, signal.SIGTERM)
+
+
+def test_keep_alive():
+    # TODO
+    import psutil
