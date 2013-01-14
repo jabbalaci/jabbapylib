@@ -41,6 +41,13 @@ def on():
 
 
 def wait(sec):
+    """
+    Wait X seconds and refresh the countdown every second.
+
+    Return values:
+    0 - OK, no interruption
+    1 - countdown was interrupted
+    """
     while sec > 0:
         sys.stdout.write(str(sec) + '     \r')
         sec -= 1
@@ -48,7 +55,9 @@ def wait(sec):
             sleep(1)
         except KeyboardInterrupt:
             print
-            return
+            return 1
+    #
+    return 0
 
 #############################################################################
 

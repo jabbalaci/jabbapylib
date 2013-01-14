@@ -55,7 +55,7 @@ def upload_from_web(url):
     return response.getvalue()
 
 
-def process(xml):
+def process(xml, silent=True):
     """
     Process the returned XML string.
     """
@@ -63,8 +63,11 @@ def process(xml):
     url = o.upload.links.original.cdata
     delete_page = o.upload.links.delete_page.cdata
 
-    print '# url:        ', url
-    print '# delete page:', delete_page
+    if not silent:
+        print '# url:        ', url
+        print '# delete page:', delete_page
+    #
+    return (url, delete_page)
     
 ##########################
 ## some simple wrappers ##

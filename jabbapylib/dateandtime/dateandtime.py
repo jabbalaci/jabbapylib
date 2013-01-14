@@ -13,6 +13,13 @@ from time import strftime
 from datetime import datetime
 import time
 
+MIN = 60            # 1 minute is 60 sec.
+HOUR = 60 * MIN
+DAY = 24 * HOUR
+WEEK = 7 * DAY
+MONTH = 30 * DAY
+YEAR = 365 * DAY
+
 
 def get_timestamp_from_year_to_second(separator=False, date=None):
     """A compact timestamp.
