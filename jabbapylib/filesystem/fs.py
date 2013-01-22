@@ -15,6 +15,13 @@ from jabbapylib.dateandtime.dateandtime import get_timestamp_from_year_to_second
 
 IMAGE_EXTENSIONS = ['jpg', 'jpeg', 'png', 'gif']    # can be extended
 
+BYTE = 1
+KB = 1024 * BYTE
+MB = 1024 * KB
+GB = 1024 * MB
+TB = 1024 * GB
+
+
 def read_first_line(input_file):
     """Read the first line of a file.
     
@@ -155,6 +162,32 @@ def read_json(fname):
     Return value: the encoded Python object (list, dictionary, etc.)."""
     with open(fname, 'r') as f:
         return json.load(f)
+
+
+def traverse(root, skip_links=True):
+    """
+    Traverse a directory recursively.
+
+    Return all the items in the directory. Items are in absolute path.
+    If skip_links is True, symbolic links are skipped.
+    """
+    entries = []
+    return _traverse(os.path.abspath(root), entries, skip_links)
+
+
+def _traverse(root, li, skip_links):
+    """
+    A helper function for traverse(). Don't call this directly,
+    use it through traverse().
+    """
+    everything = [os.path.join(root, e) for e in os.listdir(root)]
+    if skip_links:
+        everything = [e for e in everything if not os.path.islink(e)]
+    li += everything
+    for d in [e for e in everything if os.path.isdir(e)]:
+        _traverse(os.path.abspath(os.path.join(root, d)), li, skip_links)
+    #
+    return li
 
 ############################################################################# 
  
