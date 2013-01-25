@@ -18,4 +18,5 @@ clear
 #py.test -vs tests/web
 #py.test -vs tests/number
 #py.test -vs tests/ocr
-py.test -vs tests/mouse
+#py.test -vs tests/mouse
+py.test -vs tests/window

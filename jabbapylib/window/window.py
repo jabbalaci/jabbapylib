@@ -9,7 +9,20 @@ required package: xdotool (sudo apt-get install xdotool)
 """
 
 import os
+import re
 from jabbapylib.process.process import get_simple_cmd_output
+from cStringIO import StringIO
+
+
+def get_window_title_by_id(wid):
+    result = get_simple_cmd_output('xwininfo -id {id}'.format(id=wid))
+    for line in StringIO(result):
+        line = line.rstrip("\n")
+        match = re.search(r'^xwininfo: Window id:.*"(.*)"$', line)
+        if match:
+            return match.group(1)
+    #
+    return None
 
 
 def get_active_window_id():
@@ -33,3 +46,4 @@ if __name__ == "__main__":
     wid = get_active_window_id()
     print wid
     activate_window_by_id(wid)
+    print get_window_title_by_id(wid)
