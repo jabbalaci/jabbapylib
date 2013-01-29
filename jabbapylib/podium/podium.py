@@ -15,6 +15,7 @@ from jabbapylib.filesystem import ini
 from jabbapylib import config as cfg
 import platform as p
 from jabbapylib.hash.hash import string_to_md5
+import uuid
 
 
 def get_hostname():
@@ -71,6 +72,7 @@ def get_fingerprint(md5=False):
     sb.append(p.machine())
     sb.append(p.processor())
     sb.append(p.system())
+    sb.append(str(uuid.getnode()))    # MAC address
     text = '#'.join(sb)
     if md5:
         return string_to_md5(text)
@@ -96,5 +98,6 @@ if __name__ == "__main__":
     print is_linux()
     print get_screen_resolution()
     print get_firefox_profile_folder()
+    print get_fingerprint()
     print get_fingerprint(True)
     print get_short_fingerprint()

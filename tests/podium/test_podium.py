@@ -2,6 +2,7 @@ import re
 from jabbapylib.podium import podium
 from jabbapylib.filesystem import fs
 import py.test
+from time import sleep
 
 
 def test_get_hostname():
@@ -30,6 +31,10 @@ def test_get_firefox_profile_folder():
 def test_get_fingerprint():
     assert len(podium.get_fingerprint()) > 0
     assert len(podium.get_fingerprint(md5=True)) == 32
+    value = podium.get_fingerprint(md5=True)
+    for _ in range(5):
+        assert podium.get_fingerprint(md5=True) == value
+        sleep(.1)
 
 def test_get_short_fingerprint():
     assert podium.get_fingerprint(md5=True) == podium.get_short_fingerprint(length=32)
