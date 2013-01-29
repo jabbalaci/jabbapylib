@@ -11,7 +11,7 @@ import os
 import sys
 from urllib import unquote
 from jabbapylib.filesystem import fs
-from jabbapylib.platform.gnome import gnome
+from jabbapylib.podium.gnome import gnome
 from jabbapylib.dateandtime.dateandtime import get_date_from_year_to_day
 
 SAVE_DIR = '/trash/wallpaper'

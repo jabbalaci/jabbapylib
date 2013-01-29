@@ -14,10 +14,10 @@ Once you got your API key, put it in the following file: ~/wordnik.txt
 import json
 from jabbapylib.web.web import get_page
 from jabbapylib.filesystem import fs
-from jabbapylib.platform import platform
+from jabbapylib.podium import podium
 from urllib import quote
 
-WORDNIK = '{home}/wordnik.txt'.format(home=platform.get_home_dir())
+WORDNIK = '{home}/wordnik.txt'.format(home=podium.get_home_dir())
 
 ############
 ## common ##

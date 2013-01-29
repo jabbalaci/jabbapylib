@@ -13,7 +13,7 @@ import json
 import urllib
 from jabbapylib.web.web import get_page
 
-BASE = 'http://www.imdbapi.com/?i=&'
+BASE = 'http://www.omdbapi.com/?i=&'
 
 
 class Movie(object):
@@ -22,7 +22,7 @@ class Movie(object):
         self.keyword = keyword
         self.url = BASE + urllib.urlencode({'t' : keyword})
         self.d = self.get_info()
-        #print(self)
+#        print(self)
         
     def get_info(self):
         text = get_page(self.url)
@@ -46,7 +46,8 @@ def get_rating(title):
 #############################################################################
 
 if __name__ == "__main__":
-    m = Movie('star wars episode 4')
+    m = Movie('star wars')
+#    print m
     print 'Title: {title}'.format(title=m['Title'])
     print 'Year: {year}'.format(year=m['Year'])
     print 'Rating: {rating}'.format(rating=m['imdbRating']) 

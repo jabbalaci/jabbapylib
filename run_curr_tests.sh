@@ -8,7 +8,7 @@ clear
 #py.test -vs tests/apps
 #py.test -vs tests/network
 #py.test -vs tests/process
-#py.test -vs tests/platform
+py.test -vs tests/podium
 #py.test -vs tests/say
 #py.test -vs tests/dictionary
 #py.test -vs tests/reddit
@@ -19,4 +19,4 @@ clear
 #py.test -vs tests/number
 #py.test -vs tests/ocr
 #py.test -vs tests/mouse
-py.test -vs tests/window
+#py.test -vs tests/window

@@ -11,7 +11,7 @@ module because it will call the appropriate
 implementation of the operation, depending 
 on the version of your Gnome session.
 
-# from jabbapylib.platform.gnome import gnome
+# from jabbapylib.podium.gnome import gnome
 """
 
 import sys

@@ -8,11 +8,11 @@ import socket
 from time import sleep
 from jabbapylib.network import network
 from jabbapylib.multimedia.play import play
-from jabbapylib.platform import platform
+from jabbapylib.podium import podium
 
 TIMEOUT = 3
 # put a symbolic link on an audio file in your HOME directory called ~/net_alive.mp3
-AUDIO = platform.get_home_dir() + '/net_alive.mp3'
+AUDIO = podium.get_home_dir() + '/net_alive.mp3'
 
 
 def main():

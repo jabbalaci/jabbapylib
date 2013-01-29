@@ -1,4 +1,4 @@
-from jabbapylib.platform.gnome.screensaver import screensaver
+from jabbapylib.podium.gnome.screensaver import screensaver
 from jabbapylib.filesystem import fs
 
 

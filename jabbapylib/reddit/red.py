@@ -25,10 +25,10 @@ Now you are ready to flood reddit :)
 import sys
 import reddit
 from jabbapylib.filesystem import fs
-from jabbapylib.platform import platform
+from jabbapylib.podium import podium
 
-USERNAME_TXT = '{home}/reddit_username.txt'.format(home=platform.get_home_dir())
-PASSWORD_TXT = '{home}/reddit_password.txt'.format(home=platform.get_home_dir())
+USERNAME_TXT = '{home}/reddit_username.txt'.format(home=podium.get_home_dir())
+PASSWORD_TXT = '{home}/reddit_password.txt'.format(home=podium.get_home_dir())
 #
 USERNAME = fs.read_first_line(USERNAME_TXT)
 PASSWORD = fs.read_first_line(PASSWORD_TXT)

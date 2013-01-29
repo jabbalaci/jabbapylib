@@ -20,7 +20,7 @@ Go to pandora.com and enjoy the music :)
 import os
 import sys
 from jabbapylib.autoflush.autoflush import unbuffered
-from jabbapylib.platform import platform
+from jabbapylib.podium import podium
 from lxml import etree
 from jabbapylib.network.ping import ping
 from jabbapylib.network import geoinfo
@@ -51,7 +51,7 @@ def get_best_us_proxy_from_web():
 #    return None
 
 def foxyproxy(ip, port):
-    folder = platform.get_firefox_profile_folder()
+    folder = podium.get_firefox_profile_folder()
     input = folder + '/' + XML
     if not os.path.exists(input):
         print >>sys.stderr, "Error: {file} doesn't exist".format(file=input)

@@ -3,7 +3,7 @@
 """
 Activate/deactivate the Gnome screensaver.
 
-# from jabbapylib.platform.gnome.screensaver import screensaver
+# from jabbapylib.podium.gnome.screensaver import screensaver
 """
 
 import os

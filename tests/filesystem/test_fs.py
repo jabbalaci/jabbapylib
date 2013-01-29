@@ -85,7 +85,7 @@ class TestFileSystem(object):
             cmd = 'bash'
             assert '/bin/bash' in fs.which(cmd)     # can be /usr/bin/bash too
         else:
-            print "# test_which is passed on this platform (TODO)"
+            print "# test_which is passed on this podium (TODO)"
             
     def test_read_json(self):
         d = fs.read_json(JSON)

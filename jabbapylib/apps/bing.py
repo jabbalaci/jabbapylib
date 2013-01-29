@@ -22,7 +22,7 @@ import os
 from jabbapylib.web import web #@UnresolvedImport
 from urlparse import urljoin
 from jabbapylib.dateandtime.dateandtime import get_date_from_year_to_day
-from jabbapylib.platform.gnome import gnome
+from jabbapylib.podium.gnome import gnome
 from jabbapylib.dateandtime.dateandtime import get_unix_date
 from urllib import unquote
 
