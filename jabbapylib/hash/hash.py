@@ -14,9 +14,7 @@ def string_to_md5(content):
     """Calculate the md5 hash of a string.
     
     This 'string' can be the binary content of a file too."""
-    md5 = hashlib.md5()
-    md5.update(content)
-    return md5.hexdigest()
+    return hashlib.md5(content).hexdigest()
 
 
 def file_to_md5(filename):
