@@ -4,6 +4,7 @@
 "podium" is in the standard library, so it was renamed to podium :)
 
 # from jabbapylib.podium import podium
+# from jabbapylib.podium.podium import get_short_fingerprint
 """
 
 import os
