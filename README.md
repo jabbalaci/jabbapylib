@@ -6,18 +6,16 @@ jabbapylib
 ==========
 A lightweight, general-purpose Python library.
 
-* Author:  Laszlo Szathmary, 2011--2012 (<jabba.laci@gmail.com>)
+* Author:  Laszlo Szathmary, 2011--2013 (<jabba.laci@gmail.com>)
 * Website: <https://pythonadventures.wordpress.com/2011/09/06/jabbapylib/>
 * GitHub:  <https://github.com/jabbalaci/jabbapylib>
 * PyPI:    <http://pypi.python.org/pypi/jabbapylib/>
 
 A small Python library that was primarily developed for my projects.
 This library is quite specific for Linux, I've never tried
-it under a different platform. Since this library is in an 
-early stage, it is likely that it'll change a lot over time.
-I plan to extend it with several new functionalities.
+it under a different platform. I regularly extend it with new functionalities.
 
-I've tested it with Python 2.7 under Ubuntu Linux.
+Tested with Python 2.7 under Ubuntu Linux.
 
 
 Installation from PyPI:
@@ -88,3 +86,4 @@ extra steps:
 1. I assume you use Firefox. In `~/.mozilla/firefox` put a symbolic link on 
     `~/.mozilla/firefox/XXXXXXXX.default/cookies.sqlite`.
 2. Create the directory `~/tmp`.
+
