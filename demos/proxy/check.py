@@ -50,18 +50,22 @@ def fetch_with_urllib2(url, proxy):
     return False
 
 
-def fetch_with_requests(url, proxy):
+def fetch_with_requests(url, proxy=None):
     socket.setdefaulttimeout(TIMEOUT)
-    proxies = {'http': 'http://'+proxy}
     try:
         r = None
         with Timeout(TIMEOUT):
-            r = requests.get(GOOGLE_URL, proxies=proxies, headers=headers, timeout=TIMEOUT)
+            if proxy:
+                proxies = {'http': 'http://'+proxy}
+                r = requests.get(url, proxies=proxies, headers=headers, timeout=TIMEOUT)
+            else:
+                r = requests.get(url, headers=headers, timeout=TIMEOUT)
         if r:
             return r.text
     except (requests.exceptions.Timeout,
             requests.exceptions.ConnectionError,
             httplib.IncompleteRead):
+        print termcolor.colored('# error'.format(proxy), 'red')
         return False
     except socket.timeout:
         print termcolor.colored('# socket timeout'.format(proxy), 'red')
@@ -77,11 +81,13 @@ def fetch_with_requests(url, proxy):
         return False
 
     # if we get here:
+    print termcolor.colored('# WTF'.format(proxy), 'red')
     return False
 
 #############################################################################
 
 if __name__ == "__main__":
-    proxy = '87.250.37.50:800'
-#    print fetch_with_urllib2(GOOGLE_URL, proxy)
-    print fetch_with_requests(GOOGLE_URL, proxy)
+    proxy = '...'
+    url = 'http://myproxylists.com/my-http-headers'
+    print fetch_with_requests(url)
+    print fetch_with_requests(url, proxy)
