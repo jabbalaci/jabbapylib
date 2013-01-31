@@ -10,6 +10,8 @@ Requirements:
 Documentation of gBrowser:
 * https://developer.mozilla.org/en-US/docs/XUL/tabbrowser (reference)
 * https://developer.mozilla.org/en-US/docs/Code_snippets/Tabbed_browser (code snippets)
+
+# from jabbapylib.browser import firefox
 """
 
 import re
