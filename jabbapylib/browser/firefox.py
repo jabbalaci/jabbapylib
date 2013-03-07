@@ -76,6 +76,7 @@ class Mozrepl(object):
         except socket.error:
             return False
 
+#############################################################################
 
 def open_url_in_curr_tab(url):
     """
@@ -105,6 +106,18 @@ def open_new_empty_tab():
         mr.cmd('gBrowser.selectedTab = gBrowser.tabContainer.childNodes[length-1]')
 
 
+def put_focus_on_tab(n):
+    """
+    Put the focus on the selected tab.
+    """
+    if not (0 <= n < get_number_of_tabs()):
+        print "Warning! Incorrect tab number!"
+        return
+    # else
+    with Mozrepl() as mr:
+        mr.cmd('gBrowser.selectedTab = gBrowser.tabContainer.childNodes[{n}]'.format(n=n))
+
+
 def open_url_in_new_tab(url):
     """
     Open the given URL in a new tab.
@@ -119,6 +132,9 @@ def open_url_in_new_tab(url):
 def get_curr_tab_html():
     """
     HTML source of the current tab.
+
+    If the current page is big, don't use
+    this method on it, it'll take much time.
     """
     with Mozrepl() as mr:
         result = mr.cmd('content.document.body.innerHTML')
@@ -146,7 +162,7 @@ def get_number_of_tabs():
     """
     with Mozrepl() as mr:
         result = mr.get_text_result('gBrowser.tabContainer.childNodes.length')
-        return result
+        return int(result)
 
 
 def get_curr_tab_title():
@@ -188,6 +204,7 @@ for (var i=0; i<tab_list.length; ++i) {
         li = []
         for x in result.split('\n'):
             x = ascii.strip_control_characters(x)
+#            print x
             li.append(json.loads(unicode(x, "ISO-8859-1")))
         #
         return li
@@ -196,7 +213,7 @@ for (var i=0; i<tab_list.length; ++i) {
 
 if __name__ == "__main__":
     if not Mozrepl.is_installed():
-        print 'Cannot connect to localhost:4242.'
+        print 'Cannot connect to {host}:{port}'.format(host=Mozrepl.HOST, port=Mozrepl.PORT)
         print 'Make sure that the MozRepl Firefox add-on is installed and activated.'
         sys.exit(1)
     else:
@@ -221,3 +238,5 @@ if __name__ == "__main__":
 #        print get_curr_tab_title()
         for e in get_tab_list():
             print e
+
+    put_focus_on_tab(474)

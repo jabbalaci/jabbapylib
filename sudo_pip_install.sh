@@ -14,4 +14,5 @@ sudo pip install -U \
     reddit \
     praw \
     bigfloat \
-    cssselect
+    cssselect \
+    docopt

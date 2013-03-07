@@ -86,4 +86,3 @@ extra steps:
 1. I assume you use Firefox. In `~/.mozilla/firefox` put a symbolic link on 
     `~/.mozilla/firefox/XXXXXXXX.default/cookies.sqlite`.
 2. Create the directory `~/tmp`.
-
