@@ -60,3 +60,10 @@ class TestDateAndTime(object):
         assert dat.is_leap_year(1900) is False
         for year in (2000, 2004, 2012):
             assert dat.is_leap_year(year)
+
+    ##########
+
+    def test_sec_to_hh_mm_ss(self):
+        value = 3596.26
+        assert dat.sec_to_hh_mm_ss(value) == "0:59:56"
+        assert dat.sec_to_hh_mm_ss(value, as_str=False) == (0, 59, 56)

@@ -10,7 +10,7 @@ Stuff related to date and time.
 
 import calendar
 from time import strftime
-from datetime import datetime
+from datetime import datetime, timedelta
 import time
 
 MIN = 60            # 1 minute is 60 sec.
@@ -72,6 +72,19 @@ def get_unix_date():
 def is_leap_year(year):
     """Returns True if year is a leap year, otherwise False."""
     return calendar.isleap(year)
+
+def sec_to_hh_mm_ss(seconds, as_str=True):
+    """
+    Convert a time given in seconds to H:MM:SS format.
+
+    If as_str is True, the return value is a string.
+    If as_str is False, the return value is a tuple (H:MM:SS).
+    """
+    s = str(timedelta(seconds=int(round(seconds))))
+    if as_str:
+        return s
+    else:
+        return tuple([int(x) for x in s.split(':')])
     
 #############################################################################
     
@@ -86,3 +99,4 @@ if __name__ == "__main__":
     print get_timestamp_from_year_to_second(date=dt)
     print get_unix_date()
     print is_leap_year(2012)
+    print sec_to_hh_mm_ss(3596.26)

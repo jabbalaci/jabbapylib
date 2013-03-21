@@ -12,7 +12,7 @@ clear
 #py.test -vs tests/say
 #py.test -vs tests/dictionary
 #py.test -vs tests/reddit
-#py.test -vs tests/dateandtime
+py.test -vs tests/dateandtime
 #py.test -vs tests/filesystem
 #py.test -vs tests/reddit
 #py.test -vs tests/web
@@ -20,4 +20,4 @@ clear
 #py.test -vs tests/ocr
 #py.test -vs tests/mouse
 #py.test -vs tests/window
-py.test -vs tests/hash
+#py.test -vs tests/hash
