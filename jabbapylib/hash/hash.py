@@ -37,3 +37,5 @@ if __name__ == "__main__":
     #
     filename = '/usr/bin/bash'
     print file_to_md5(filename)
+
+    print string_to_md5(raw_input("Word to md5: "))
