@@ -44,6 +44,7 @@ def my_shuffle(array):
     shuffle(array)
     return array
 
+
 def get_password(min=8, max=8):
     """
     Create a password with uppercase letters, lowercase letters, and digits.
@@ -57,8 +58,27 @@ def get_password(min=8, max=8):
     chars = ''.join(my_shuffle([x for x in chars]))
     return ''.join(choice(chars) for x in range(randint(min, max)))
 
+
+def get_urandom_password(min=8, max=8):
+    """
+    Get data from /dev/urandom .
+    """
+    assert min <= max
+    #
+    length = randint(min, max)
+    li = []
+    with open("/dev/urandom") as f:
+        while len(li) < length:
+            c = f.read(1)
+            if c.isalnum():
+                li.append(c)
+
+    return ''.join(li)
+
 #############################################################################
 
 if __name__ == "__main__":
     print get_username()
     print get_password()
+    print
+    print get_urandom_password()
