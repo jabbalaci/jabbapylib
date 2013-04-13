@@ -189,20 +189,31 @@ def _traverse(root, li, skip_links):
     #
     return li
 
+
+def sizeof_fmt(num):
+    """
+    Convert file size to human readable format.
+    """
+    for x in ['bytes','KB','MB','GB','TB']:
+        if num < 1024.0:
+            return "{0:.2f} {1}".format(num, x)
+        num /= 1024.0
+
 ############################################################################# 
  
 if __name__ == "__main__":
     #input_file = '/home/jabba/secret/project_euler/username.txt'
     #print read_first_line(input_file)
     #
-    path = 'http://google.com'
-    print is_local_path(path)
-    print get_timestamped_filename()
-    print get_oct_mode('/usr/bin/bash')
-    TMP = '/tmp/laci_20120119_tmp.txt'
-    touch(TMP, 0700)
-    print 'tmp:', get_oct_mode(TMP)
-#    set_mode_to(TMP, 0755)
-#    print 'tmp:', get_oct_mode(TMP)
-    print which('bash')
-    print is_image_file('/trash/hey.PNG')
+#     path = 'http://google.com'
+#     print is_local_path(path)
+#     print get_timestamped_filename()
+#     print get_oct_mode('/usr/bin/bash')
+#     TMP = '/tmp/laci_20120119_tmp.txt'
+#     touch(TMP, 0700)
+#     print 'tmp:', get_oct_mode(TMP)
+# #    set_mode_to(TMP, 0755)
+# #    print 'tmp:', get_oct_mode(TMP)
+#     print which('bash')
+#     print is_image_file('/trash/hey.PNG')
+    print sizeof_fmt(3980230656)
