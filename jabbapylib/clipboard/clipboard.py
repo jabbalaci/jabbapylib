@@ -4,7 +4,7 @@
 Copy text to clipboards (to both of them). 
 This solution here is specific to Linux.
 
-For a podium independent solution, you can check out
+For a platform independent solution, you can check out
 https://github.com/asweigart/mapitpy/blob/master/pyperclip.py 
 (I didn't try it).
 
