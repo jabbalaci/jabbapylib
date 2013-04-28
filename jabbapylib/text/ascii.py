@@ -63,4 +63,5 @@ if __name__ == "__main__":
     text = "László"
     print remove_accents(text)
     print remove_non_ascii(text)
+    print strip_control_characters(text)
     print encode(text)
