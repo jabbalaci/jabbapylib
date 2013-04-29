@@ -74,3 +74,8 @@ def test_inc_avg():
 def test_eulers_totient_phi():
     assert int(euler.eulers_totient_phi(36)) == 12
     assert int(euler.eulers_totient_phi(12)) == 4
+
+def test_gcd():
+    assert euler.gcd(12, 8) == 4
+    assert euler.gcd(21, 14) == 7
+    assert euler.gcd(13, 11) == 1

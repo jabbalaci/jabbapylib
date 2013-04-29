@@ -13,6 +13,7 @@ algorithms that are useful for Project Euler (http://projecteuler.net)
 import random
 from jabbapylib import config as cfg
 from subprocess import Popen, PIPE
+import fractions
 
 # used in is_prime_mr()
 _mrpt_num_trials = 5    # number of bases to test
@@ -268,6 +269,13 @@ def eulers_totient_phi(num):
         
     return phi
 
+
+def gcd(a, b):
+    """
+    Greatest common divisor of a and b.
+    """
+    return fractions.gcd(a, b)
+
 ############################################################################# 
  
 if __name__ == "__main__":
@@ -287,3 +295,5 @@ if __name__ == "__main__":
     print eulers_totient_phi(12)
     #
     print get_primes_between(1, 23)
+    #
+    print gcd(13, 11)
