@@ -15,3 +15,8 @@ def test_get_active_window_id():
 def test_activate_window_by_id():
     # TODO
     assert fs.which('xdotool') is not None
+
+
+def test_toggle_fullscreen():
+    # TODO
+    assert fs.which('wmctrl') is not None

@@ -36,6 +36,7 @@ setup(
         'pytest',
         'praw',
         'untangle',
+        'xmltodict',
     ],
     classifiers=[
         'Development Status :: 4 - Beta',

@@ -7,8 +7,8 @@ Configuration part.
 """
 
 __author__ = "Laszlo Szathmary (jabba.laci@gmail.com)"
-__version__ = "0.3.8"
-__date__ = "20130413"
+__version__ = "0.3.9"
+__date__ = "20130517"
 __copyright__ = "Copyright (c) 2011-2013 Laszlo Szathmary"
 __license__ = "GPL"
 
@@ -48,7 +48,7 @@ required_files = (
     XDOTOOL,        # xdotool, command-line X11 automation tool (get window ID, put focus on a window, etc.)
 )
 
-USER_AGENT = 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:18.0) Gecko/20100101 Firefox/18.0'
+USER_AGENT = 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:21.0) Gecko/20100101 Firefox/21.0'
 COOKIES_TXT = '{home}/tmp/cookies_jabbapylib_tmp.txt'.format(home=os.path.expanduser('~'))
 
 ROOT_DIR = os.path.dirname(__file__)

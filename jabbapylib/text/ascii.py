@@ -5,6 +5,7 @@
 Work with unicode texts.
 
 # from jabbapylib.text.ascii import remove_accents
+# from jabbapylib.text.ascii import remove_non_ascii
 # from jabbapylib.text.ascii import encode
 # from jabbapylib.text.ascii import strip_control_characters
 """
