@@ -10,7 +10,7 @@ some slight customizations by Jabba
 """
 
 import os    # Jabba
-import Image
+from PIL import Image    # using Pillow instead of PIL
 import sys
 import util
 import errors

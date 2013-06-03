@@ -32,7 +32,19 @@ class TestDateAndTime(object):
     def test_get_date_from_year_to_day(self):
         res = dat.get_date_from_year_to_day()
         assert re.search('^\d{4}_\d\d_\d\d$', res)
+        #
+        res = dat.get_date_from_year_to_day(separator=True)
+        assert re.search('^\d{4}_\d\d_\d\d$', res)
+        #
+        res = dat.get_date_from_year_to_day(separator=False)
+        assert re.search('^\d{8}$', res)
         
+    ##########
+
+    def test_get_time(self):
+        res = dat.get_time()
+        assert '0000' <= res <= '2359'
+
     ##########
     
     def test_datetime_to_unix_timestamp(self):

@@ -23,7 +23,8 @@ sudo apt-get install \
     fping \
     libmpfr-dev \
     libgmp3-dev \
-    xdotool
+    xdotool \
+    espeak
 
 # tesseract-ocr was removed
 # you'd better install it from source

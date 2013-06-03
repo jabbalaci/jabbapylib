@@ -6,6 +6,7 @@ Stuff related to date and time.
 # from jabbapylib.dateandtime import dateandtime
 # from jabbapylib.dateandtime.dateandtime import get_timestamp_from_year_to_second
 # from jabbapylib.dateandtime.dateandtime import get_unix_date
+# from jabbapylib.dateandtime.dateandtime import get_time
 """
 
 import calendar
@@ -39,13 +40,27 @@ def get_timestamp_from_year_to_second(separator=False, date=None):
     return template.format(year=date.year, month=date.month, day=date.day, hour=time.hour, minute=time.minute, second=time.second)
     
     
-def get_date_from_year_to_day():
+def get_date_from_year_to_day(separator=True):
     """A simplified timestamp.
     
-    Example: 2011_10_29 ."""
+    Example: 2011_10_29 or 20111029."""
     now = datetime.now()
     date = datetime.date(now)
-    return "{year}_{month:02}_{day:02}".format(year=date.year, month=date.month, day=date.day)
+    if separator:
+        return "{year}_{month:02}_{day:02}".format(year=date.year, month=date.month, day=date.day)
+    else:
+        return "{year}{month:02}{day:02}".format(year=date.year, month=date.month, day=date.day)
+
+
+def get_time():
+    """
+    Current time (HHMM).
+
+    The return value is a string.
+    """
+    now = datetime.now()
+    time = datetime.time(now)
+    return "{hour:02}{minute:02}".format(hour=time.hour, minute=time.minute)
 
 
 def datetime_to_unix_timestamp(date):
@@ -63,15 +78,18 @@ def unix_timestamp_to_datetime(timestamp):
     # http://stackoverflow.com/questions/3682748/converting-unix-timestamp-string-to-readable-date-in-python
     return datetime.fromtimestamp(timestamp)
 
+
 def get_unix_date():
     """Same output as Unix's date command.
     
     Example: Fri Apr  6 14:23:27 CEST 2012"""
     return strftime("%a %b %e %H:%M:%S %Z %Y")
 
+
 def is_leap_year(year):
     """Returns True if year is a leap year, otherwise False."""
     return calendar.isleap(year)
+
 
 def sec_to_hh_mm_ss(seconds, as_str=True):
     """
@@ -100,3 +118,4 @@ if __name__ == "__main__":
     print get_unix_date()
     print is_leap_year(2012)
     print sec_to_hh_mm_ss(3596.26)
+    print get_time()
