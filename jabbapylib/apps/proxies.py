@@ -13,7 +13,7 @@ import operator
 from jabbapylib.web.scraper import bs
 from jabbapylib.web.web import get_page
 from jabbapylib.network import ping
-from jabbapylib.autoflush.autoflush import unbuffered
+from jabbapylib.console.autoflush import unbuffered
 import socket
 
 BASE = 'http://www.ip-adress.com/proxy_list/'

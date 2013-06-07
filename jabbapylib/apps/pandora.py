@@ -19,7 +19,7 @@ Go to pandora.com and enjoy the music :)
 
 import os
 import sys
-from jabbapylib.autoflush.autoflush import unbuffered
+from jabbapylib.console.autoflush import unbuffered
 from jabbapylib.podium import podium
 from lxml import etree
 from jabbapylib.network.ping import ping
