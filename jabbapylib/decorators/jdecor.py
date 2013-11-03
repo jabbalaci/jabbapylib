@@ -2,19 +2,20 @@
 
 """
 Some useful decorators.
+"jd" stands for "jabba's decorator" :)
 
-dec_time:
+jd_time:
     print debug info when entering a function
     print debug info when quitting a function
-    print elapsed time while executing the function
+    print execution time of the function
 
-dec_requires:
+jd_requires:
     Useful if you call external programs/commands.
     If the given command doesn't exist, you will get
     an error immediately.
 
-# from jabbapylib.decorators.decorators import dec_time
-# from jabbapylib.decorators.decorators import dec_requires
+# from jabbapylib.decorators.decorators import jd_time
+# from jabbapylib.decorators.decorators import jd_requires
 """
 
 import time
@@ -23,7 +24,10 @@ import sys
 import os
 
 
-def dec_time(func):
+def jd_time(func):
+    """
+    For debugging the execution time of a function.
+    """
     def wrapper(*arg):
         start = time.time()
         print '# dec_time: enter', func.func_name
@@ -35,7 +39,14 @@ def dec_time(func):
     return wrapper
 
 
-def dec_requires(fpath):
+def jd_requires(fpath):
+    """
+    Verify if the given external command is available.
+
+    Useful when writing "shell scripts" and you want to make
+    an external call. If the command (parameter fpath) to be
+    called is not available, you get an error message right away.
+    """
     def _decorator(fn):
         if not fs.which(fpath):
             print "Error: {f} doesn't exist".format(f=fpath)
@@ -48,13 +59,13 @@ def dec_requires(fpath):
     return _decorator
 
 
-@dec_time
+@jd_time
 def wait():
     time.sleep(3)
 
 
-@dec_requires("date")
-# @dec_requires("vim")    ## you could register several requirements
+@jd_requires("date")
+# @jd_requires("vim")    ## you could register several requirements
 def something():
     os.system("date")
 

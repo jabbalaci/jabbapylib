@@ -1,4 +1,5 @@
-from jabbapylib.network import geoinfo
+from jabbapylib.geo import geoinfo
+
 
 def test_geo():
     ip = '173.194.35.177'    # Google

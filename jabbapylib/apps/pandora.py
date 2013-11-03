@@ -20,10 +20,10 @@ Go to pandora.com and enjoy the music :)
 import os
 import sys
 from jabbapylib.console.autoflush import unbuffered
+from jabbapylib.geo import geoinfo
 from jabbapylib.podium import podium
 from lxml import etree
 from jabbapylib.network.ping import ping
-from jabbapylib.network import geoinfo
 
 XML = 'foxyproxy.xml'
 BAK = 'foxyproxy.bak'
