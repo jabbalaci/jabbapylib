@@ -239,4 +239,4 @@ if __name__ == "__main__":
         for e in get_tab_list():
             print e
 
-    put_focus_on_tab(474)
+#    put_focus_on_tab(474)

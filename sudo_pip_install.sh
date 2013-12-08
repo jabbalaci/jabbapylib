@@ -15,4 +15,5 @@ sudo pip install -U \
     praw \
     bigfloat \
     cssselect \
-    docopt
+    docopt \
+    textblob

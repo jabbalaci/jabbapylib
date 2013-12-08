@@ -37,6 +37,7 @@ setup(
         'praw',
         'untangle',
         'xmltodict',
+        'textblob',
     ],
     classifiers=[
         'Development Status :: 4 - Beta',
