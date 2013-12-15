@@ -21,4 +21,5 @@ clear
 #py.test -vs tests/mouse
 #py.test -vs tests/window
 #py.test -vs tests/hash
-py.test -vs tests/text
+#py.test -vs tests/text
+py.test -vs tests/cmanagers
