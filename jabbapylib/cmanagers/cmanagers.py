@@ -10,7 +10,7 @@ import os
 from jabbapylib.filesystem import fs
 
 
-class ChDir():
+class ChDir(object):
     """
     Step into a directory temporarily.
     """
