@@ -20,7 +20,7 @@ from time import sleep
 
 def get_simple_cmd_output(cmd, stderr=STDOUT):
     """Execute a simple external command and get its output.
-    
+
     The command contains no pipes. Error messages are
     redirected to the standard output by default.
     """
@@ -39,7 +39,7 @@ def get_complex_cmd_output(cmd, stderr=STDOUT):
 def get_cmd_output_input_from_stdin(cmd, input_file): #@ReservedAssignment
     """Execute an external command and get its output. The command
     receives its input_file from the stdin through a pipe.
-    
+
     Example: 'echo test | grep es'."""
     args = shlex.split(cmd)
     p = Popen(args, stdout=PIPE, stdin=PIPE)    # | grep es
@@ -61,21 +61,21 @@ def execute_cmd(cmd):
 
 def execute_cmd_in_background(cmd):
     """Execute a (shell) command in the background.
-    
+
     Returns the process' pid."""
     #call("{0} &".format(cmd), shell=True)
     #http://stackoverflow.com/questions/1605520
     args = shlex.split(cmd)
     p = Popen(args)
     return p.pid
-    
-    
+
+
 def get_process_list():
     """Get the list of running processes.
-    
+
     Example:
         PROCNAME = "python.exe"
-    
+
         for proc in psutil.process_iter():
             if proc.name == PROCNAME:
                 proc.kill()
@@ -98,9 +98,9 @@ def keep_alive(cmd):
 #            print p
 #            sleep(5)
             os.system('sleep 5')
-    
+
 #############################################################################
-    
+
 if __name__ == "__main__":
     print get_simple_cmd_output("echo -n Ubuntu")
     print get_cmd_output_input_from_stdin("grep es", "test")

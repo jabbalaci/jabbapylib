@@ -2,11 +2,13 @@
 
 *"Nail it with jabbapylib."*
 
+![https://badge.fury.io/py/jabbapylib](https://badge.fury.io/py/jabbapylib.png)
+
 jabbapylib
 ==========
 A lightweight, general-purpose Python library.
 
-* Author:  Laszlo Szathmary, 2011--2013 (<jabba.laci@gmail.com>)
+* Author:  Laszlo Szathmary, 2011--2014 (<jabba.laci@gmail.com>)
 * Website: <https://pythonadventures.wordpress.com/2011/09/06/jabbapylib/>
 * GitHub:  <https://github.com/jabbalaci/jabbapylib>
 * PyPI:    <http://pypi.python.org/pypi/jabbapylib/>
