@@ -2,8 +2,6 @@
 
 *"Nail it with jabbapylib."*
 
-![https://badge.fury.io/py/jabbapylib](https://badge.fury.io/py/jabbapylib.png)
-
 jabbapylib
 ==========
 A lightweight, general-purpose Python library.
