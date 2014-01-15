@@ -4,7 +4,7 @@
 Download the background image of the day from BING
 and set it as your Gnome desktop wallpaper.
 
-Tested under Ubuntu GNU/Linux. This script requires 
+Tested under Ubuntu GNU/Linux. This script requires
 the 'jabbapylib' library, available via PyPI.
 
 Inspired by http://spsneo.com/blog/2009/07/18/set-bing-background-as-your-desktop-wallpaper-in-gnome/ ,
@@ -39,13 +39,13 @@ def extract(test=False):
     fname = unquote(fname).split('/')[-1]
     if not test:
         print '# fname:', fname
-    save_name = '{date}-{fname}'.format(date=get_date_from_year_to_day(), fname=fname) 
+    save_name = '{date}-{fname}'.format(date=get_date_from_year_to_day(), fname=fname)
     return (img_url, save_name)
 
 def download(url, fname):
     dest = "{dir}/{fname}".format(dir=SAVE_DIR, fname=fname)
     cmd = "wget '{url}' -O {dest}".format(url=url, dest=dest)
-    
+
     if os.path.isfile(dest):
         os.unlink(dest)
     os.system(cmd)

@@ -4,11 +4,11 @@
 Working with the Gnome desktop environment.
 
 Some operations are achieved differently under
-Gnome 2 and Gnome 3. 
+Gnome 2 and Gnome 3.
 
-This is a dispatcher, you should use this 
-module because it will call the appropriate 
-implementation of the operation, depending 
+This is a dispatcher, you should use this
+module because it will call the appropriate
+implementation of the operation, depending
 on the version of your Gnome session.
 
 # from jabbapylib.podium.gnome import gnome
@@ -33,16 +33,16 @@ else:
 
 def set_wallpaper(img):
     """Set a given image as desktop wallpaper.
-    
-    img must be given in absolute path.""" 
+
+    img must be given in absolute path."""
     g.set_wallpaper(img)
-    
+
 def get_wallpaper():
     """Get the path of the currently set wallpaper."""
     return g.get_wallpaper()
 
 #############################################################################
-    
+
 if __name__ == "__main__":
     print 'Gnome main version:', get_gnome_session_version()
     print get_wallpaper()
