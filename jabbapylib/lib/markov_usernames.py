@@ -37,7 +37,7 @@ class Mdict:
             self.d[prefix] = [suffix]
     def get_suffix(self,prefix):
         l = self[prefix]
-        return random.choice(l)  
+        return random.choice(l)
 
 class MName:
     """
@@ -50,11 +50,11 @@ class MName:
         if chainlen > 10 or chainlen < 1:
             print "Chain length must be between 1 and 10, inclusive"
             sys.exit(0)
-    
+
         self.mcd = Mdict()
         oldnames = []
         self.chainlen = chainlen
-    
+
         for l in PLACES:
             l = l.strip()
             oldnames.append(l)
@@ -62,7 +62,7 @@ class MName:
             for n in range(0,len(l)):
                 self.mcd.add_key(s[n:n+chainlen], s[n+chainlen])
             self.mcd.add_key(s[len(l):len(l)+chainlen], "\n")
-    
+
     def New(self):
         """
         New name from the Markov chain
@@ -77,7 +77,7 @@ class MName:
             else:
                 name = name + suffix
                 prefix = prefix[1:] + suffix
-        return name.capitalize()  
+        return name.capitalize()
 
 #############################################################################
 

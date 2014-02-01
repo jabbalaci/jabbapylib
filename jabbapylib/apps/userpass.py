@@ -37,7 +37,7 @@ def get_username(length=6):
 def my_shuffle(array):
     """
     Returns a shuffled array.
-    
+
     random.shuffle shuffles in place and returns None. This way shuffle can be
     used in a chain.
     """
@@ -45,27 +45,26 @@ def my_shuffle(array):
     return array
 
 
-def get_password(min=8, max=8):
+def get_password(length=8):
     """
     Create a password with uppercase letters, lowercase letters, and digits.
-    
+
     The password will include lowercase letters with higher probability.
     """
-    assert min <= max
+    assert length >= 8
     #
     chars = string.ascii_lowercase + string.ascii_lowercase + string.ascii_lowercase + \
             string.ascii_uppercase + string.digits + string.digits + string.digits
     chars = ''.join(my_shuffle([x for x in chars]))
-    return ''.join(choice(chars) for x in range(randint(min, max)))
+    return ''.join(choice(chars) for x in range(length))
 
 
-def get_urandom_password(min=8, max=8):
+def get_urandom_password(length=8):
     """
     Get data from /dev/urandom .
     """
-    assert min <= max
+    assert length >= 8
     #
-    length = randint(min, max)
     li = []
     with open("/dev/urandom") as f:
         while len(li) < length:
@@ -79,6 +78,6 @@ def get_urandom_password(min=8, max=8):
 
 if __name__ == "__main__":
     print get_username()
-    print get_password()
+    print get_password(length=12)
     print
-    print get_urandom_password()
+    print get_urandom_password(length=12)
