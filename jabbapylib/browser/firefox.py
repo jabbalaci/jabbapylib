@@ -236,7 +236,8 @@ if __name__ == "__main__":
 #
 #        print get_number_of_tabs()
 #        print get_curr_tab_title()
-        for e in get_tab_list():
-            print e
+        print get_curr_tab_html()
+#        for e in get_tab_list():
+#            print e
 
 #    put_focus_on_tab(474)
