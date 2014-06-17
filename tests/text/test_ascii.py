@@ -9,7 +9,7 @@ def test_remove_accents():
     assert ascii.remove_accents('áéíóöőúüű') == 'aeiooouuu'
     assert ascii.remove_accents('ÁÉÍÓÖŐÚÜŰ') == 'AEIOOOUUU'
 
-    
+
 def test_remove_non_ascii():
     assert ascii.remove_non_ascii('László') == 'Lszl'
     assert ascii.remove_non_ascii('ünnep') == 'nnep'

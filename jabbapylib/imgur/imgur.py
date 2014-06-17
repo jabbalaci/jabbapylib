@@ -16,7 +16,7 @@ def upload_from_computer(fpath):
     """
     Upload an image from the local machine.
     The return value is an XML string.
-    
+
     Beware! fpath must be normal string, not unicode!
     With unicode it'll drop an error.
     """
@@ -68,7 +68,7 @@ def process(xml, silent=True):
         print '# delete page:', delete_page
     #
     return (url, delete_page)
-    
+
 ##########################
 ## some simple wrappers ##
 ##########################

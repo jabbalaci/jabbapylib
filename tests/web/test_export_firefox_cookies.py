@@ -12,14 +12,14 @@ HOST = ''    # any host
 
 def test_cookie_db():
     assert os.path.exists(cfg.COOKIE_DB)
-    
+
 def test_get_cookies_in_text():
     test_cookie_db()
     #
     res = efc.get_cookies_in_text(HOST)
     assert res
-    
-    
+
+
 def test_get_cookies_in_cookiejar():
     test_cookie_db()
     #

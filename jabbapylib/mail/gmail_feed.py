@@ -31,7 +31,7 @@ def get_unread_msgs(user, passwd):
 
 if __name__ == "__main__":
     import getpass
-    
+
     user = raw_input('Username: ')
     passwd = getpass.getpass('Password: ')
     print get_unread_msgs(user, passwd)

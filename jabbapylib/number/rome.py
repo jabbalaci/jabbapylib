@@ -4,7 +4,7 @@
 Convert Roman numbers to decimal.
 Convert decimal to Roman numbers.
 
-It's just a wrapper for the module 
+It's just a wrapper for the module
 romanclass (http://pypi.python.org/pypi/romanclass).
 
 from jabbapylib.number import rome as roman
@@ -32,7 +32,7 @@ def simplify_roman(num):
     return decimal_to_roman(roman_to_decimal(num))
 
 #############################################################################
-    
+
 if __name__ == "__main__":
     print roman_to_decimal('MCMLXXVII')
     print roman_to_decimal('MMMMMMDCLXXII')

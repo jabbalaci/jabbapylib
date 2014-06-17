@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 """
-Simple API for geoPlugin's JSON Web Service 
+Simple API for geoPlugin's JSON Web Service
 (http://www.geoplugin.com/webservices/json).
 
 Goal: having an IP, look up its country, i.e. where the given
@@ -26,7 +26,7 @@ class Host(object):
         self.ip = ip
         self.d = self.get_json(self.ip)
 #        print self.d    # for debugging
-        
+
     def __getitem__(self, k):
         """
         Example below. You can use these keys:
@@ -50,13 +50,13 @@ class Host(object):
         }
         """
         return self.d[k]
-    
+
     def get_country_code(self):
         """
         Country code of the host.
         """
         return self.d['geoplugin_countryCode']
-        
+
     def get_json(self, ip):
         text = get_page(gp_template.format(ip=ip))
         text = re.sub('^geoPlugin\(', '', text)
@@ -68,7 +68,7 @@ def main(ip):
     print host.get_country_code()
 
 #############################################################################
-    
+
 if __name__ == "__main__":
     ip = '173.194.35.177'    # Google
     main(ip)

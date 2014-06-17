@@ -24,7 +24,7 @@ YEAR = 365 * DAY
 
 def get_timestamp_from_year_to_second(separator=False, date=None):
     """A compact timestamp.
-    
+
     Example: 20110523_234401 . date can be a datetime object.
     If date is not specified, the current date and time (now) will be used."""
     if date:
@@ -38,11 +38,11 @@ def get_timestamp_from_year_to_second(separator=False, date=None):
     if separator:
         template = "{year}_{month:02}_{day:02}_{hour:02}{minute:02}{second:02}"
     return template.format(year=date.year, month=date.month, day=date.day, hour=time.hour, minute=time.minute, second=time.second)
-    
-    
+
+
 def get_date_from_year_to_day(separator=True):
     """A simplified timestamp.
-    
+
     Example: 2011_10_29 or 20111029."""
     now = datetime.now()
     date = datetime.date(now)
@@ -65,7 +65,7 @@ def get_time():
 
 def datetime_to_unix_timestamp(date):
     """Convert a datetime to Unix timestamp.
-    
+
     date is a datetime object, the return value is an int."""
     # http://stackoverflow.com/questions/2775864/python-datetime-to-unix-timestamp
     return int(time.mktime(date.timetuple()))
@@ -73,7 +73,7 @@ def datetime_to_unix_timestamp(date):
 
 def unix_timestamp_to_datetime(timestamp):
     """Convert a Unix timestamp to datetime.
-    
+
     The return value is a datetime object."""
     # http://stackoverflow.com/questions/3682748/converting-unix-timestamp-string-to-readable-date-in-python
     return datetime.fromtimestamp(timestamp)
@@ -81,7 +81,7 @@ def unix_timestamp_to_datetime(timestamp):
 
 def get_unix_date():
     """Same output as Unix's date command.
-    
+
     Example: Fri Apr  6 14:23:27 CEST 2012"""
     return strftime("%a %b %e %H:%M:%S %Z %Y")
 
@@ -103,9 +103,9 @@ def sec_to_hh_mm_ss(seconds, as_str=True):
         return s
     else:
         return tuple([int(x) for x in s.split(':')])
-    
+
 #############################################################################
-    
+
 if __name__ == "__main__":
     print get_timestamp_from_year_to_second(separator=True)
     print get_date_from_year_to_day()

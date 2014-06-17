@@ -17,9 +17,9 @@ def image_file_to_string(fname):
     """Convert an image file to text using OCR."""
     text = pytesser.image_file_to_string(fname)
     return text.rstrip('\n')
-    
+
 #############################################################################
-    
+
 if __name__ == "__main__":
     print image_file_to_string(TEST_DIR + '/fnord.tif')
     print '=' * 20

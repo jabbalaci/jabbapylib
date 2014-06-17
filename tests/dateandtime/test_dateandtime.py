@@ -1,34 +1,34 @@
 import re
 from datetime import datetime
-from jabbapylib.process import process 
+from jabbapylib.process import process
 from jabbapylib.dateandtime import dateandtime as dat
 
 class TestDateAndTime(object):
-    
+
     def setup_method(self, method):
         self.ts = 1111111111
         self.dt = datetime.fromtimestamp(self.ts)
-        
+
     ##########
-    
-    def test_get_timestamp_from_year_to_second_01(self): 
+
+    def test_get_timestamp_from_year_to_second_01(self):
         res = dat.get_timestamp_from_year_to_second()
         assert re.search('^\d{8}_\d{6}$', res)
-        
-    def test_get_timestamp_from_year_to_second_02(self): 
+
+    def test_get_timestamp_from_year_to_second_02(self):
         res = dat.get_timestamp_from_year_to_second(separator=True)
         assert re.search('^\d{4}_\d\d_\d\d_\d{6}$', res)
-        
-    def test_get_timestamp_from_year_to_second_03(self): 
+
+    def test_get_timestamp_from_year_to_second_03(self):
         res = dat.get_timestamp_from_year_to_second(date=self.dt)
         assert res == '20050318_025831'
-        
+
     def test_get_timestamp_from_year_to_second_04(self):
         res = dat.get_timestamp_from_year_to_second(separator=True, date=self.dt)
         assert res == '2005_03_18_025831'
-        
+
     ##########
-    
+
     def test_get_date_from_year_to_day(self):
         res = dat.get_date_from_year_to_day()
         assert re.search('^\d{4}_\d\d_\d\d$', res)
@@ -38,7 +38,7 @@ class TestDateAndTime(object):
         #
         res = dat.get_date_from_year_to_day(separator=False)
         assert re.search('^\d{8}$', res)
-        
+
     ##########
 
     def test_get_time(self):
@@ -46,26 +46,26 @@ class TestDateAndTime(object):
         assert '0000' <= res <= '2359'
 
     ##########
-    
+
     def test_datetime_to_unix_timestamp(self):
         res = dat.datetime_to_unix_timestamp(self.dt)
         assert res == 1111111111
-        
+
     ##########
-    
+
     def test_unix_timestamp_to_datetime(self):
         res = dat.unix_timestamp_to_datetime(self.ts)
         assert res.__str__() == '2005-03-18 02:58:31'
-        
+
     ##########
-    
+
     def test_get_unix_date(self):
         # Unix command 'date'
         date = process.get_simple_cmd_output('date').replace('\n', '')
         # pure Python 'date'
         python = dat.get_unix_date()
         assert date == python
-        
+
     ##########
 
     def test_is_leap_year(self):

@@ -22,18 +22,18 @@ template = 'https://ssl.gstatic.com/dictionary/static/sounds/de/0/{word}.mp3'
 
 def say(text):
     """Say a given text.
-    
+
     It calls espeak."""
     cmd = '{espeak} "{text}" 2>/dev/null'.format(espeak=cfg.ESPEAK, text=text)
     os.system(cmd)
-    
+
 
 def say_with_google(word, autoremove=True, background=False, debug=False):
     """
     Say a word with Google.
-    
+
     https://ubuntuincident.wordpress.com/2012/03/27/audio-pronunciation-of-words-from-google/
-    The return value is a tuple: (found, mp3_file), where 
+    The return value is a tuple: (found, mp3_file), where
     found is True if the word was retrieved successfully (False otherwise), and
     mp3_file is the path of the locally saved mp3 (or None if it was not saved).
     Set autoremove to False if you want to work with the mp3 later, when this
@@ -57,11 +57,11 @@ def say_with_google(word, autoremove=True, background=False, debug=False):
     else:
         found = False
         mp3_file = None
-    
+
     return (found, mp3_file)
 
 #############################################################################
-    
+
 if __name__ == "__main__":
     text = "linux text to speech"
     say(text)

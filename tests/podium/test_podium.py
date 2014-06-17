@@ -7,18 +7,18 @@ from time import sleep
 
 def test_get_hostname():
     assert podium.get_hostname()
-    
+
 def test_get_home_dir():
     username = podium.get_username()
     assert username in podium.get_home_dir()
-    
+
 def test_get_username():
     test_get_home_dir()
-    
+
 def test_is_linux():
     if fs.which('bash') == '/bin/bash':
         assert podium.is_linux()
-        
+
 def test_get_screen_resolution():
     result = podium.get_screen_resolution()
     assert len(result) == 2

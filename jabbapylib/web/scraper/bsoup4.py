@@ -15,7 +15,7 @@ from bs4 import BeautifulSoup
 
 def to_soup(html_source, parser='html.parser'):
     """Convert HTML source (text) to soup object.
-    
+
     parser can be:
     * html.parser (Python's html.parser)
     * lxml (lxml's HTML parser)  -- FASTEST
@@ -35,7 +35,7 @@ def get_links(soup, base_url=None):
     """
     Get the links on a webpage. If the URL of the given
     page is provided in base_url, then links are absolute.
-    
+
     The soup object is NOT modified.
     """
     li = []
@@ -44,9 +44,9 @@ def get_links(soup, base_url=None):
             link = urlparse.urljoin(base_url, tag['href'])
         else:
             link = tag['href']
-             
+
         li.append(link)
-        
+
     return li
 
 
@@ -59,7 +59,7 @@ def make_links_absolute(soup, base_url):
     #
     for tag in soup.findAll('a', href=True):
         tag['href'] = urlparse.urljoin(base_url, tag['href'])
-    
+
     return soup
 
 
@@ -71,7 +71,7 @@ if __name__ == "__main__":
     soup = to_soup(text, 'lxml')
     print prettify(soup)
     #
-    
+
     LINKS = """
 <html>
 <head>

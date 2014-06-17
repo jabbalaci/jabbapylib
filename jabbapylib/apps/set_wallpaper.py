@@ -23,7 +23,7 @@ def download(url):
     #
     dest = "{dir}/{sname}".format(dir=SAVE_DIR, sname=save_name)
     cmd = "wget '{url}' -O {dest}".format(url=url, dest=dest)
-    
+
     if os.path.isfile(dest):
         os.unlink(dest)
     os.system(cmd)
@@ -39,17 +39,17 @@ def check(path):
     if fs.is_local_path(path) and not os.path.isfile(path):
         print >>sys.stderr, "Error: the input file doesn't exist."
         sys.exit(1)
-        
+
 
 def main(args):
     param = args[0]
     check(param)
-    
+
     if fs.is_local_path(param):
         fname = os.path.abspath(param)
     else:
         fname = download(param)
-        
+
     gnome.set_wallpaper(fname)
 
 #############################################################################

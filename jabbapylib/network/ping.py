@@ -37,7 +37,7 @@ def fping(host, cnt=1):
         return None
 
 #############################################################################
-    
+
 if __name__ == "__main__":
     host = 'www.google.com'
     print ping(host, 2)

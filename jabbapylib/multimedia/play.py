@@ -19,7 +19,7 @@ def play(audio_file, background=False, debug=False):
     os.system(cmd)
 
 #############################################################################
-    
+
 if __name__ == "__main__":
     audio = cfg.TEST_ASSETS_DIR + '/audio.mp3'
     play(audio, background=True)

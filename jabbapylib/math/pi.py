@@ -35,7 +35,7 @@ The specified file is downloaded to /tmp for caching purposes.
 
 URL = 'http://newton.ex.ac.uk/research/qsystems/collabs/pi'
 PI3 = 'pi3.txt'
-PI3_MD5HASH = '410d8c808f7e5524fe208b74511f05c6' 
+PI3_MD5HASH = '410d8c808f7e5524fe208b74511f05c6'
 PI4 = 'pi4.txt'
 PI4_MD5HASH = 'b90eaade5badaf8753efe41022f1e848'
 PI5 = 'pi5.txt'
@@ -56,7 +56,7 @@ def validate(fname):
 
 def download(data, fname):
     url = URL + '/' + data
-    web.download_to(url, fname) 
+    web.download_to(url, fname)
 
 def check(fname):
     if not validate(fname):
@@ -70,7 +70,7 @@ def read_digits(fname):
             line = line.rstrip('\n').replace(' ', '')
             if len(line) == 50:
                 buf.write(line)
-                
+
     return buf.getvalue()
 
 def get_digits_of(data):
@@ -82,7 +82,7 @@ def get_digits_of(data):
         check(fname)
     # now read it
     return read_digits(fname)
-    
+
 def main(data):
     digits = get_digits_of(data)
     print digits
@@ -99,27 +99,27 @@ Quote:
 
     Here's a generator I coded up based on a paper by Gibbons:
        http://web.comlab.ox.ac.uk/oucl/work/jeremy.gibbons/publications/spigot.pdf
-    
-    It's simple to code, but I think you have to read the paper to figure out what 
-    it's doing. (I just translated some code, so I really can't tell you :-) In 
-    the paper, this was done in a lazy functional language. I was mostly 
+
+    It's simple to code, but I think you have to read the paper to figure out what
+    it's doing. (I just translated some code, so I really can't tell you :-) In
+    the paper, this was done in a lazy functional language. I was mostly
     interested to see how it would translate to a Python generator.
-    
+
     # pi.py -- imlementation of Gibbons' spigot algorithm for pi
     # John Zelle 4-5-06
-    
+
     Here it is in action:
-    
+
     >>> import pi
     >>> digits = pi.pidigits()
     >>> for i in range(30): print digits.next(),
     ...
     3 1 4 1 5 9 2 6 5 3 5 8 9 7 9 3 2 3 8 4 6 2 6 4 3 3 8 3 2 7
-    >>>     
-    
-    Since this uses long ints, it slows down considerably after a few thousand 
+    >>>
+
+    Since this uses long ints, it slows down considerably after a few thousand
     digits. You might want to use psyco when generating really "deep" digits.
-    
+
     --John
 """
 
@@ -132,7 +132,7 @@ def pi_digits():
             q,r,t,k,n,l = (10*q,10*(r-n*t),t,k,(10*(3*q+r))/t-10*n,l)
         else:
             q,r,t,k,n,l = (q*k,(2*q+r)*l,t*l,k+1,(q*(7*k+2)+r*l)/(t*l),l+2)
-            
+
 def get_digits(size):
     buf = StringIO()
     digits = pi_digits()
@@ -140,7 +140,7 @@ def get_digits(size):
 
     for _ in xrange(size):
         buf.write((str(digits.next())))
-        
+
     return buf.getvalue()
 
 #############################################################################
@@ -152,13 +152,13 @@ def get_digits(size):
 Quote from E. Woiski:
 
     Easy. Use mpmath (alone or under sympy):
-    
+
     >>> from sympy.mpmath import mp
     >>> mp.dps = 200000
     >>> +mp.pi
-    
+
     ... and there you are: 200000 digits of pi :)
-    
+
 Requires you to install python-sympy (via apt-get).
 """
 
@@ -190,7 +190,7 @@ def get_pi_with_bigfloat(precision_in_bits):
 if __name__ == "__main__":
 # first version
     print get_digits_of(PI3)[:200]   # PI3 means: till 10^3 = 1000. Max: PI6.
-    
+
 # second version
     print get_digits(200)
 

@@ -35,25 +35,25 @@ from jabbapylib.web import web
 from jabbapylib.web.scraper import lx
 from jabbapylib.multimedia.play import play
 
-_template = 'http://dictionary.reference.com/browse/{word}' 
+_template = 'http://dictionary.reference.com/browse/{word}'
 
 
 def get_hyphen(doc):
     """Extract the hyphenation of a word.
-    
-    Replace the Unicode dot too.""" 
+
+    Replace the Unicode dot too."""
     try:
         hyphen = doc.cssselect('div.header h2.me')[0].text
         hyphen = hyphen.replace(u'\xb7', '-')
     except IndexError:
         hyphen = None
-        
+
     return hyphen
 
 
 def get_mp3(doc):
     """Extract the first mp3 file and return its URL.
-    
+
     Return None if nothing is found."""
 #    mp3 = None
 #    for script in doc.cssselect('script[type="text/javascript"]'):
@@ -62,24 +62,24 @@ def get_mp3(doc):
 #            if result:
 #                mp3 = result.group(1)
 #                break
-#    
+#
 #    return unquote(mp3) if mp3 else None
     try:
         mp3 = doc.xpath('//span[@id="aud"]/span/@audio')[0]
     except:
         mp3 = None
-        
+
     return mp3
-        
-        
+
+
 def process(word):
     """Process the given word.
-    
+
     The return value is a tuple: (word, hyphenation, pronunciation mp3)."""
     url = _template.format(word=word)
     html = web.get_page(url, user_agent=True)
     doc = lx.to_doc(html)
-    
+
     return (word, get_hyphen(doc), get_mp3(doc))
 
 
@@ -92,7 +92,7 @@ def print_result(word, hyphen, mp3):
         print "Pronunciation: {mp3}".format(mp3=mp3)
         #audio.play(mp3, background=True)
         play(mp3)
-        
+
 
 #############################################################################
 

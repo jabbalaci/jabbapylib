@@ -18,7 +18,7 @@ import unicodedata
 #        text = unicodedata.normalize('NFKD', text).encode('ascii', 'ignore')
 #    except TypeError:
 #        pass
-#    
+#
 #    return text
 
 def remove_accents(input_str):
@@ -27,7 +27,7 @@ def remove_accents(input_str):
     return u"".join([c for c in nkfd_form if not unicodedata.combining(c)])
 
 
-def remove_non_ascii(text): 
+def remove_non_ascii(text):
     return ''.join(c for c in text if ord(c) < 128)
 
 
@@ -59,7 +59,7 @@ def strip_control_characters(input):
     return input
 
 #############################################################################
-    
+
 if __name__ == "__main__":
     text = "László"
     print remove_accents(text)

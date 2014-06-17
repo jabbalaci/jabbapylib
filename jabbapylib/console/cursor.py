@@ -19,23 +19,23 @@ from jabbapylib.console.autoflush import unbuffered
 #     can be used in a with block
 #     it will set cursor back ON, whatever happens
 #===============================================================================
-    
+
 class CursorOff(object):
     def __enter__(self):
         off()
-        
+
     def __exit__(self, *args):
         on()
 
 #===============================================================================
 # switch the cursor off/on
 #===============================================================================
-        
+
 def off():
     """Hide cursor."""
     os.system('setterm -cursor off')
 
-    
+
 def on():
     """Show cursor."""
     os.system('setterm -cursor on')

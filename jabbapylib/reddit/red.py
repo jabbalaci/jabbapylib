@@ -16,7 +16,7 @@ class HyperBot(RedBot):
     def __init__(self):
         super(HyperBot, self).__init__()
         self.name = 'HyperBot'
-        
+
 Now you are ready to flood reddit :)
 
 # from jabbapylib.reddit import red
@@ -44,7 +44,7 @@ class RedBot(object):
         self.r.login(username=self.username, password=self.password)
         self.last_post = None   # Submission object
         self.permalink = None   # URL of the last post
-        
+
     def submit_link(self, url, subreddit, title):
         """
         The return value (res) is a Submission object or None.
@@ -59,7 +59,7 @@ class RedBot(object):
         except:
             print >>sys.stderr, "Warning: couldn't submit {url}".format(url=url)
             return None
-        
+
     def add_comment(self, comment):
         if self.last_post:
             self.last_post.add_comment(comment)

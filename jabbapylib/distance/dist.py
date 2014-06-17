@@ -10,10 +10,10 @@ various distances
 
 def lev_dist(s,t):
     """
-    The Levenshtein distance (or edit distance) between two strings 
-    is the minimal number of "edit operations" required to change 
-    one string into the other. The two strings can have different 
-    lengths. There are three kinds of "edit operations": deletion, 
+    The Levenshtein distance (or edit distance) between two strings
+    is the minimal number of "edit operations" required to change
+    one string into the other. The two strings can have different
+    lengths. There are three kinds of "edit operations": deletion,
     insertion, or alteration of a character in either string.
 
     Example: the Levenshtein distance of "ag-tcc" and "cgctca" is 3.
@@ -39,7 +39,7 @@ def lev_dist(s,t):
 
 def ham_dist(s1, s2):
     """
-    The Hamming distance is defined between two strings of equal length. 
+    The Hamming distance is defined between two strings of equal length.
     It measures the number of positions with mismatching characters.
     """
     assert len(s1) == len(s2)
@@ -67,4 +67,3 @@ if __name__ == "__main__":
     a = 'toned'
     b = 'roses'
     print similarity(a, b)    # 2
-    

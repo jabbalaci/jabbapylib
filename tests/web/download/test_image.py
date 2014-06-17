@@ -15,35 +15,35 @@ def setup_module(module):
     d = img.get_local_dir()
     if os.path.exists(d):
         shutil.rmtree(d)
-        
-        
+
+
 def teardown_module(module):
     """runs once when all tests in this module are executed"""
     if os.path.exists(cfg.TMP_DIR):
         shutil.rmtree(cfg.TMP_DIR)
-    
+
 #############################################################################
 
 def test_get_file_name():
     res = img.get_file_name()
     assert res == '300px-Bodiam-castle-10My8-1197.jpg'
-    
+
 def test_get_local_dir():
     res = img.get_local_dir()
     assert res == '{dir}/2012-01-19'.format(dir=cfg.TMP_DIR)
-    
+
 def test_get_local_path():
     res = img.get_local_path()
     assert res == '{dir}/2012-01-19/300px-Bodiam-castle-10My8-1197.jpg'.format(dir=cfg.TMP_DIR)
-    
+
 def test_get_skip_path():
     res = img.get_skip_path()
     assert res == '{dir}/2012-01-19/skip'.format(dir=cfg.TMP_DIR)
-    
+
 def test_exists_1():
     assert fs.remove_file_silently(img.get_local_path())
     assert img.exists() is False
-    
+
 def test_make_dirs():
     d = img.get_local_dir()
     #
@@ -55,11 +55,11 @@ def test_make_dirs():
     assert os.path.exists(d)
     os.rmdir(d)
     assert not os.path.exists(d)
-    
+
 def test_get_readme_path():
     res = img.get_readme_path()
     assert res == '{dir}/2012-01-19/README'.format(dir=cfg.TMP_DIR)
-    
+
 def test_save_readme():
     assert img.make_dirs()
     #
@@ -72,12 +72,12 @@ readme 2nd line"""
     assert line == 'readme 1st line'
     os.unlink(img.get_readme_path())
     assert not os.path.exists(img.get_readme_path())
-    
+
 def test_download():
     d = img.get_local_dir()
     #
     assert img.download()
-    assert os.path.exists(img.get_local_path()) 
+    assert os.path.exists(img.get_local_path())
     shutil.rmtree(d)
     #
     img.make_dirs()

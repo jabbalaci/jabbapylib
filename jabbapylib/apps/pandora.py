@@ -6,15 +6,15 @@ Requirements:
 * Firefox browser
 * FoxyProxy add-on for Firefox
 
-In FoxyProxy create a custom proxy, where the URL 
+In FoxyProxy create a custom proxy, where the URL
 pattern is *www.pandora.com/* . FoxyProxy has an XML
 config file called foxyproxy.xml .
 
 Launch this script. It will find a fast US proxy and it
-will write its IP and port to foxyproxy.xml . 
+will write its IP and port to foxyproxy.xml .
 Restart the browser, thus FoxyProxy will see the new
 configuration.
-Go to pandora.com and enjoy the music :)  
+Go to pandora.com and enjoy the music :)
 """
 
 import os
@@ -34,7 +34,7 @@ def get_best_us_proxy_from_web():
     import operator
     #
     proxies = extract_list()
-    proxies = filter(proxies)    
+    proxies = filter(proxies)
     working = get_working_proxies(proxies)
     working.sort(key=operator.attrgetter("avg_time"), reverse=False)
     return working[0].ip
@@ -89,7 +89,7 @@ def main():
         ip, port = proxy.split(':')
 
     foxyproxy(ip, port)
-    
+
 #############################################################################
 
 if __name__ == "__main__":

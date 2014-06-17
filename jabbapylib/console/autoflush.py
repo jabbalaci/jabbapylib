@@ -94,7 +94,7 @@ class AutoFlush(object):    # Terry R.'s idea was to use a context manager
         sys.stdout = self.stdout_bak
 
 #############################################################################
-    
+
 if __name__ == "__main__":
 #    unbuffered()
     print "unbuffered text"

@@ -1,11 +1,11 @@
 #!/usr/bin/env python
 
 """
-Copy text to clipboards (to both of them). 
+Copy text to clipboards (to both of them).
 This solution here is specific to Linux.
 
 For a platform independent solution, you can check out
-https://github.com/asweigart/mapitpy/blob/master/pyperclip.py 
+https://github.com/asweigart/mapitpy/blob/master/pyperclip.py
 (I didn't try it).
 
 # from jabbapylib.clipboard.clipboard import text_to_clipboards
@@ -20,9 +20,9 @@ def text_to_clipboards(text):
     """Copy text to both clipboards."""
     to_primary(text)
     to_clipboard(text)
-      
+
 #############################################################################
-      
+
 def to_primary(text):
     """Write text to 'primary'."""
     xsel_proc = subprocess.Popen(['xsel', '-pi'], stdin=subprocess.PIPE)
@@ -32,9 +32,9 @@ def to_clipboard(text):
     """Write text to 'clipboard'."""
     xsel_proc = subprocess.Popen(['xsel', '-bi'], stdin=subprocess.PIPE)
     xsel_proc.communicate(text)
-    
+
 #############################################################################
-       
+
 def read_primary():
     """Read content of 'primary'."""
     cmd = 'xsel -po'
@@ -59,9 +59,9 @@ def clear_primary():
 def clear_clipboard():
     """Clear clipboard."""
     process.execute_cmd('xsel -bc')
-    
+
 #############################################################################
-    
+
 if __name__ == "__main__":
     text = "this should go on the clipboards"
     print text
@@ -69,4 +69,4 @@ if __name__ == "__main__":
     #
     print 'primary>', read_primary()
     print 'clipboard>', read_primary()
-    
+

@@ -3,12 +3,12 @@
 """
 A class defining a subset of integers as Roman Numerals
 
-defining their input and output in Roman notation 
+defining their input and output in Roman notation
 (rather than arabic decimal notation as is usual for integers)
-the internal value is in binary. 
+the internal value is in binary.
 """
 
-# Roman Number Converter & Class 
+# Roman Number Converter & Class
 #   original version by James T. Dennis (c)2001 <jimd at starshine.org>
 #
 # refactored MMIX-II-III by Vernon Cole
@@ -25,7 +25,7 @@ the internal value is in binary.
 #  For most users expecting Mark's module, this will operate as expected.
 #
 # This module should feel much like the built in decimal module.
-#  
+#
 # Idiosycrasy warning:  the order of arguments to binary math functions
 #  IS significant -- the result will be the type of the LEFT argument.
 #>>> two = roman.Roman(2)
@@ -36,7 +36,7 @@ the internal value is in binary.
 #  (note: the Roman(100000), 50000, 10000 and Roman(5000) characters are unicode
 #  (code points, so you must have a correct font such as "Code2000"
 #  (to display values > 3999. Some consoles, such as Windows cmd, cannot
-#  (print them. 
+#  (print them.
 #
 #  (refactored fromRoman function -
 #  (will silently accept almost any jumble of IVXLCDM
@@ -72,7 +72,7 @@ class InvalidRomanNumeralError(RomanError): pass
 
 class Roman(int):     #define "Roman" as a subset of int
     """Class Roman is a subset of "int"
-    define by: Roman(123) or Roman('123') or Roman('CXXIII')"""    
+    define by: Roman(123) or Roman('123') or Roman('CXXIII')"""
     def __new__(cls,N=0):
         if isinstance(N,(str,unicode)): #if arg is a string
             try:
@@ -109,8 +109,8 @@ class Roman(int):     #define "Roman" as a subset of int
         if name == 'value':
             return self.__int__()
         raise AttributeError, 'Type Roman does not define "%s"'%name
-    
-# Convert natural numbers to their Roman numeral representations 
+
+# Convert natural numbers to their Roman numeral representations
 # and vice versa.
 
 # First we associate a dictionary of numeric values with
@@ -127,7 +127,7 @@ _Rom={ #unicode code points for large Roman Numerals
  u"M":1000,   # regular ASCII letters for regular size Roman Numerals
  u"CM":900,
  u"D": 500,
- u"CD":400, 
+ u"CD":400,
  u"C": 100,
  u"XC": 90,
  u"L":  50,
@@ -147,12 +147,12 @@ _Rom={ #unicode code points for large Roman Numerals
 # Basically it means we can loop straight through without having
 # to encode a bunch of parsing conditionals (the sequence, including
 # the two letter tokens already incorporates most the the parsing
-# rules for roman numeral strings).  
+# rules for roman numeral strings).
 
 _RomSeq = ( u"\u2188",u"\u2182\u2188",u"\u2187",u"\u2182\u2187",u"\u2182",u"M\u2182", u"\u2181", u"M\u2181",
-           u"M", u"CM", u"D", u"CD", u"C", u"XC", u"L", u"XL", 
+           u"M", u"CM", u"D", u"CD", u"C", u"XC", u"L", u"XL",
        u"X", u"IX", u"V", u"IV", u"I", u"J" )
-# This allows us to convert from binary to Roman in about 7 lines 
+# This allows us to convert from binary to Roman in about 7 lines
 # of code; and from Roman back to binary less than 20
 
 def toRoman(N):
@@ -166,7 +166,7 @@ def toRoman(N):
 #   Our result starts as an empty string.
 # We interate over the sequence of roman numeral component strings
 # if the corresponding value (the value associated with "M" or "CM", etc)
-# is greater than our number, we append the current string to 
+# is greater than our number, we append the current string to
 # our result and subtract its corresponding value from our copy of n
     for s in _RomSeq:  # try each component string
         while n >= _Rom[s]: # until it is no longer in range
@@ -195,15 +195,15 @@ def fromRoman(S):
         try:        # may be a normal alphabetic character
             val = _Rom[c]  #pick the value out of the dict
         except KeyError: # may be a unicode character with a value
-            try: 
+            try:
                 val = int(unicodedata.numeric(c))  # retrieve the value from the unicode chart
             except:
-                raise InvalidRomanNumeralError, 'incorrectly formatted Roman Numeral '+repr(S) 
+                raise InvalidRomanNumeralError, 'incorrectly formatted Roman Numeral '+repr(S)
 
         if val > held:    # if there was a smaller value to the left, subtract it
             result -= held
         else:             # otherwise add it
-            result += held 
+            result += held
         held = val        # try this loop's letter value on the next loop
     result += held  #the last letter value is always added
     return result
@@ -230,8 +230,8 @@ def test():
     while i < 4007:
         rs = Roman(i)
         j = fromRoman(rs)
-        assert i == j, '%d -> %s -> %s' % (i,repr(rs),j) 
-        
+        assert i == j, '%d -> %s -> %s' % (i,repr(rs),j)
+
         if len(rs) > len(longest): #Roman has a len() method
             longest = rs
         mini = min(mini,i) #integer functions should work
@@ -245,7 +245,7 @@ def test():
             print(repr(maxi))
     print ('was "%s" which is "%d" in Arabic' % (longest, longest))
     assert fromRoman(longest) == 3888
-    
+
     ## -- now test some sample convertions ---------------------------------------------
     assert fromRoman('IIIJ') == 4  # test that the archaic construction works
     try:
@@ -290,11 +290,11 @@ def test():
     assert toUnicodeRoman(166447) == \
     u'\u2188\u2187\u2182\u2181\u216f\u216d\u216e\u2169\u216c\u2164\u2160\u2160'
     assert toUnicodeRoman(12) ==  u'\u216b'
-    
+
     nl = [5000,10000,50000,100000]
     for nb in nl:
         n = toRoman(nb)
-        try: 
+        try:
             nn = unicodedata.numeric(n)
             name = unicodedata.name(n)
         except ValueError:

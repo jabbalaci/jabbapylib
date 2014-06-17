@@ -18,13 +18,13 @@ TIDY = 'tidy'
 
 def sleep(fix=5, plus=5, test=False):
     """Sleep for some randomized time.
-    
+
     Time will be a real value between fix and fix+plus."""
     sec = fix + r.uniform(0, plus)
     #print sec
     if not test:
         time.sleep(sec)
-        
+
     return sec
 
 

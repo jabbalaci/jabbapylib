@@ -6,9 +6,9 @@ of elements.
 
 Pseudo-code:
 
-1. Find the largest index k such that a[k] < a[k + 1]. 
+1. Find the largest index k such that a[k] < a[k + 1].
    If no such index exists, the permutation is the last permutation.
-2. Find the largest index l such that a[k] < a[l]. 
+2. Find the largest index l such that a[k] < a[l].
    Since k + 1 is such an index, l is well defined and satisfies k < l.
 3. Swap a[k] with a[l].
 4. Reverse the sequence from a[k + 1] up to and including the final element a[n].
@@ -19,7 +19,7 @@ Pseudo-code:
 def lexicographically_next_permutation(a):
     """
     Generates the lexicographically next permutation.
-    
+
     Input: a permutation, called "a". This method modifies
     "a" in place. Returns True if we could generate a next
     permutation. Returns False if it was the last permutation

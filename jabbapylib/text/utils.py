@@ -33,7 +33,7 @@ def inc_string(text):
     return ''.join(text[::-1])
 
 #############################################################################
-    
+
 if __name__ == "__main__":
     print 'a ->', inc_string('a')
     print 'f ->', inc_string('f')

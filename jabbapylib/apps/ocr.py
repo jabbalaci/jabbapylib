@@ -9,7 +9,7 @@ from jabbapylib.ocr.ocr import image_file_to_string
 
 def process(files):
     """
-    Process each image file and OCR them. The result 
+    Process each image file and OCR them. The result
     is printed to the stdout.
     """
     for index,f in enumerate(files):
@@ -18,7 +18,7 @@ def process(files):
         print image_file_to_string(f)
 
 #############################################################################
-    
+
 if __name__ == "__main__":
     if len(sys.argv) == 1:
         print 'Error: provide an image file.'

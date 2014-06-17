@@ -7,7 +7,7 @@ def setup_module(module):
     """runs just once per module"""
     global IP
     IP = network.get_my_external_ip()
-    
+
 #############################################################################
 
 def test_is_internet_on():

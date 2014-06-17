@@ -3,7 +3,7 @@
 """
 Working with lxml.
 
-HTML elements have all the methods that come with ElementTree, but also include 
+HTML elements have all the methods that come with ElementTree, but also include
 some extra methods (see http://lxml.de/lxmlhtml.html, section HTML Element Methods).
 
 Element: http://docs.python.org/library/xml.etree.elementtree.html#element-objects.
@@ -35,11 +35,11 @@ from html5lib import treebuilders
 
 def to_doc(text, parser=scraper.LXML_HTML, whole_doc=True):
     """Parse an HTML text. Return value: lxml.html.HtmlElement document.
-    
-    parser: which parser to use. 
+
+    parser: which parser to use.
     whole_doc: parse to complete HTML document (with <html> around), or parse just a fragment of HTML."""
     doc = None
-    
+
     if parser == scraper.LXML_HTML:
         if whole_doc:
             doc = html.document_fromstring(text)
@@ -62,14 +62,14 @@ def to_doc(text, parser=scraper.LXML_HTML, whole_doc=True):
     else:
         print >>sys.stderr, "Warning: you want to use an unknown parser in lx.py."
         # doc is None
-        
+
     return doc  # lxml.html.HtmlElement
 
 
 def prettify(doc, method=scraper.LXML_HTML):
     """Pretty print HTML."""
     text = None
-    
+
     if method == scraper.LXML_HTML:                     # not so pretty
         text = html.tostring(doc, pretty_print=True)
     elif method == scraper.BEAUTIFULSOUP:               # pretty
@@ -80,20 +80,20 @@ def prettify(doc, method=scraper.LXML_HTML):
     else:
         print >>sys.stderr, "Warning: you want to use an unknown method in lx.py."
         # text is None
-        
+
     return text
 
 
 def flatten(doc):
     """Serialise to plain text without markup.
-    
+
     Return value: string."""
     return html.tostring(doc, method='text')
 
 
 def tostring(doc):
     """Convert an element (doc object) to html string.
-    
+
     Return value: string."""
     return html.tostring(doc)
 
@@ -106,7 +106,7 @@ def make_links_absolute(doc, base_url):
 
 def autolink(doc):
     """Replace http:// strings (texts) with HTML links.
-    
+
     See http://lxml.de/lxmlhtml.html, section autolink."""
     clean.autolink(doc)
     return doc
@@ -114,7 +114,7 @@ def autolink(doc):
 
 def css_to_xpath(css, simplify=True):
     """CSS to XPath.
-    
+
     Example: css_to_xpath('div.pad a')."""
     xpath = cssselect.css_to_xpath(css)
     if simplify:
@@ -134,12 +134,12 @@ def show_paths(doc, find=None):
                 else:   # if find is not None
                     if find in val:
                         print "'{0}' => {1}".format(val, tree.getpath(e))
-                    
-                
+
+
 def open_in_browser(doc):
     lxml.html.open_in_browser(doc)
-    
-    
+
+
 def elementtree_to_string(etree_doc):
     """Convert an ElementTree object to string."""
     return etree.tostring(etree_doc)

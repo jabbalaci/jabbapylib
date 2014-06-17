@@ -29,12 +29,12 @@ class Proxy(object):
         self.type = type
         self.country = country
         self.avg_time = self.get_avg_time(self.ip)
-        
+
     def get_avg_time(self, ip):
         """Average response time of the server."""
         ip = ip.split(':')[0]
         return ping.ping(ip)
-               
+
     def __str__(self):
         d = dict()
         d['ip'] = self.ip
@@ -42,13 +42,13 @@ class Proxy(object):
         d['country'] = self.country
         d['avg_time'] = self.avg_time
         return str(d)
-        
-        
+
+
 def check(proxy):
     """
-    Test proxy. 
-    
-    Return True if it's working; return False otherwise. 
+    Test proxy.
+
+    Return True if it's working; return False otherwise.
     """
     socket.setdefaulttimeout(TIMEOUT)
     proxies = {'http': 'http://'+proxy.ip}
@@ -68,10 +68,10 @@ def extract_list():
     Extract proxy list from base url.
     """
     sys.stdout.write('# extracting list')
-    proxies = []    
+    proxies = []
     text = get_page(BASE, user_agent=True)
     soup = bs.to_soup(text)
-    proxylist = soup.findCssSelect('table.proxylist')[0] 
+    proxylist = soup.findCssSelect('table.proxylist')[0]
     for tr in proxylist.findAll('tr', {'class': True}):
         if tr['class'] in ('odd', 'even'):
             cols = tr.findAll('td')
@@ -84,11 +84,11 @@ def extract_list():
     print 'done.'
     return proxies
 
-     
+
 def filter(proxies, type=None, country='United States'):
     """
     Filter proxies by type and country.
-    
+
     Maybe best proxies have type 'Elite'.
     """
     if type:
@@ -114,10 +114,10 @@ def get_working_proxies(proxies):
 
 def main():
     proxies = extract_list()
-    proxies = filter(proxies)    
+    proxies = filter(proxies)
     working = get_working_proxies(proxies)
     working.sort(key=operator.attrgetter("avg_time"), reverse=False)
-    
+
     print 'Working US proxies:'
     for i,p in enumerate(working):
         print '({n}) {p}'.format(n=i+1, p=p)

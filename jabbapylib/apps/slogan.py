@@ -28,7 +28,7 @@ def get_slogan(word, times=1):
         if len(slogan) >= 2 and slogan[-1] == '.' and slogan[-2] == '!':
             slogan = slogan[:-1]
         li.append(slogan)
-        
+
     return li
 
 #############################################################################

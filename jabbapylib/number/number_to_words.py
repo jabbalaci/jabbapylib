@@ -59,7 +59,7 @@ def length_2(s):
         if int(s[0]) > 1:
             tmp = s[0] + '0'
             return "{0}-{1}".format(numbers[tmp], numbers[s[1]])
-    
+
 
 def length_3(s):
     head = s[0]

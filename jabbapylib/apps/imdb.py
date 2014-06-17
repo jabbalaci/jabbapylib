@@ -5,7 +5,7 @@ Simple IMDB movie info fetcher.
 
 Available info:
 
-Plot Votes Rated Response Title Poster Writer ID 
+Plot Votes Rated Response Title Poster Writer ID
 Director Released Actors Year Genre Runtime Rating
 """
 
@@ -23,21 +23,21 @@ class Movie(object):
         self.url = BASE + urllib.urlencode({'t' : keyword})
         self.d = self.get_info()
 #        print(self)
-        
+
     def get_info(self):
         text = get_page(self.url)
         return json.loads(text)
-    
+
     def __getitem__(self, key):
         return self.d[key]
-    
+
     def __str__(self):
         li = []
         for key in self.d:
             li.append("{key}: {value}".format(key=key, value=self.d[key]))
-            
+
         return '\n'.join(li)
-    
+
 
 def get_rating(title):
     m = Movie(title)
@@ -50,4 +50,4 @@ if __name__ == "__main__":
 #    print m
     print 'Title: {title}'.format(title=m['Title'])
     print 'Year: {year}'.format(year=m['Year'])
-    print 'Rating: {rating}'.format(rating=m['imdbRating']) 
+    print 'Rating: {rating}'.format(rating=m['imdbRating'])

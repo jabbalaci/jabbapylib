@@ -22,7 +22,7 @@ def main():
     if inp in ('', 'y'):
         url = "https://maps.google.com/maps?q={lat},{long}".format(lat=result['Latitude'], long=result['Longitude'])
         webbrowser.open_new_tab(url)
-    
+
 #############################################################################
 
 if __name__ == "__main__":

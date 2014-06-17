@@ -35,8 +35,8 @@ def test_to_doc():
     #
     doc = lx.to_doc(ex.FRAGMENT, parser=None, whole_doc=False)
     assert doc is None
-    
-    
+
+
 def test_prettify():
     doc = lx.to_doc(ex.UGLY, parser=scraper.LXML_HTML)
     #
@@ -53,45 +53,45 @@ def test_prettify():
     #
     nice = lx.prettify(doc, method=None)
     assert nice is None
-    
-    
+
+
 def test_flatten():
     doc = lx.to_doc(ex.HTML_1)
     assert lx.flatten(doc) == 'HeaderWant ThisGoogle.ca\n'
-    
-    
+
+
 def test_tostring():
     doc = lx.to_doc(ex.HTML_1)
     html = lx.tostring(doc)
     assert type(html) is str and len(html) > 0
-    
-    
+
+
 def test_make_links_absolute():
     doc = lx.to_doc(ex.LINKS)
     doc = lx.make_links_absolute(doc, base_url='http://retrogames.com')
     html = lx.tostring(doc)
     assert "http://retrogames.com/games/elite" in html
     assert "http://retrogames.com/games/commando" in html
-    
-    
+
+
 def test_autolink():
     doc = lx.to_doc(ex.TEXT)
     doc = lx.autolink(doc)
     html = lx.tostring(doc)
     assert '<a href="http://retrogames.com/games/commando">http://retrogames.com/games/commando</a>' in html
-    
-    
+
+
 #def test_css_to_xpath():
 #    #assert lx.css_to_xpath('tr td') == '//tr//td'    # TODO, verify it
 #    assert lx.css_to_xpath('a[href]') == '//a[@href]'
-    
-    
+
+
 def test_show_paths():
     doc = lx.to_doc(ex.HTML_1)
-    
+
     old_stdout = sys.stdout
     buf = StringIO()
-    sys.stdout = buf 
+    sys.stdout = buf
     #
     lx.show_paths(doc, find=None)
     assert "'Want This' => /html/body/table/tr[2]/td" in buf.getvalue()
@@ -103,8 +103,8 @@ def test_show_paths():
     #
     buf.close()
     sys.stdout = old_stdout
-    
-    
+
+
 def test_open_in_browser():
     pass
 

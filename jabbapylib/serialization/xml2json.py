@@ -9,9 +9,9 @@ Limitation: XML attributes cause error.
 from xml.parsers.expat import ParserCreate
 
 class Xml2Json(object):
-    
+
     LIST_TAGS = ['COMMANDS']
-    
+
     def __init__(self, data = None):
         self._parser = ParserCreate()
         self._parser.StartElementHandler = self.start
@@ -21,7 +21,7 @@ class Xml2Json(object):
         if data:
             self.feed(data)
             self.close()
-        
+
     def feed(self, data):
         self._stack = []
         self._data = ''
@@ -69,7 +69,7 @@ class Xml2Json(object):
         self._data = data
 
 #############################################################################
-    
+
 if __name__ == "__main__":
     print Xml2Json('<doc><tag><subtag>data</subtag><t>data1</t><t>data2</t></tag></doc>').result
     # {u'doc': {u'tag': {u'subtag': u'data', u't': [u'data1', u'data2']}}}

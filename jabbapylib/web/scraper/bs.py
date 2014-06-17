@@ -15,7 +15,7 @@ from jabbapylib.lib.BeautifulSoup import BeautifulSoup
 
 def css_patch():
     """Add the function soup.findSelect (or soup.findCssSelect) to BeautifulSoup.
-    
+
     From here: https://code.google.com/p/soupselect/."""
     from jabbapylib.lib import soupselect
     soupselect.monkeypatch()
@@ -35,7 +35,7 @@ def get_links(soup, base_url=None):
     """
     Get the links on a webpage. If the URL of the given
     page is provided in base_url, then links are absolute.
-    
+
     The soup object is NOT modified.
     """
     li = []
@@ -44,9 +44,9 @@ def get_links(soup, base_url=None):
             link = urlparse.urljoin(base_url, tag['href'])
         else:
             link = tag['href']
-             
+
         li.append(link)
-        
+
     return li
 
 
@@ -59,7 +59,7 @@ def make_links_absolute(soup, base_url):
     #
     for tag in soup.findAll('a', href=True):
         tag['href'] = urlparse.urljoin(base_url, tag['href'])
-    
+
     return soup
 
 
@@ -74,7 +74,7 @@ if __name__ == "__main__":
     soup = to_soup(text)
     print prettify(soup)
     #
-    
+
     LINKS = """
 <html>
 <head>

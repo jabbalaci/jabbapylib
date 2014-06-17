@@ -15,19 +15,19 @@ pp = pprint.PrettyPrinter(indent=4)
 
 
 class BDecoder(object):
-    
+
     def __init__(self, fname):
         self.fname = fname
         self.data = open(fname, 'rb').read()
         self.long_torrent = self._decode(self.data)
-        
+
         self.short_torrent = copy.deepcopy(self.long_torrent)
         del self.short_torrent['info']['pieces']        # pieces are too long, remove them
-        
+
         self.name = self.short_torrent['info']['name']  # name of the torrent
         self.length = self._get_length()                # total length of files in bytes
         self.pretty_length = sizeof_fmt(self.length)    # total length of files in pretty format
-        
+
     def get_info(self):
         buf = StringIO()
         old_stdout = sys.stdout
@@ -38,9 +38,9 @@ class BDecoder(object):
         sys.stdout = old_stdout
         #
         return result
-    
+
     #########################################################################
-        
+
     def _get_length(self):
         try:
             # consists of several files
@@ -65,7 +65,7 @@ class BDecoder(object):
                 i = i + int(s)
             else:
                 yield s
-    
+
     def _decode_item(self, next, token): #@ReservedAssignment
         if token == "i":
             # integer: "i" value "e"
@@ -87,7 +87,7 @@ class BDecoder(object):
         else:
             raise ValueError
         return data
-    
+
     def _decode(self, text):
         try:
             src = self._tokenize(text)
@@ -110,6 +110,6 @@ if __name__ == '__main__':
     print torrent.name
     #print torrent.length
     print torrent.pretty_length
-    
+
 #    for file in torrent["info"]["files"]:
 #        print "%r - %d bytes" % ("/".join(file["path"]), file["length"])
