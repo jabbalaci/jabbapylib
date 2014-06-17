@@ -17,7 +17,7 @@ def test_get_video_length():
 
 def test_get_video_summary():
     res = video.get_video_summary(FILE)
-    assert res == 'VIDEO:  [MP4V]  854x480  24bpp  23.976 fps    0.0 kbps ( 0.0 kbyte/s)'
+    assert res == 'VIDEO:  854x480  23.976 fps    0.0 kbps ( 0.0 kB/s)'
 
 
 def test_make_screenshot():

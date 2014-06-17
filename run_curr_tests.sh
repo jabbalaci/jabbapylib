@@ -13,7 +13,7 @@ clear
 #py.test -vs tests/dictionary
 #py.test -vs tests/reddit
 #py.test -vs tests/dateandtime
-py.test -vs tests/filesystem
+#py.test -vs tests/filesystem
 #py.test -vs tests/reddit
 #py.test -vs tests/web
 #py.test -vs tests/number
@@ -23,3 +23,4 @@ py.test -vs tests/filesystem
 #py.test -vs tests/hash
 #py.test -vs tests/text
 #py.test -vs tests/cmanagers
+py.test -vs tests/multimedia
