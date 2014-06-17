@@ -24,13 +24,13 @@ TB = 1024 * GB
 
 def read_first_line(input_file):
     """Read the first line of a file.
-    
+
     Useful to read username, password, etc.
     Security tip: store such files on a Truecrypt volume."""
     f = open(input_file, 'r')
     line = f.readline().rstrip('\n')
     f.close()
-    
+
     return line
 
 
@@ -56,23 +56,23 @@ def get_timestamped_filename():
 
 def remove_file_silently(fname):
     """Remove a file and don't complain if it doesn't exist.
-    
+
     Return True if the file doesn't exist, otherwise return False."""
     try:
         os.unlink(fname)
     except:
         pass    # maybe it didn't exist
-    
+
     return not os.path.exists(fname)
 
 
 def touch(fname, mode=None):
     """Touch a file.
-    
+
     If the file doesn't exist, it will be created. In this case
     you can specify its permissions.
     If the file exists, it will be touched. Permissions won't be changed.
-    
+
     Return True if the file exists, otherwise return False.
     """
     # http://stackoverflow.com/questions/1158076/implement-touch-using-python
@@ -82,13 +82,13 @@ def touch(fname, mode=None):
             set_mode_to(fname, mode)
     else:
         os.utime(fname, None)
-        
+
     return os.path.exists(fname)
-        
+
 
 def get_oct_mode(fname):
     """Get the permissions of an entry in octal mode.
-    
+
     The return value is a string (ex. '0600')."""
     entry_stat = os.stat(fname)
     mode = oct(entry_stat[stat.ST_MODE] & 0777)
@@ -97,8 +97,8 @@ def get_oct_mode(fname):
 
 def set_mode_to(fname, permissions):
     """Set the file with the given permissions.
-    
-    permissions is given as an octal number (not as a string), ex.: 0700 
+
+    permissions is given as an octal number (not as a string), ex.: 0700
     Return True if permissions were set successfully, otherwise return False."""
     mode = get_oct_mode(fname)
     if mode != oct(permissions):
@@ -106,7 +106,7 @@ def set_mode_to(fname, permissions):
             os.chmod(fname, permissions)
         except OSError:
             print >>sys.stderr, "# cannot chmod the file {0}".format(fname)
-            
+
     return get_oct_mode(fname) == oct(permissions)
 
 
@@ -137,7 +137,7 @@ def store_content_in_file(content, file_name, overwrite=False, encode=None):
 def which(program):
     """
     Equivalent of the which command in Python.
-    
+
     source: http://stackoverflow.com/questions/377017/test-if-executable-exists-in-python
     """
     def is_exe(fpath):
@@ -158,7 +158,7 @@ def which(program):
 
 def read_json(fname):
     """Read an entire json file.
-    
+
     Return value: the encoded Python object (list, dictionary, etc.)."""
     with open(fname, 'r') as f:
         return json.load(f)
@@ -194,13 +194,31 @@ def sizeof_fmt(num):
     """
     Convert file size to human readable format.
     """
-    for x in ['bytes','KB','MB','GB','TB']:
+    for x in ['bytes', 'KB', 'MB', 'GB', 'TB']:
         if num < 1024.0:
             return "{0:.2f} {1}".format(num, x)
         num /= 1024.0
 
-############################################################################# 
- 
+
+def is_binary(fname):
+    """
+    Return true if the given filename is binary.
+
+    found at http://stackoverflow.com/questions/898669/how-can-i-detect-if-a-file-is-binary-non-text-in-python
+    """
+    CHUNKSIZE = 1024
+    with open(fname, 'rb') as f:
+        while True:
+            chunk = f.read(CHUNKSIZE)
+            if '\0' in chunk: # found null byte
+                return True
+            if len(chunk) < CHUNKSIZE:
+                break # done
+
+    return False
+
+#############################################################################
+
 if __name__ == "__main__":
     #input_file = '/home/jabba/secret/project_euler/username.txt'
     #print read_first_line(input_file)
@@ -217,3 +235,4 @@ if __name__ == "__main__":
 #     print which('bash')
 #     print is_image_file('/trash/hey.PNG')
     print sizeof_fmt(3980230656)
+    print is_binary('/etc/issue')

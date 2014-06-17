@@ -10,42 +10,40 @@ Working with webpages.
 # from jabbapylib.web.web import get_page_with_cookies_using_cookiejar
 """
 
+import httplib  # status codes here: http://docs.python.org/library/httplib.html
 import os
 import sys
+import tempfile
 import urllib
 import urllib2
 import urlparse
-import tempfile
 import webbrowser
-import httplib    # status codes here: http://docs.python.org/library/httplib.html
 
-from export_firefox_cookies import get_cookies_in_text, get_cookies_in_cookiejar
-from jabbapylib.process import process
+from export_firefox_cookies import get_cookies_in_cookiejar, get_cookies_in_text
 from jabbapylib import config as cfg
 from jabbapylib.filesystem import fs
+from jabbapylib.process import process
 from jabbapylib.web.scraper import jabba_webkit as jw
 
 
 class MyOpener(urllib.FancyURLopener):
     """Custom user-agent."""
     version = cfg.USER_AGENT
-# MyOpener
 
 
 def get_referer(url):
     """Get the referer of a URL.
-    
+
     Ex.: http://example.com/dir/file.html => http://example.com,
     i.e. keep the protocol and the host.
     """
     p = urlparse.urlparse(url)
     return "{0}://{1}".format(p.scheme, p.netloc)
-# get_referer
 
 
 def get_host(url):
     """Get the host from a URL.
-    
+
     Example: http://projecteuler.net/index.php?section=statistics => projecteuler.net"""
     p = urlparse.urlparse(url)
     return p.netloc
@@ -53,7 +51,7 @@ def get_host(url):
 
 def get_url_open(url, user_agent=False, referer=False, timeout=None):
     """Open a URL.
-    
+
     This is a helper function for others who want to read the URL.
     """
     req = urllib2.Request(url)
@@ -65,7 +63,6 @@ def get_url_open(url, user_agent=False, referer=False, timeout=None):
         return urllib2.urlopen(req, timeout=timeout) if timeout else urllib2.urlopen(req)
     except:
         return None
-# get_url_open
 
 
 def get_url_info(url, user_agent=False, referer=False):
@@ -77,19 +74,17 @@ def get_url_info(url, user_agent=False, referer=False):
         return result
     # else
     return None
-# get_url_info
 
 
 def get_redirected_url(url):
     """Get the redirected URL.
-    
+
     In case of problem, return None."""
     try:
         page = urllib.urlopen(url)
         return page.geturl()
     except:
         return None
-# get_redirected_url
 
 
 def get_server_status_code(url):
@@ -121,7 +116,7 @@ def check_url(url):
 
 def get_page(url, user_agent=True, referer=False, timeout=None):
     """Get the content of a page (HTML, image, etc.).
-    
+
     Return value: string (can be binary too).
     """
     d = get_url_open(url, user_agent, referer, timeout)
@@ -131,19 +126,17 @@ def get_page(url, user_agent=True, referer=False, timeout=None):
         return result
     # else
     return None
-# get_page
 
 
 def download_to(url, local_file, user_agent=False, referer=False, timeout=None, overwrite=False):
     """Fetch the content of a URL and store it in a local file."""
     content = get_page(url, user_agent=user_agent, referer=referer, timeout=timeout)
     fs.store_content_in_file(content, local_file, overwrite=overwrite)
-# download_to
 
 
 def get_page_with_cookies_using_wget(url):
     """Get the content of a cookies-protected page.
-    
+
     The page is downloaded with wget. Cookies are passed to wget."""
     cookies = get_cookies_in_text(get_host(url))
     fs.store_content_in_file(cookies, cfg.COOKIES_TXT, overwrite=True)
@@ -151,13 +144,13 @@ def get_page_with_cookies_using_wget(url):
     cmd = "{wget} {options} '{url}' -qO-".format(wget=cfg.WGET, options=OPTIONS, url=url)
     page = process.get_simple_cmd_output(cmd)
     os.unlink(cfg.COOKIES_TXT)
-    
+
     return page
 
 
 def get_page_with_cookies_using_cookiejar(url, timeout=None):
     """Get the content of a cookies-protected page.
-    
+
     The page is downloaded with urllib2. The cookies are passed in a cookiejar."""
     cj = get_cookies_in_cookiejar(get_host(url))
     opener = urllib2.build_opener(urllib2.HTTPCookieProcessor(cj))      # cookies are added here
@@ -181,9 +174,10 @@ def get_js_page(url):
     """Get a page with Webkit, i.e. evaluate embedded JavaScripts."""
     return jw.get_page(url)
 
+
 def open_in_browser(html, test=False):
     """Save an HTML source to a temp. file and open it in the browser.
-    
+
     Return value: name of the temp. file."""
     temp = tempfile.NamedTemporaryFile(prefix='tmp', suffix='.html', dir='/tmp', delete=False)
     fs.store_content_in_file(html, temp.name, overwrite=True)
@@ -195,8 +189,8 @@ def open_in_browser(html, test=False):
 def html_to_text(html, method=cfg.LYNX):
     """Convert an HTML source to text format. Two methods are available:
     (1) with lynx, (2) with html2text.py.
-    
-    The return value is a string.""" 
+
+    The return value is a string."""
     temp = tempfile.NamedTemporaryFile(prefix='tmp', suffix='.html', dir='/tmp', delete=False)
     fs.store_content_in_file(html, temp.name, overwrite=True)
     if method == cfg.LYNX:
@@ -207,11 +201,11 @@ def html_to_text(html, method=cfg.LYNX):
         print >>sys.stderr, "Warning! Unknown method is used in web.html_to_text."
         os.unlink(temp.name)
         return None
-    
+
     text = process.get_simple_cmd_output(cmd)
     os.unlink(temp.name)
     return text
-    
+
 #############################################################################
 
 if __name__ == "__main__":
@@ -223,7 +217,7 @@ if __name__ == "__main__":
 
     # version 2
 #    print get_page_with_cookies_using_cookiejar(url)
-    
+
     # get JS page
 #    url = 'http://simile.mit.edu/crowbar/test.html'
 #    print get_js_page(url)
@@ -235,7 +229,7 @@ if __name__ == "__main__":
     #
     print '====='
     print get_server_status_code('http://simile.mit.edu/crowbar/test.html')
-    
+
     print get_js_page('http://simile.mit.edu/crowbar/test.html')
     print '====='
     print get_js_page('http://simile.mit.edu/crowbar/test.html')
