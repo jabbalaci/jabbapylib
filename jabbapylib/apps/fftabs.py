@@ -82,7 +82,7 @@ def option_count():
 
 def option_close(args):
     total = ff.get_number_of_tabs()
-    li = [int(x) for x in args['ID'] if 0 <= int(x) < total]
+    li = sorted([int(x) for x in args['ID'] if 0 <= int(x) < total])
     for pos, val in enumerate(li):
         # once a tab is closed, subsequent tabs are shifted one position to the left
         ff.put_focus_on_tab(val - pos)
