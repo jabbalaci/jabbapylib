@@ -1,4 +1,4 @@
-**New (Jan 12, 2017):** This project has a newer version called [jabbapylib3](https://github.com/jabbalaci/jabbapylib),
+**New (Jan 12, 2017):** This project has a newer version called [jabbapylib3](https://github.com/jabbalaci/jabbapylib3),
 which is written in Python 3. New things will arrive in jabbapylib3. This version here
 is not maintained anymore. This one was written in Python 2. I leave this project
 here, I won't delete it, but I encourage you to switch to jabbapylib3.
